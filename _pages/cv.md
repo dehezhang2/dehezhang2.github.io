@@ -12,7 +12,7 @@ redirect_from:
 Education
 ======
 - *<font size=3>2021 - Present</font>*<font size=3>, Master of Science, Computer Science, ETH Zürich, Switzerland.</font> 
-  - **Selected Courses**: Shape Modeling and Geometry Processing (6.00/6.00), Computer Graphics (5.75/6.00), Computer Vision (5.75/6.00), Mathematical Foundation for CV and CG (5.75/6.00), 3D Vision (5.75/6.00), Mixed Reality (5.75/6.00), Advanced Machine Learning (5.75/6.00)
+  - **Selected Courses**: Shape Modeling and Geometry Processing (6.00/6.00), Digital Human (6.00/6.00), Computer Graphics (5.75/6.00), Computer Vision (5.75/6.00), Mathematical Foundation for CV and CG (5.75/6.00), 3D Vision (5.75/6.00), Mixed Reality (5.75/6.00), Advanced Machine Learning (5.75/6.00)
 
 - *<font size=3>2017 - 2021</font>*<font size=3>, Bachelor of Science , Computer Science (AI Stream), City University of Hong Kong, Hong Kong SAR. </font>
   - **GPA**: top 5 % with First Class Honours

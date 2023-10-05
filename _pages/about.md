@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-My name is Deheng Zhang, I am currently an Msc CS student at [ETH Zürich](https://ethz.ch/de.html). I obtained my Bachelor's degree in [CityU of Hong Kong](https://www.cityu.edu.hk/), I was supervised by [Prof. Dr. Jing Liao](https://liaojing.github.io/html/) for my Bachelor's thesis. Now I am doing my semester thesis in [Disney Research (Studio) Zürich](https://studios.disneyresearch.com/), supervised by [Dr. Clara Fernández Labrador](https://cfernandezlab.github.io/). 
+My name is Deheng Zhang, I am currently an Msc CS student at [ETH Zürich](https://ethz.ch/de.html). I obtained my Bachelor's degree in [CityU of Hong Kong](https://www.cityu.edu.hk/), I was supervised by [Prof. Dr. Jing Liao](https://liaojing.github.io/html/) for my Bachelor's thesis. Now I am doing my master thesis in [VLG](https://vlg.inf.ethz.ch/index.html), supervised by [Dr. Sergey Prokudin](https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html) and [Shaofei Wang](https://taconite.github.io/), overseen by [Prof. Dr. Siyu Tang](https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html). Previously, I also work on my semester thesis in [Disney Research (Studio) Zürich](https://studios.disneyresearch.com/) about 3D style transfer, supervised by [Dr. Clara Fernández Labrador](https://cfernandezlab.github.io/). 
 
 My current research interest is an intersection between computer vision and computer graphics, and I would like to explore more possibilities to combine deep learning with traditional rendering or 3D vision algorithms. 
 
@@ -52,6 +52,52 @@ My hobbies includes [Rendering](https://dehezhang2.github.io/Kombu/), [Photograp
     }
   </style>
 
+<heading><strong>Point-Based Radiance Fields for Controllable Human Motion Synthesis</strong> </heading>
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+  <tr onmouseout="point_stop()" onmouseover="point_start()"> 
+
+    <td width="40%">
+      <div class="one">
+      <div class="two" id = 'point_shape'>
+        <img src="/images/projects/point.gif" width="100%" > </div>
+      <img src='/images/projects/point.png' width="100%" >
+      </div>
+      
+      <script type="text/javascript">
+      function point_start() { 
+      document.getElementById('point_shape').style.opacity = "1";
+      }
+      function point_stop() { 
+      document.getElementById('point_shape').style.opacity = "0"; 
+      }
+      nice_stop()
+      </script>
+    </td>
+    
+    <td valign="top" width="75%">
+          <papertitle>
+          <strong>
+            Point-Based Radiance Fields for Controllable Human Motion Synthesis
+          </strong>
+          </papertitle>
+    <br>
+        <strong>Deheng Zhang*</strong>,
+        <a href="https://sputnik524.github.io/">Haitao Yu*</a>,
+        <a href="https://github.com/xpy1009"> Peiyuan Xie*</a>,
+        <a href="https://github.com/TianyiZhang-arc"> Tianyi Zhang*</a>
+        (* means equal contribution)
+      <br>
+        <em>Course project of Digital Human in ETH Zürich</em>
+      <br>
+        <!-- <a href="https://arxiv.org/abs/2306.02393"> Paper </a> |  -->
+        <a href="https://github.com/dehezhang2/Point_Based_NeRF_Editing/tree/main">Github Repo</a> 
+        <a href="https://dehezhang2.github.io/Point_Based_NeRF_Editing/">Project website</a>
+      <br>
+      In this project, we proposed a new method for learning animatable human avatar model with point-based primitives. In specific, our method exploits the explicit point cloud to train the static 3D scene based on Point-NeRF and apply the deformation by encoding the point cloud translation using a deformation MLP. We also guarantee the rendering consistency by perform rotation-only ray-bending. The final <a href="https://www.youtube.com/watch?v=3iZ_89IwZUU">animating avatar</a> is comparable to other state-of-art animatable human models.
+    </td>
+  </tr>
+</table>
+<hr>
 
 <heading><strong>NICE-SLAM with Adaptive Feature Grids</strong> </heading>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
