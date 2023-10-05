@@ -60,7 +60,7 @@ My hobbies includes [Rendering](https://dehezhang2.github.io/Kombu/), [Photograp
       <div class="one">
       <div class="two" id = 'point_shape'>
         <img src="/images/projects/point.gif" width="100%" > </div>
-      <img src='/images/projects/point.png' width="70%" >
+      <img src='/images/projects/point.png' width="100%" >
       </div>
       
       <script type="text/javascript">
