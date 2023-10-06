@@ -89,11 +89,11 @@ My hobbies includes [Rendering](https://dehezhang2.github.io/Kombu/), [Photograp
       <br>
         <em>Course project of Digital Human in ETH Zürich</em>
       <br>
-        <!-- <a href="https://arxiv.org/abs/2306.02393"> Paper </a> |  -->
+        <a href="https://arxiv.org/abs/2310.03375"> Paper </a> |
         <a href="https://dehezhang2.github.io/Point_Based_NeRF_Editing/">Project website</a> | 
         <a href="https://github.com/dehezhang2/Point_Based_NeRF_Editing/tree/main">Github Repo</a> 
       <br>
-      In this project, we proposed a new method for learning animatable human avatar model with point-based primitives. In specific, our method exploits the explicit point cloud to train the static 3D scene based on Point-NeRF and apply the deformation by encoding the point cloud translation using a deformation MLP. We also guarantee the rendering consistency by perform rotation-only ray-bending. The final <a href="https://www.youtube.com/watch?v=3iZ_89IwZUU">animating avatar</a> is comparable to other state-of-art animatable human models.
+      In this project, we proposed a new method for learning an animable human avatar model with point-based primitives. Specifically, our method exploits the explicit point cloud to train the static 3D scene based on Point-NeRF and apply the deformation by encoding the point cloud translation using a deformation MLP. We also guarantee rendering consistency by performing rotation-only ray-bending. The final <a href="https://www.youtube.com/watch?v=3iZ_89IwZUU">animating avatar</a> is comparable to other state-of-the-art animable human models.
     </td>
   </tr>
 </table>
