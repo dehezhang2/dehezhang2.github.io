@@ -12,8 +12,11 @@ My name is Deheng Zhang, I am currently an Msc CS student at [ETH Zürich](https
 
 My current research interest is an intersection between computer vision and computer graphics, and I would like to explore more possibilities to combine deep learning with traditional rendering or 3D vision algorithms. 
 
-My hobbies includes [Rendering](https://dehezhang2.github.io/Kombu/), [Photography](https://dehezhang2.github.io/gallery/), Video Game, Finger-style guitar, Table Tennis, Skiing, and Hiking.
+My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photography](https://dehezhang2.github.io/gallery/), Video Game, Finger-style guitar, Table Tennis, Skiing, and Hiking.
 
+## News
+- *2023.10*:  🎉🎉 My first first-author paper *CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields* has been accepted by **3DV 2024**! Thanks to my supervisor **[Dr. Clara Fernández Labrador](https://cfernandezlab.github.io/)** for the help and tons of useful advice for this project. 
+  
 ## Education
 - *<font size=3>2021 - Present</font>*<font size=3>, Master of Science, Computer Science, ETH Zürich, Switzerland.</font> 
 - *<font size=3>2017 - 2021</font>*<font size=3>, Bachelor of Science with First Class Honours, Computer Science (AI Stream), City University of Hong Kong, Hong Kong SAR. </font>
