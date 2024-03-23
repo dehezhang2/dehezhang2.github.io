@@ -61,7 +61,7 @@ My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photograph
         <em>3DV 2024</em>
       <br>
         <a href="https://studios.disneyresearch.com/app/uploads/2024/03/CoARF_paper.pdf"> Paper </a> |
-        <a href="https://studios.disneyresearch.com/2024/03/18/coarf-controllable-3d-artistic-style-transfer-for-radiance-fields/">Project website</a> | 
+        <a href="https://studios.disneyresearch.com/2024/03/18/coarf-controllable-3d-artistic-style-transfer-for-radiance-fields/">Project website</a> 
       <br>
        In this paper, we introduce Controllable Artistic Radiance Fields (CoARF), a novel algorithm for controllable 3D scene stylization. CoARF enables style transfer for specified objects, compositional 3D style transfer and semantic-aware style transfer. We achieve controllability using segmentation masks with different label-dependent loss functions. We also propose a semantic-aware nearest neighbor matching algorithm to improve the style transfer quality.
     </td>
