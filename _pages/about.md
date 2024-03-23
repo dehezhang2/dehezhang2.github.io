@@ -15,12 +15,60 @@ My current research interest is an intersection between computer vision and comp
 My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photography](https://dehezhang2.github.io/gallery/), Video Game, Finger-style guitar, Table Tennis, Skiing, and Hiking.
 
 ## News
+
 - *2023.10*:  🎉🎉 My first first-author paper *CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields* has been accepted by **3DV 2024**! Thanks to my supervisor **[Dr. Clara Fernández Labrador](https://cfernandezlab.github.io/)** for the help and tons of useful advice for this project. 
   
 ## Education
 - *<font size=3>2021 - Present</font>*<font size=3>, Master of Science, Computer Science, ETH Zürich, Switzerland.</font> 
 - *<font size=3>2017 - 2021</font>*<font size=3>, Bachelor of Science with First Class Honours, Computer Science (AI Stream), City University of Hong Kong, Hong Kong SAR. </font>
 - *<font size=3>2014-2017</font>*<font size=3>, Senior High School Diploma, Shandong Experimental High School, China. </font>
+
+## Publications
+
+<heading><strong>CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields</strong> </heading>
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+  <tr onmouseout="point_stop()" onmouseover="point_start()"> 
+
+    <td width="40%">
+      <div class="one">
+      <div class="two" id = 'coarf_shape'>
+        <img src="/images/projects/coarf.gif" width="100%" > </div>
+      <img src='/images/projects/coarf.png' width="100%" >
+      </div>
+      
+      <script type="text/javascript">
+      function coarf_start() { 
+      document.getElementById('coarf_shape').style.opacity = "1";
+      }
+      function coarf_stop() { 
+      document.getElementById('coarf_shape').style.opacity = "0"; 
+      }
+      coarf_stop()
+      </script>
+    </td>
+    
+    <td valign="top" width="75%">
+          <papertitle>
+          <strong>
+            CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields
+          </strong>
+          </papertitle>
+    <br>
+        <strong>Deheng Zhang</strong>,
+        <a href="https://cfernandezlab.github.io/">Clara Fernández Labrador</a>,
+        <a href="https://studios.disneyresearch.com/people/christopher-schroers/"> Christopher Schroers</a>,
+      <br>
+        <em>3DV 2024</em>
+      <br>
+        <a href="https://studios.disneyresearch.com/app/uploads/2024/03/CoARF_paper.pdf"> Paper </a> |
+        <a href="https://studios.disneyresearch.com/2024/03/18/coarf-controllable-3d-artistic-style-transfer-for-radiance-fields/">Project website</a> | 
+      <br>
+       In this paper, we introduce Controllable Artistic Radiance Fields (CoARF), a novel algorithm for controllable 3D scene stylization. CoARF enables style transfer for specified objects, compositional 3D style transfer and semantic-aware style transfer. We achieve controllability using segmentation masks with different label-dependent loss functions. We also propose a semantic-aware nearest neighbor matching algorithm to improve the style transfer quality.
+    </td>
+  </tr>
+</table>
+<hr>
+
 
 ## Selected Projects
 
@@ -73,7 +121,7 @@ My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photograph
       function point_stop() { 
       document.getElementById('point_shape').style.opacity = "0"; 
       }
-      nice_stop()
+      point_stop()
       </script>
     </td>
     

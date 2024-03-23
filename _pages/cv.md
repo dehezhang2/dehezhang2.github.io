@@ -25,6 +25,7 @@ Research Experience
 * Dec 2022 to May 2023: Semester Project
   * **Place**: ETH Zürich
   * **Supervisor**: overseen by [Prof. Markus Gross](https://inf.ethz.ch/de/personen/person-detail.mgross.html), supervised by [Dr. Clara Fernández Labrador](https://cfernandezlab.github.io/)
+  * **Duty**: Work on the controllable 3D style transfer problem. Proposed a novel method: CoARF, which enables style transfer for specified objects, compositional 3D style transfer, and semantic-aware style transfer. We achieve controllability using segmentation masks with different label-dependent loss functions. We also propose a semantic-aware nearest neighbor matching algorithm to improve the style transfer quality. Finally, we published a paper in 3DV 2024. 
   
 * Sep 2020 to April 2021: Bachelor Thesis
   * **Place**: City University of Hong Kong
