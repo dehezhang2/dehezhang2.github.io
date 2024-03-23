@@ -27,7 +27,7 @@ My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photograph
 
 <heading><strong>CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields</strong> </heading>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
-  <tr onmouseout="point_stop()" onmouseover="point_start()"> 
+  <tr onmouseout="coarf_stop()" onmouseover="coarf_start()"> 
 
     <td width="40%">
       <div class="one">
