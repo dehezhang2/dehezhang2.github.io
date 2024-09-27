@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Deheng Zhang"
 title_separator          : "-"
 name                     : &name "Deheng Zhang"
-description              : &description "MSc of Computer Science student in ETH Zürich"
+description              : &description "Doctoral student in the University of Tübingen"
 url                      : https://dehezhang2.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "dehezhang2/dehezhang2.github.io"
@@ -82,12 +82,12 @@ analytics:
 author:
   name             : "Deheng Zhang"
   avatar           : "profile.png"
-  bio              : "MSc of Computer Science student in ETH Zürich"
-  location         : "Zürich"
+  bio              : "Doctoral student in the University of Tübingen"
+  location         : "Tübingen"
   employer         :
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=7pEFc9wAAAAJ"
-  email            : dezhang@student.ethz.ch
+  email            : deheng.zhang@uni-tuebingen.de
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
