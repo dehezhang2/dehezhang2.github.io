@@ -8,18 +8,20 @@ redirect_from:
   - /about.html
 ---
 
-My name is Deheng Zhang, I am currently an Msc CS student at [ETH Zürich](https://ethz.ch/de.html). I obtained my Bachelor's degree in [CityU of Hong Kong](https://www.cityu.edu.hk/), I was supervised by [Prof. Dr. Jing Liao](https://www.cityu.edu.hk/stfprofile/jingliao.htm) for my Bachelor's thesis. Now I am doing my master thesis in [VLG](https://vlg.inf.ethz.ch/index.html), supervised by [Dr. Sergey Prokudin](https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html) and [Shaofei Wang](https://taconite.github.io/), overseen by [Prof. Dr. Siyu Tang](https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html). Previously, I also work on my semester thesis in [Disney Research (Studio) Zürich](https://studios.disneyresearch.com/) about 3D style transfer, supervised by [Dr. Clara Fernández Labrador](https://cfernandezlab.github.io/) and overseen by [Prof. Dr. Markus Gross](https://inf.ethz.ch/de/personen/person-detail.mgross.html). 
+My name is Deheng Zhang, I am currently Ph.D. student at the [University of Tübingen](https://uni-tuebingen.de/) supervised by [Prof. Hendrik Lensch](https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/computergrafik/lehrstuhl/mitarbeiter/prof-dr-ing-hendrik-lensch/). Previously, I finished my MSc at [ETH Zürich](https://ethz.ch/de.html) where I worked on 3D Vision/Graphics research projects in [Disney Research (Studio) Zürich](https://studios.disneyresearch.com/) overseen by [Prof. Dr. Markus Gross](https://inf.ethz.ch/de/personen/person-detail.mgross.html) and [VLG](https://vlg.inf.ethz.ch/index.html) overseen by [Prof. Dr. Siyu Tang](https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html). Before that, I finished Bachelor's degree at [CityU of Hong Kong](https://www.cityu.edu.hk/). 
 
-My current research interest is an intersection between computer vision and computer graphics, and I would like to explore more possibilities to combine deep learning with traditional rendering or 3D vision algorithms. 
+My current research interest is an intersection between computer vision and computer graphics, and I would like to explore more possibilities to combine deep learning with traditional rendering or 3D vision algorithms.
+
 
 My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photography](https://dehezhang2.github.io/gallery/), Video Game, Finger-style guitar, Table Tennis, Skiing, and Hiking.
 
 ## News
-
+- *2024.09*:  I have joined IMPR-IS University of Tübingen as a PhD student, supervised by [Prof. Hendrik Lensch](https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/computergrafik/lehrstuhl/mitarbeiter/prof-dr-ing-hendrik-lensch/)!
 - *2023.10*:  🎉🎉 My first first-author paper *CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields* has been accepted by **3DV 2024**! Thanks to my supervisor **[Dr. Clara Fernández Labrador](https://cfernandezlab.github.io/)** for the help and tons of useful advice for this project. 
   
 ## Education
-- *<font size=3>2021 - Present</font>*<font size=3>, Master of Science, Computer Science, ETH Zürich, Switzerland.</font> 
+- *<font size=3>2024 - Present</font>*<font size=3>, Doctoral Student, Computer Graphics, University of Tübingen, Germany.</font> 
+- *<font size=3>2021 - 2024</font>*<font size=3>, Master of Science, Computer Science, ETH Zürich, Switzerland.</font> 
 - *<font size=3>2017 - 2021</font>*<font size=3>, Bachelor of Science with First Class Honours, Computer Science (AI Stream), City University of Hong Kong, Hong Kong SAR. </font>
 - *<font size=3>2014-2017</font>*<font size=3>, Senior High School Diploma, Shandong Experimental High School, China. </font>
 
