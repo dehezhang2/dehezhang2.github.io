@@ -26,6 +26,55 @@ My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photograph
 - *<font size=3>2014-2017</font>*<font size=3>, Senior High School Diploma, Shandong Experimental High School, China. </font>
 
 ## Publications
+<heading><strong>RISE-SDF: a Relightable Information-Shared Signed Distance Field for Glossy Object Inverse Rendering</strong> </heading>
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+  <tr onmouseout="risesdf_stop()" onmouseover="risesdf_start()"> 
+
+    <td width="40%">
+      <div class="one">
+      <div class="two" id = 'risesdf_shape'>
+        <img src="/images/projects/risesdf.gif" width="100%" > </div>
+      <img src='/images/projects/risesdf.png' width="100%" >
+      </div>
+      
+      <script type="text/javascript">
+      function risesdf_start() { 
+      document.getElementById('risesdf_shape').style.opacity = "1";
+      }
+      function risesdf_stop() { 
+      document.getElementById('risesdf_shape').style.opacity = "0"; 
+      }
+      risesdf_stop()
+      </script>
+    </td>
+    
+    <td valign="top" width="75%">
+          <papertitle>
+          <strong>
+            RISE-SDF: a Relightable Information-Shared Signed Distance Field for Glossy Object Inverse Rendering
+          </strong>
+          </papertitle>
+    <br>
+        <strong>Deheng Zhang*</strong>,
+        <a href="https://cfernandezlab.github.io/">Jingyu Wang*</a>,
+        <a href="https://taconite.github.io/">Shaofei Wang</a>,
+        <a href="https://markomih.github.io/">Marko Mihajlovic</a>,
+        <a href="https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html">Sergey Prokudin</a>,
+        <a href="https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/computergrafik/lehrstuhl/mitarbeiter/prof-dr-ing-hendrik-lensch/">Hendrik P.A. Lensch</a>,
+        <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
+
+      <br>
+        <em>3DV 2025</em>
+      <br>
+        <a href="https://www.arxiv.org/pdf/2409.20140"> Paper </a> |
+        <a href="https://dehezhang2.github.io/RISE-SDF/">Project website</a> |
+        <a href="https://drive.google.com/drive/folders/1991eNN5-bMWK7aEHf99VU_iGZsH6FnAc">Dataset</a>
+      <br>
+       In this paper, we propose a novel end-to-end relightable neural inverse rendering system that achieves high-quality reconstruction of geometry and material properties, thus enabling high-quality relighting. The cornerstone of our method is a two-stage approach for learning a better factorization of scene parameters. In the first stage, we develop a reflection-aware radiance field using a neural signed distance field (SDF) as the geometry representation and deploy an MLP (multilayer perceptron) to estimate indirect illumination. In the second stage, we introduce a novel information-sharing network structure to jointly learn the radiance field and the physically based factorization of the scene. 
+    </td>
+  </tr>
+</table>
+<hr>
 
 <heading><strong>CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields</strong> </heading>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
