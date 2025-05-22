@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Deheng Zhang"
 title_separator          : "-"
 name                     : &name "Deheng Zhang"
-description              : &description "Doctoral student in the University of Tübingen"
+description              : &description "Doctoral researcher at INSAIT"
 url                      : https://dehezhang2.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "dehezhang2/dehezhang2.github.io"
@@ -82,8 +82,8 @@ analytics:
 author:
   name             : "Deheng Zhang"
   avatar           : "profile.png"
-  bio              : "Doctoral student in the University of Tübingen"
-  location         : "Tübingen"
+  bio              : "Doctoral student at INSAIT"
+  location         : "Sofia"
   employer         :
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=7pEFc9wAAAAJ"
