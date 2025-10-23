@@ -16,8 +16,10 @@ My current research interest is an intersection between computer vision and comp
 My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photography](https://dehezhang2.github.io/gallery/), Video Game, Finger-style guitar, Table Tennis, Skiing, and Hiking.
 
 ## News
+- *2025.09*:  🎉🎉 Our paper *StateSpaceDiffuser: Bringing Long Context to Diffusion World Models* has been accepted by **NeuraIPS 2025**!
 - *2025.04*:  I have joined INSAIT as a PhD student, supervised by [Prof. Luc Van Gool](https://insait.ai/prof-luc-van-gool/) and [Dr. Danda Paudel](https://insait.ai/dr-danda-paudel/)!
-- *2023.10*:  🎉🎉 My first first-author paper *CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields* has been accepted by **3DV 2024**! Thanks to my supervisor **[Dr. Clara Fernández Labrador](https://cfernandezlab.github.io/)** for the help and tons of useful advice for this project. 
+- *2024.10*:  🎉🎉 My first first-author paper *RISE-SDF: a Relightable Information-Shared Signed Distance Field for Glossy Object Inverse Rendering* has been accepted by **3DV 2025**!
+- *2023.10*:  🎉🎉 My first first-author paper *CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields* has been accepted by **3DV 2024**!
   
 ## Education
 - *<font size=3>2024 - Present</font>*<font size=3>, Doctoral Researcher, INSAIT, Sofia, Bulgaria.</font> 
@@ -26,6 +28,54 @@ My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photograph
 - *<font size=3>2014-2017</font>*<font size=3>, Senior High School Diploma, Shandong Experimental High School, China. </font>
 
 ## Publications
+<heading><strong>StateSpaceDiffuser: Bringing Long Context to Diffusion World Models</strong> </heading>
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+  <tr onmouseout="statespacediffuser_stop()" onmouseover="statespacediffuser_start()"> 
+
+    <td width="40%">
+      <div class="one">
+      <div class="two" id = 'statespacediffuser_shape'>
+        <img src="/images/projects/statespacediffuser.png" width="100%" > </div>
+      <img src='/images/projects/statespacediffuser.png' width="100%" >
+      </div>
+      
+      <script type="text/javascript">
+      function statespacediffuser_start() { 
+      document.getElementById('statespacediffuser_shape').style.opacity = "1";
+      }
+      function statespacediffuser_stop() { 
+      document.getElementById('statespacediffuser_shape').style.opacity = "0"; 
+      }
+      statespacediffuser_stop()
+      </script>
+    </td>
+    
+    <td valign="top" width="75%">
+          <papertitle>
+          <strong>
+            StateSpaceDiffuser: Bringing Long Context to Diffusion World Models
+          </strong>
+          </papertitle>
+    <br>
+        
+        <a href="https://insait.ai/nedko-savov/">Nedko Savov</a>,
+        <a href="https://insait.ai/naser-kazemi/">Naser Kazemi</a>,
+        <strong>Deheng Zhang</strong>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Paudel</a>,
+        <a href="https://xiwang1212.github.io/homepage/">Xi Wang</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>
+      <br>
+        <em>NeurIPS 2025</em>
+      <br>
+        <a href="https://arxiv.org/abs/2505.22246"> Paper </a> |
+        <a href="https://insait-institute.github.io/StateSpaceDiffuser/">Project website</a>
+      <br>
+       In this paper, we introduce StateSpaceDiffuser to solve the memory issue of world model, where a diffusion model is enabled to perform long-context tasks by integrating features from a state-space model, representing the entire interaction history.
+    </td>
+  </tr>
+</table>
+<hr>
+
 <heading><strong>RISE-SDF: a Relightable Information-Shared Signed Distance Field for Glossy Object Inverse Rendering</strong> </heading>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
   <tr onmouseout="risesdf_stop()" onmouseover="risesdf_start()"> 
