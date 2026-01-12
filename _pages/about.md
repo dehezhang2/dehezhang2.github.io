@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-My name is Deheng Zhang, I am currently Ph.D. student at the [INSAIT](https://insait.ai/) supervised by [Prof. Luc Van Gool](https://insait.ai/prof-luc-van-gool/) and [Dr. Danda Paudel](https://insait.ai/dr-danda-paudel/). Previously, I finished my MSc at [ETH Zürich](https://ethz.ch/de.html) where I worked on 3D Vision/Graphics research projects in [Disney Research (Studio) Zürich](https://studios.disneyresearch.com/) overseen by [Prof. Dr. Markus Gross](https://inf.ethz.ch/de/personen/person-detail.mgross.html) and [VLG](https://vlg.inf.ethz.ch/index.html) overseen by [Prof. Dr. Siyu Tang](https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html). Before that, I finished Bachelor's degree at [CityU of Hong Kong](https://www.cityu.edu.hk/). 
+My name is Deheng Zhang, I am currently Doctoral Researcher at the [INSAIT](https://insait.ai/) supervised by [Prof. Luc Van Gool](https://insait.ai/prof-luc-van-gool/) and [Dr. Danda Paudel](https://insait.ai/dr-danda-paudel/). Previously, I finished my MSc at [ETH Zürich](https://ethz.ch/de.html) where I worked on 3D Vision/Graphics research projects in [Disney Research (Studio) Zürich](https://studios.disneyresearch.com/) overseen by [Prof. Dr. Markus Gross](https://inf.ethz.ch/de/personen/person-detail.mgross.html) and [VLG](https://vlg.inf.ethz.ch/index.html) overseen by [Prof. Dr. Siyu Tang](https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html). Before that, I finished Bachelor's degree at [CityU of Hong Kong](https://www.cityu.edu.hk/). 
 
 My current research interest is an intersection between computer vision and computer graphics, and I would like to explore more possibilities to combine deep learning with traditional rendering or 3D vision algorithms.
 
