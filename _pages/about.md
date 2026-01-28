@@ -16,18 +16,73 @@ My current research interest is an intersection between computer vision and comp
 My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photography](https://dehezhang2.github.io/gallery/), Video Game, Finger-style guitar, Table Tennis, Skiing, and Hiking.
 
 ## News
+- *2026.01*:  🎉🎉 My first first-author paper *EgoNight: Towards Egocentric Vision Understanding at Night with a Challenging Benchmark* has been accepted by **ICLR 2026**!
 - *2025.09*:  🎉🎉 Our paper *StateSpaceDiffuser: Bringing Long Context to Diffusion World Models* has been accepted by **NeuraIPS 2025**!
 - *2025.04*:  I have joined INSAIT as a PhD student, supervised by [Prof. Luc Van Gool](https://insait.ai/prof-luc-van-gool/) and [Dr. Danda Paudel](https://insait.ai/dr-danda-paudel/)!
 - *2024.10*:  🎉🎉 My first first-author paper *RISE-SDF: a Relightable Information-Shared Signed Distance Field for Glossy Object Inverse Rendering* has been accepted by **3DV 2025**!
 - *2023.10*:  🎉🎉 My first first-author paper *CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields* has been accepted by **3DV 2024**!
   
 ## Education
-- *<font size=3>2024 - Present</font>*<font size=3>, Doctoral Researcher, INSAIT, Sofia, Bulgaria.</font> 
+- *<font size=3>2025 - Present</font>*<font size=3>, Doctoral Researcher, INSAIT, Sofia, Bulgaria.</font> 
 - *<font size=3>2021 - 2024</font>*<font size=3>, Master of Science, Computer Science, ETH Zürich, Switzerland.</font> 
 - *<font size=3>2017 - 2021</font>*<font size=3>, Bachelor of Science with First Class Honours, Computer Science (AI Stream), City University of Hong Kong, Hong Kong SAR. </font>
 - *<font size=3>2014-2017</font>*<font size=3>, Senior High School Diploma, Shandong Experimental High School, China. </font>
 
 ## Publications
+<heading><strong>EgoNight: Towards Egocentric Vision Understanding at Night with a Challenging Benchmark</strong> </heading>
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+  <tr onmouseout="egonight_stop()" onmouseover="egonight_start()"> 
+
+    <td width="40%">
+      <div class="one">
+      <div class="two" id = 'egonight_shape'>
+        <img src="/images/projects/egonight.gif" width="100%" > </div>
+      <img src='/images/projects/egonight.png' width="100%" >
+      </div>
+      
+      <script type="text/javascript">
+      function egonight_start() { 
+      document.getElementById('egonight_shape').style.opacity = "1";
+      }
+      function egonight_stop() { 
+      document.getElementById('egonight_shape').style.opacity = "0"; 
+      }
+      egonight_stop()
+      </script>
+    </td>
+    
+    <td valign="top" width="75%">
+          <papertitle>
+          <strong>
+            EgoNight: Towards Egocentric Vision Understanding at Night with a Challenging Benchmark
+          </strong>
+          </papertitle>
+    <br>
+        
+        <strong>Deheng Zhang*</strong>,
+        <a href="https://yuqianfu.com/">Yuqian Fu*</a>,
+        <a href="https://runyiyang.github.io/">Runyi Yang</a>,
+        <a href="https://y9miao.github.io/">Yang Miao</a>,
+        <a href="https://qiantianwen.github.io/">Tianwen Qian</a>,
+        <a href="https://zhengxujosh.github.io/">Xu Zheng</a>,
+        <a href="https://guoleisun.github.io/">Guolei Sun</a>,
+        <a href="https://ajadchhatkuli.github.io/">Ajad Chhatkuli</a>,
+        <a href="https://xuanjing-huang.github.io/">Xuanjing Huang</a>,
+        <a href="https://fvl.fudan.edu.cn/people/yugangjiang/">Yu-Gang Jiang</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>
+        
+      <br>
+        <em>ICLR 2026</em>
+      <br>
+        <a href="https://openreview.net/pdf?id=DKD4QbOKBN"> Paper </a>
+      <br>
+       EgoNight is the first comprehensive benchmark designed to evaluate egocentric vision understanding in low-light and nighttime conditions—a critical gap in current research. The suite features a diverse dataset comprising synthetic scenes (EgoNight-Synthetic), real-world aligned day-night pairs (EgoNight-Sofia), and unaligned nighttime footage (EgoNight-Oxford). 
+    </td>
+  </tr>
+</table>
+<hr>
+
 <heading><strong>StateSpaceDiffuser: Bringing Long Context to Diffusion World Models</strong> </heading>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
   <tr onmouseout="statespacediffuser_stop()" onmouseover="statespacediffuser_start()"> 
@@ -35,7 +90,7 @@ My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photograph
     <td width="40%">
       <div class="one">
       <div class="two" id = 'statespacediffuser_shape'>
-        <img src="/images/projects/statespacediffuser.png" width="100%" > </div>
+        <img src="/images/projects/statespacediffuser.gif" width="100%" > </div>
       <img src='/images/projects/statespacediffuser.png' width="100%" >
       </div>
       
