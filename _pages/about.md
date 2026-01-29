@@ -16,10 +16,10 @@ My current research interest is an intersection between computer vision and comp
 My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photography](https://dehezhang2.github.io/gallery/), Video Game, Finger-style guitar, Table Tennis, Skiing, and Hiking.
 
 ## News
-- *2026.01*:  🎉🎉 My first first-author paper *EgoNight: Towards Egocentric Vision Understanding at Night with a Challenging Benchmark* has been accepted by **ICLR 2026**!
+- *2026.01*:  🎉🎉 My first-author paper *EgoNight: Towards Egocentric Vision Understanding at Night with a Challenging Benchmark* has been accepted by **ICLR 2026**!
 - *2025.09*:  🎉🎉 Our paper *StateSpaceDiffuser: Bringing Long Context to Diffusion World Models* has been accepted by **NeuraIPS 2025**!
 - *2025.04*:  I have joined INSAIT as a PhD student, supervised by [Prof. Luc Van Gool](https://insait.ai/prof-luc-van-gool/) and [Dr. Danda Paudel](https://insait.ai/dr-danda-paudel/)!
-- *2024.10*:  🎉🎉 My first first-author paper *RISE-SDF: a Relightable Information-Shared Signed Distance Field for Glossy Object Inverse Rendering* has been accepted by **3DV 2025**!
+- *2024.10*:  🎉🎉 My first-author paper *RISE-SDF: a Relightable Information-Shared Signed Distance Field for Glossy Object Inverse Rendering* has been accepted by **3DV 2025**!
 - *2023.10*:  🎉🎉 My first first-author paper *CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields* has been accepted by **3DV 2024**!
   
 ## Education
