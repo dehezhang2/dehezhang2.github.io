@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-My name is Deheng Zhang, I am currently Doctoral Researcher at the [INSAIT](https://insait.ai/) supervised by [Prof. Luc Van Gool](https://insait.ai/prof-luc-van-gool/) and [Dr. Danda Paudel](https://insait.ai/dr-danda-paudel/). Previously, I finished my MSc at [ETH Zürich](https://ethz.ch/de.html) where I worked on 3D Vision/Graphics research projects in [Disney Research (Studio) Zürich](https://studios.disneyresearch.com/) overseen by [Prof. Dr. Markus Gross](https://inf.ethz.ch/de/personen/person-detail.mgross.html) and [VLG](https://vlg.inf.ethz.ch/index.html) overseen by [Prof. Dr. Siyu Tang](https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html). Before that, I finished Bachelor's degree at [CityU of Hong Kong](https://www.cityu.edu.hk/). 
+My name is Deheng Zhang, I am currently Researcher at the [INSAIT](https://insait.ai/) supervised by [Prof. Luc Van Gool](https://insait.ai/prof-luc-van-gool/) and [Dr. Danda Paudel](https://insait.ai/dr-danda-paudel/). Previously, I finished my MSc at [ETH Zürich](https://ethz.ch/de.html) where I worked on 3D Vision/Graphics research projects in [Disney Research (Studio) Zürich](https://studios.disneyresearch.com/) overseen by [Prof. Dr. Markus Gross](https://inf.ethz.ch/de/personen/person-detail.mgross.html) and [VLG](https://vlg.inf.ethz.ch/index.html) overseen by [Prof. Dr. Siyu Tang](https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html). Before that, I finished Bachelor's degree at [CityU of Hong Kong](https://www.cityu.edu.hk/). 
 
 My current research interest is an intersection between computer vision and computer graphics, and I would like to explore more possibilities to combine deep learning with traditional rendering or 3D vision algorithms.
 
@@ -18,12 +18,12 @@ My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photograph
 ## News
 - *2026.01*:  🎉🎉 My first-author paper *EgoNight: Towards Egocentric Vision Understanding at Night with a Challenging Benchmark* has been accepted by **ICLR 2026**!
 - *2025.09*:  🎉🎉 Our paper *StateSpaceDiffuser: Bringing Long Context to Diffusion World Models* has been accepted by **NeuraIPS 2025**!
-- *2025.04*:  I have joined INSAIT as a PhD student, supervised by [Prof. Luc Van Gool](https://insait.ai/prof-luc-van-gool/) and [Dr. Danda Paudel](https://insait.ai/dr-danda-paudel/)!
+- *2025.04*:  I have joined INSAIT as a researcher, supervised by [Prof. Luc Van Gool](https://insait.ai/prof-luc-van-gool/) and [Dr. Danda Paudel](https://insait.ai/dr-danda-paudel/)!
 - *2024.10*:  🎉🎉 My first-author paper *RISE-SDF: a Relightable Information-Shared Signed Distance Field for Glossy Object Inverse Rendering* has been accepted by **3DV 2025**!
 - *2023.10*:  🎉🎉 My first first-author paper *CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields* has been accepted by **3DV 2024**!
   
 ## Education
-- *<font size=3>2025 - Present</font>*<font size=3>, Doctoral Researcher, INSAIT, Sofia, Bulgaria.</font> 
+- *<font size=3>2025 - Present</font>*<font size=3>, Researcher, INSAIT, Sofia, Bulgaria.</font> 
 - *<font size=3>2021 - 2024</font>*<font size=3>, Master of Science, Computer Science, ETH Zürich, Switzerland.</font> 
 - *<font size=3>2017 - 2021</font>*<font size=3>, Bachelor of Science with First Class Honours, Computer Science (AI Stream), City University of Hong Kong, Hong Kong SAR. </font>
 - *<font size=3>2014-2017</font>*<font size=3>, Senior High School Diploma, Shandong Experimental High School, China. </font>
