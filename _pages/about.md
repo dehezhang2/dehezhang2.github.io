@@ -75,7 +75,10 @@ My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photograph
       <br>
         <em>ICLR 2026</em>
       <br>
-        <a href="https://openreview.net/pdf?id=DKD4QbOKBN"> Paper </a>
+        <a href="https://openreview.net/pdf?id=DKD4QbOKBN"> Paper </a> |
+        <a href="https://dehezhang2.github.io/EgoNight/">Project website</a> |
+        <a href="https://github.com/dehezhang2/EgoNight">Github Repo</a> |
+        <a href="https://huggingface.co/datasets/dehezhang2/EgoNight">Dataset</a>
       <br>
        EgoNight is the first comprehensive benchmark designed to evaluate egocentric vision understanding in low-light and nighttime conditions—a critical gap in current research. The suite features a diverse dataset comprising synthetic scenes (EgoNight-Synthetic), real-world aligned day-night pairs (EgoNight-Sofia), and unaligned nighttime footage (EgoNight-Oxford). 
     </td>
@@ -173,6 +176,7 @@ My hobbies include [Rendering](https://dehezhang2.github.io/Kombu/), [Photograph
       <br>
         <a href="https://www.arxiv.org/pdf/2409.20140"> Paper </a> |
         <a href="https://dehezhang2.github.io/RISE-SDF/">Project website</a> |
+        <a href="https://github.com/dehezhang2/RISE-SDF">Github Repo</a> |
         <a href="https://drive.google.com/drive/folders/1991eNN5-bMWK7aEHf99VU_iGZsH6FnAc">Dataset</a>
       <br>
        In this paper, we propose a novel end-to-end relightable neural inverse rendering system that achieves high-quality reconstruction of geometry and material properties, thus enabling high-quality relighting. The cornerstone of our method is a two-stage approach for learning a better factorization of scene parameters.
