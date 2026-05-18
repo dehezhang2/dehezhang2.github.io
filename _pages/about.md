@@ -59,8 +59,26 @@ body, .page, .page__content, .author__name, .author__bio,
   font-size: 0.95em;
   margin-top: 0.2em;
 }
-/* Hide the unused "Follow" button */
-.sidebar .btn.btn--inverse { display: none; }
+/* The theme hides the "Follow" button automatically at ≥1200px.
+   Below that, the button toggles the social-icons dropdown — keep it
+   visible there but restyle it to feel native rather than chunky. */
+.sidebar .btn.btn--inverse {
+  background: transparent;
+  color: #2462c4;
+  border: 1px solid #2462c4;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 500;
+  padding: 4px 16px;
+  margin: 6px 0 0;
+  transition: all 0.15s;
+}
+.sidebar .btn.btn--inverse:hover {
+  background: #2462c4;
+  color: #fff;
+}
+/* When the dropdown is open, switch the button label affordance */
+.sidebar .author__urls-wrapper button.open { background: #2462c4; color: #fff; }
 
 /* Social icon list: clean monochrome line style with hover accent */
 .sidebar .author__urls.social-icons {

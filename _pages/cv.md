@@ -53,7 +53,22 @@ body, .page, .page__content, .author__name, .author__bio,
   color: #1a1a1a;
 }
 .sidebar .author__bio { color: #5b5b5b; font-size: 0.95em; margin-top: 0.2em; }
-.sidebar .btn.btn--inverse { display: none; }
+/* The theme hides the "Follow" button automatically at ≥1200px.
+   Below that, the button toggles the social-icons dropdown — keep it
+   visible there but restyle to be less chunky. */
+.sidebar .btn.btn--inverse {
+  background: transparent;
+  color: #2462c4;
+  border: 1px solid #2462c4;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 500;
+  padding: 4px 16px;
+  margin: 6px 0 0;
+  transition: all 0.15s;
+}
+.sidebar .btn.btn--inverse:hover { background: #2462c4; color: #fff; }
+.sidebar .author__urls-wrapper button.open { background: #2462c4; color: #fff; }
 .sidebar .author__urls.social-icons { padding-left: 0; margin-top: 0.8em; }
 .sidebar .author__urls.social-icons li {
   list-style: none;
