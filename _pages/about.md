@@ -743,6 +743,56 @@ span.highlight { background-color: #ffffd0; }
   }
   .expand-hint { display: none; }
 }
+
+/* ========== Visitor map (clustrmaps) — responsive wrapper ========== */
+.visitor-map {
+  margin: 1.5em 0 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+.visitor-map a,
+.visitor-map img,
+.visitor-map iframe,
+.visitor-map > div,
+.visitor-map > center,
+.visitor-map > span {
+  max-width: 100% !important;
+  height: auto !important;
+  display: inline-block;
+}
+.visitor-map img { width: auto; max-width: 100%; }
+@media (max-width: 600px) {
+  .visitor-map { margin-top: 1em; }
+}
+
+/* ========== Masthead / top navigation — mobile fixes ========== */
+@media (max-width: 768px) {
+  .masthead__inner-wrap { padding: 0.7em 0.9em !important; }
+  .greedy-nav { min-width: 0; background: transparent; }
+  .greedy-nav a { margin: 0 0.6rem; padding: 0.4rem 0; font-size: 0.95em; }
+  .masthead__menu-item--lg a { font-size: 1em; }
+  .greedy-nav button {
+    width: 44px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .greedy-nav .hidden-links {
+    right: 0;
+    margin-top: 8px;
+    min-width: 140px;
+    z-index: 30;
+  }
+  .greedy-nav .hidden-links a { padding: 8px 14px; font-size: 0.95em; }
+}
+@media (max-width: 480px) {
+  .masthead__inner-wrap { padding: 0.5em 0.7em !important; }
+  .greedy-nav a { margin: 0 0.4rem; font-size: 0.9em; }
+  .masthead__menu-item--lg a { font-size: 0.95em; padding-right: 0.6em; }
+  .greedy-nav button { width: 40px; }
+}
 </style>
 
 I am a Researcher at [INSAIT](https://insait.ai/), working with [Prof. Luc Van Gool](https://insait.ai/prof-luc-van-gool/) and [Dr. Danda Paudel](https://insait.ai/dr-danda-paudel/). I received my MSc from [ETH Zürich](https://ethz.ch/de.html), where I conducted 3D Vision and Graphics research at [Disney Research \| Studios Zürich](https://studios.disneyresearch.com/) (with [Prof. Markus Gross](https://inf.ethz.ch/de/personen/person-detail.mgross.html)) and at [VLG](https://vlg.inf.ethz.ch/index.html) (with [Prof. Siyu Tang](https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html)). I obtained my Bachelor's degree from [City University of Hong Kong](https://www.cityu.edu.hk/).
@@ -1312,4 +1362,6 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
   <li><strong>Journal Reviewer</strong> · IEEE Transactions on Circuits and Systems for Video Technology (TCSVT)</li>
 </ul>
 
+<div class="visitor-map">
 <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=080808&w=500&t=n&d=EaPM_Oi-daigqRQM2Q73XIO-D5fj9jjmJs-kLKLA8XI&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=808080'></script>
+</div>

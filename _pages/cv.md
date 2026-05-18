@@ -370,6 +370,34 @@ body, .page, .page__content, .author__name, .author__bio,
   /* Tag chips */
   .cv-tag { font-size: 0.78em; padding: 2px 8px; }
 }
+
+/* ========== Masthead / top navigation — mobile fixes ========== */
+@media (max-width: 768px) {
+  .masthead__inner-wrap { padding: 0.7em 0.9em !important; }
+  .greedy-nav { min-width: 0; background: transparent; }
+  .greedy-nav a { margin: 0 0.6rem; padding: 0.4rem 0; font-size: 0.95em; }
+  .masthead__menu-item--lg a { font-size: 1em; }
+  .greedy-nav button {
+    width: 44px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .greedy-nav .hidden-links {
+    right: 0;
+    margin-top: 8px;
+    min-width: 140px;
+    z-index: 30;
+  }
+  .greedy-nav .hidden-links a { padding: 8px 14px; font-size: 0.95em; }
+}
+@media (max-width: 480px) {
+  .masthead__inner-wrap { padding: 0.5em 0.7em !important; }
+  .greedy-nav a { margin: 0 0.4rem; font-size: 0.9em; }
+  .masthead__menu-item--lg a { font-size: 0.95em; padding-right: 0.6em; }
+  .greedy-nav button { width: 40px; }
+}
 </style>
 
 <div class="cv-meta">
