@@ -315,10 +315,60 @@ body, .page, .page__content, .author__name, .author__bio,
 .cv-activity li:last-child { border-bottom: none; }
 .cv-activity strong { color: #1a1a1a; }
 
-/* ========== Responsive ========== */
+/* ========== Responsive: tablet (≤ 900px) ========== */
+@media (max-width: 900px) {
+  .page__title { font-size: 1.85em !important; }
+  .section-heading { font-size: 1.3em; margin-top: 1.5em; }
+  .sidebar .author__avatar img { max-width: 150px; }
+  .sidebar .author__name { font-size: 1.3em; }
+  .experience-item { padding: 14px 16px; gap: 14px; }
+  .experience-logo { flex: 0 0 56px; height: 56px; }
+}
+
+/* ========== Responsive: phone (≤ 600px) ========== */
 @media (max-width: 600px) {
-  .cv-skill-grid { grid-template-columns: 1fr; }
-  .experience-logo { flex: 0 0 48px; height: 48px; }
+  .page__title { font-size: 1.55em !important; }
+  .section-heading { font-size: 1.2em; margin-top: 1.3em; }
+  .page__content { font-size: 15px; }
+
+  .sidebar .author__avatar img { max-width: 120px; }
+  .sidebar .author__name { font-size: 1.15em; }
+
+  /* Contact line: each item on its own row */
+  .cv-meta {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.9em;
+  }
+
+  /* Skills grid: collapse to single column */
+  .cv-skill-grid { grid-template-columns: 1fr; gap: 4px 0; }
+  .cv-skill-grid dt { margin-top: 8px; }
+  .cv-skill-grid dt:first-of-type { margin-top: 0; }
+
+  /* Experience / education cards on phone */
+  .experience-item {
+    padding: 12px 14px;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .experience-logo { flex: 0 0 48px; height: 48px; padding: 4px; }
+  .experience-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .experience-title { font-size: 0.94em; line-height: 1.35; }
+  .experience-org   { font-size: 0.85em; }
+  .experience-date  { font-size: 0.8em; margin-top: 2px; }
+  .experience-details ul { font-size: 0.85em; padding-left: 1em; }
+
+  /* Honors list */
+  .honors-list li { flex-wrap: wrap; gap: 4px; padding: 7px 0; }
+  .honors-list .year { flex: 0 0 100%; font-size: 0.82em; }
+
+  /* Tag chips */
+  .cv-tag { font-size: 0.78em; padding: 2px 8px; }
 }
 </style>
 

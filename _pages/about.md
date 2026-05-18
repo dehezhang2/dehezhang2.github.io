@@ -580,12 +580,168 @@ span.highlight { background-color: #ffffd0; }
   vertical-align: middle;
 }
 
-/* ========== Responsive ========== */
+/* ========== Responsive: tablet (≤ 900px) ========== */
+@media (max-width: 900px) {
+  .page__title { font-size: 1.85em !important; }
+  .section-heading { font-size: 1.35em; margin-top: 1.5em; }
+
+  /* Sidebar profile sits above content — make avatar smaller */
+  .sidebar .author__avatar img { max-width: 150px; }
+  .sidebar .author__name { font-size: 1.3em; }
+
+  /* Paper cards: image stacks on top, content below */
+  .paper-card td {
+    display: block;
+    width: 100% !important;
+    padding: 12px 14px;
+  }
+  .paper-card tr > td:first-child { padding-bottom: 0; }
+  .paper-title { font-size: 1em; }
+  .paper-authors { font-size: 0.9em; }
+  .paper-tldr { font-size: 0.88em; }
+
+  /* Project carousel: smaller tiles */
+  .project-track .project-tile {
+    flex: 0 0 280px;
+    width: 280px;
+    margin-right: 14px;
+  }
+
+  /* Experience cards: tighter spacing */
+  .experience-item { padding: 14px 16px; gap: 14px; }
+  .experience-logo { flex: 0 0 56px; height: 56px; }
+
+  /* News list */
+  .news-list { padding: 12px 14px; max-height: 260px; }
+  .news-list .news-date { min-width: 58px; font-size: 0.84em; }
+}
+
+/* ========== Responsive: phone (≤ 600px) ========== */
 @media (max-width: 600px) {
-  .paper-card td { display: block; width: 100% !important; padding: 12px; }
-  .experience-logo { flex: 0 0 48px; height: 48px; }
-  .honors-list li { flex-wrap: wrap; }
-  .honors-list .year { flex: 0 0 100%; }
+  .page__title { font-size: 1.55em !important; }
+  .section-heading { font-size: 1.2em; margin-top: 1.3em; }
+  .page__content { font-size: 15px; }
+
+  /* Sidebar elements above the content stream on mobile */
+  .sidebar .author__avatar img { max-width: 120px; }
+  .sidebar .author__name { font-size: 1.15em; }
+
+  /* Reduce horizontal padding on paper cards */
+  .paper-card td { padding: 10px 12px; }
+  .paper-card { border-radius: 12px; }
+
+  /* Venue badge: drop to a new line on small screens to avoid overflow */
+  .paper-title .venue,
+  .project-title .venue {
+    display: inline-block;
+    margin: 4px 0 0 0;
+    vertical-align: baseline;
+  }
+  .paper-title, .project-title { line-height: 1.35; }
+
+  /* PROJECTS: replace marquee with native swipe carousel (touch-friendly) */
+  .project-carousel {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: none;
+            mask-image: none;
+    padding-bottom: 4px;
+  }
+  .project-carousel::-webkit-scrollbar { height: 4px; }
+  .project-carousel::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+  .project-track {
+    animation: none !important;
+    transform: none !important;
+    width: max-content;
+  }
+  .project-track .project-tile {
+    scroll-snap-align: start;
+    flex: 0 0 84vw;
+    width: 84vw;
+    max-width: 320px;
+    margin-right: 12px;
+  }
+  /* Drop the duplicate set — natural scroll is enough */
+  .project-track > [aria-hidden="true"] { display: none; }
+  .project-thumb { aspect-ratio: 16 / 9; }
+
+  /* EXPERIENCE: drop the vertical marquee, show all cards static */
+  .experience-carousel {
+    height: auto;
+    overflow: visible;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  .experience-carousel .experience-list {
+    animation: none !important;
+    transform: none !important;
+  }
+  .experience-list > [aria-hidden="true"] { display: none; }
+
+  /* Always-expanded details (no hover on touch) */
+  .experience-item {
+    padding: 12px 14px;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .experience-logo {
+    flex: 0 0 48px;
+    height: 48px;
+    padding: 4px;
+  }
+  .experience-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .experience-title { font-size: 0.95em; }
+  .experience-org   { font-size: 0.85em; }
+  .experience-date  { font-size: 0.8em; margin-top: 2px; }
+  .expand-hint { display: none; }
+  .experience-details {
+    max-height: none !important;
+    opacity: 1 !important;
+    margin-top: 8px !important;
+    overflow: visible !important;
+    transition: none;
+  }
+  .experience-details ul { font-size: 0.85em; }
+
+  /* News list — tighter on phone */
+  .news-list { padding: 10px 12px; max-height: 240px; font-size: 0.92em; }
+  .news-list li { padding: 5px 0; }
+  .news-list .news-date {
+    display: block;
+    min-width: 0;
+    margin-bottom: 1px;
+  }
+
+  /* Honors list — single column */
+  .honors-list li { flex-wrap: wrap; gap: 4px; padding: 7px 0; }
+  .honors-list .year { flex: 0 0 100%; font-size: 0.82em; }
+
+  /* Services list — break onto multiple lines comfortably */
+  .services-list li { font-size: 0.92em; line-height: 1.5; }
+  .role-tag { display: inline-block; margin: 2px 0 2px 4px; }
+
+  /* Hover-fade carousel section hints — slightly smaller */
+  .experience-carousel + p, .project-carousel + p { font-size: 0.8em; }
+}
+
+/* ========== Touch devices (any width) ========== */
+@media (hover: none) and (pointer: coarse) {
+  /* On touch devices the hover effects don't work, so:
+     - Show the static still image only (no hover-gif swap needed)
+     - Make expand details visible by default */
+  .project-tile .project-thumb .anim { display: none; }
+  .experience-details {
+    max-height: none;
+    opacity: 1;
+    margin-top: 8px;
+  }
+  .expand-hint { display: none; }
 }
 </style>
 
