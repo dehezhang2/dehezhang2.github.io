@@ -1320,6 +1320,13 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
         <div class="experience-date">Apr 2025 – Present</div>
       </div>
       <span class="expand-hint">hover to expand</span>
+      <div class="experience-details">
+        <div class="experience-desc">Working with Prof. Luc Van Gool and Dr. Danda Paudel.</div>
+        <ul>
+          <li><strong>Research areas:</strong> spatial reasoning, egocentric video understanding, controllable and consistent video generation, Gaussian splatting and relighting.</li>
+          <li><strong>Recent works:</strong> EgoNight (ICLR 2026), StateSpaceDiffuser (NeurIPS 2025), EgoSpot (ICRA Workshop 2026).</li>
+        </ul>
+      </div>
     </div>
   </li>
 
@@ -1336,6 +1343,12 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
         <div class="experience-date">Sept 2024 – Mar 2025</div>
       </div>
       <span class="expand-hint">hover to expand</span>
+      <div class="experience-details">
+        <ul>
+          <li><strong>Research areas:</strong> 3D scene understanding, Gaussian splatting.</li>
+          <li><strong>Teaching service:</strong> teaching assistant for <em>Introduction to Computer Graphics</em>; thesis supervisor; cluster server management.</li>
+        </ul>
+      </div>
     </div>
   </li>
 
@@ -1352,6 +1365,13 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
         <div class="experience-date">Sept 2023 – Apr 2024</div>
       </div>
       <span class="expand-hint">hover to expand</span>
+      <div class="experience-details">
+        <div class="experience-desc">Master thesis on inverse rendering and relighting of glossy objects, building a relightable signed-distance-field representation.</div>
+        <ul>
+          <li><strong>Supervisors:</strong> Prof. Siyu Tang, Dr. Sergey Prokudin.</li>
+          <li><strong>Outcome:</strong> RISE-SDF, accepted to 3DV 2025; thesis grade 6.00 / 6.00.</li>
+        </ul>
+      </div>
     </div>
   </li>
 
@@ -1368,6 +1388,13 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
         <div class="experience-date">Dec 2022 – May 2023</div>
       </div>
       <span class="expand-hint">hover to expand</span>
+      <div class="experience-details">
+        <div class="experience-desc">Developed CoARF — a controllable 3D artistic style-transfer method for radiance fields using segmentation masks and a semantic-aware nearest-neighbor matching algorithm.</div>
+        <ul>
+          <li><strong>Supervisors:</strong> Dr. Clara Fernández Labrador, Dr. Christopher Schroers; overseen by Prof. Markus Gross.</li>
+          <li><strong>Outcome:</strong> CoARF, accepted to 3DV 2024 (also filed as a patent).</li>
+        </ul>
+      </div>
     </div>
   </li>
 
