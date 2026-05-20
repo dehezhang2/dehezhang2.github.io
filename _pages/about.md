@@ -838,7 +838,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 </ul>
 </div>
 
-<h2 class="section-heading">Selected Publications</h2>
+<h2 class="section-heading">Publications</h2>
 
 <div class="paper-card">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
@@ -1031,6 +1031,30 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
         <a href="https://github.com/dehezhang2/holo-spot">Code</a>
       </div>
       <div class="paper-tldr">A mixed-reality system on HoloLens&nbsp;2 that enables users to control the Boston Dynamics Spot robot through egocentric multimodal signals — gaze, gesture, and voice — making robot teleoperation more accessible and intuitive.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr>
+    <td width="40%">
+      <img src="/images/projects/seasonscapes.png" width="100%" alt="SeasonScapes teaser" style="border-radius:8px;">
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title"><a href="https://arxiv.org/abs/2605.09039">SeasonScapes: Learning Large-scale Re-lightable 3D Landscapes with Seasonal Variation from Sparse Webcams</a><span class="venue cvpr">CVPR Workshop 2026</span></div>
+      <div class="paper-authors">
+        Timo Kleger,
+        Qi Ma,
+        <strong>Deheng Zhang</strong>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2605.09039">Paper</a>
+      </div>
+      <div class="paper-tldr">A framework and dataset for large-scale relightable 3D landscapes — over 85,000 webcam images from 32 Swiss mountain locations across a full year, projected onto a 3D mesh with conditional diffusion inpainting to model seasonal appearance changes and enable physically-based relighting.</div>
     </td>
   </tr>
 </table>
