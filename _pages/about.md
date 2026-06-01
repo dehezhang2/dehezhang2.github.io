@@ -762,26 +762,85 @@ span.highlight { background-color: #ffffd0; }
   .expand-hint { display: none; }
 }
 
-/* ========== Visitor map (clustrmaps) — responsive wrapper ========== */
-.visitor-map {
-  margin: 1.5em 0 0;
-  max-width: 100%;
-  overflow: hidden;
-  text-align: center;
+/* ========== Visitor map card ========== */
+.visitors-card {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+  padding: 14px;
+  margin: 0.4em 0 1.4em;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
-.visitor-map a,
-.visitor-map img,
-.visitor-map iframe,
-.visitor-map > div,
-.visitor-map > center,
-.visitor-map > span {
-  max-width: 100% !important;
-  height: auto !important;
+.visitors-card:hover {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-color: #d8d8d8;
+}
+.visitors-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 1.02em;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+.visitors-card-header .dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #ff5353;
+  box-shadow: 0 0 0 4px rgba(255,83,83,0.18);
+  animation: visitors-pulse 1.8s ease-in-out infinite;
+}
+@keyframes visitors-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(255,83,83,0.18); }
+  50%      { box-shadow: 0 0 0 8px rgba(255,83,83,0.08); }
+}
+
+.visitors-map-frame {
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  background: radial-gradient(circle at 50% 50%, #f0f4fa 0%, #e6eaf0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.visitors-map-frame iframe {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.visitors-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #ececec;
+  font-size: 0.85em;
+  color: #555;
+}
+.visitors-legend .swatch {
   display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: -1px;
 }
-.visitor-map img { width: auto; max-width: 100%; }
+.visitors-legend .swatch.live    { background: #ff5353; box-shadow: 0 0 0 3px rgba(255,83,83,0.2); }
+.visitors-legend .swatch.history { background: #5da9ff; }
+
 @media (max-width: 600px) {
-  .visitor-map { margin-top: 1em; }
+  .visitors-card { padding: 10px; border-radius: 12px; }
+  .visitors-card-header { font-size: 0.98em; margin-bottom: 8px; }
 }
 
 /* ========== Masthead / top navigation — mobile fixes ========== */
@@ -827,7 +886,7 @@ My research lies at the intersection of **vision-language modeling**, **spatial 
 
 Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Photography](https://dehezhang2.github.io/gallery/), video games, fingerstyle guitar, table tennis, skiing, and hiking.
 
-<h2 class="section-heading">News</h2>
+<h2 id="news" class="section-heading">News</h2>
 <div class="news-list">
 <ul>
   <li><span class="news-date">2026.01</span>🎉 My first-author paper <em>EgoNight: Towards Egocentric Vision Understanding at Night with a Challenging Benchmark</em> has been accepted to <strong>ICLR 2026</strong>!</li>
@@ -838,7 +897,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 </ul>
 </div>
 
-<h2 class="section-heading">Publications</h2>
+<h2 id="publications" class="section-heading">Publications</h2>
 
 <div class="paper-card">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
@@ -1060,7 +1119,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 </table>
 </div>
 
-<h2 class="section-heading">Selected Projects</h2>
+<h2 id="projects" class="section-heading">Selected Projects</h2>
 <p style="color:#888;font-size:0.85em;margin:-0.6em 0 0.6em;">Auto-scrolls horizontally · hover to pause and explore.</p>
 
 <div class="project-carousel">
@@ -1232,7 +1291,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 </div>
 
 
-<h2 class="section-heading">Experience</h2>
+<h2 id="experience" class="section-heading">Experience</h2>
 <p style="color:#888;font-size:0.85em;margin:-0.6em 0 0.6em;">Auto-scrolls vertically · hover any card to pause and expand details.</p>
 
 <div class="experience-carousel">
@@ -1425,12 +1484,29 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 </ul>
 </div>
 
-<h2 class="section-heading">Academic Services</h2>
+<h2 id="services" class="section-heading">Academic Services</h2>
 <ul class="services-list">
   <li><strong>Conference Reviewer</strong> · ICML 2026 <span class="role-tag">Gold Reviewer</span> · NeurIPS 2026 · CVPR 2026</li>
   <li><strong>Journal Reviewer</strong> · IEEE Transactions on Circuits and Systems for Video Technology (TCSVT)</li>
 </ul>
 
-<div class="visitor-map">
-<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=080808&w=500&t=n&d=EaPM_Oi-daigqRQM2Q73XIO-D5fj9jjmJs-kLKLA8XI&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=808080'></script>
+<h2 id="visitors" class="section-heading">Visitor Map</h2>
+
+<div class="visitors-card">
+  <div class="visitors-card-header">
+    <span class="dot"></span>
+    <span>Where readers come from</span>
+  </div>
+  <div class="visitors-map-frame">
+    <iframe src="https://revolvermaps2.com/widget/e5c0888e-a126-428f-82b7-40d44d529f52"
+            width="460" height="460"
+            title="Visitor world map"
+            style="border:0;"
+            loading="lazy"></iframe>
+  </div>
+  <div class="visitors-legend">
+    <span><span class="swatch live"></span>Live visitor</span>
+    <span><span class="swatch history"></span>Recorded visit</span>
+    <span style="margin-left:auto;color:#888;font-size:0.85em;">3D globe · powered by RevolverMaps</span>
+  </div>
 </div>

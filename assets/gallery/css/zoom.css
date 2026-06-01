@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Smooth full-resolution image zoom (paired with assets/gallery/js/zoom.js)
+   ========================================================================== */
+
+img[data-action="zoom"] {
+  cursor: pointer;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
+}
+
+.zoom-overlay {
+  z-index: 9998;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 12, 16, 0.92);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 380ms ease;
+       -o-transition: opacity 380ms ease;
+          transition: opacity 380ms ease;
+}
+.zoom-overlay.zoom-overlay-open { opacity: 1; }
+
+.zoom-clone {
+  display: block;
+  background: rgba(0, 0, 0, 0.4);   /* shows immediately, before image fully decodes */
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55),
+              0 4px 12px rgba(0, 0, 0, 0.35);
+  /* JS sets the actual transition inline — width/height/top/left animate,
+     not transform, so the browser re-rasterizes from the natural-res source. */
+}
+
+/* Lock page scroll + text selection while zoomed */
+html.zoom-open {
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
