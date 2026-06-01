@@ -884,7 +884,7 @@ My research lies at the intersection of **vision-language modeling**, **spatial 
   <li>Neural Rendering and Inverse Rendering</li>
 </ul>
 
-Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Photography](https://dehezhang2.github.io/gallery/), video games, fingerstyle guitar, table tennis, skiing, and hiking.
+Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Photography](https://dehezhang2.github.io/photos/), video games, fingerstyle guitar, table tennis, skiing, and hiking.
 
 <h2 id="news" class="section-heading">News</h2>
 <div class="news-list">
