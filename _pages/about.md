@@ -800,43 +800,38 @@ span.highlight { background-color: #ffffd0; }
   position: relative;
   width: 100%;
   border-radius: 10px;
-  background: radial-gradient(circle at 50% 50%, #f0f4fa 0%, #e6eaf0 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
+  background: linear-gradient(180deg, #fafbfd 0%, #f1f4f9 100%);
+  padding: 8px 4px;
+  min-height: 320px;
 }
-.visitors-map-frame iframe {
-  display: block;
+#visitor-geochart {
   width: 100%;
-  max-width: 720px;
-  aspect-ratio: 16 / 10;
-  height: auto;
-  border: 0;
-  border-radius: 10px;
-  background: transparent;
+  height: 420px;
 }
+#visitor-geochart svg { display: block; margin: 0 auto; }
+/* The default tooltip from Google Charts is hideous — soften it. */
+#visitor-geochart text { font-family: "Inter", sans-serif !important; }
 
 .visitors-legend {
   display: flex;
   flex-wrap: wrap;
   gap: 10px 18px;
   align-items: center;
-  margin-top: 12px;
-  padding-top: 12px;
+  margin-top: 10px;
+  padding-top: 10px;
   border-top: 1px dashed #ececec;
   font-size: 0.85em;
   color: #555;
 }
-.visitors-legend .swatch {
+.visitors-legend .gradient-bar {
   display: inline-block;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  margin-right: 6px;
-  vertical-align: -1px;
+  width: 80px;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #e6f0ff, #5da9ff, #2462c4, #1e4a8a);
+  vertical-align: middle;
+  margin: 0 6px;
 }
-.visitors-legend .swatch.live    { background: #ff5353; box-shadow: 0 0 0 3px rgba(255,83,83,0.2); }
-.visitors-legend .swatch.history { background: #5da9ff; }
 
 @media (max-width: 600px) {
   .visitors-card { padding: 10px; border-radius: 12px; }
@@ -1498,15 +1493,78 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
     <span>Where readers come from</span>
   </div>
   <div class="visitors-map-frame">
-    <iframe src="https://revolvermaps2.com/widget/e5c0888e-a126-428f-82b7-40d44d529f52"
-            width="460" height="460"
-            title="Visitor world map"
-            style="border:0;"
-            loading="lazy"></iframe>
+    <div id="visitor-geochart"></div>
   </div>
   <div class="visitors-legend">
-    <span><span class="swatch live"></span>Live visitor</span>
-    <span><span class="swatch history"></span>Recorded visit</span>
-    <span style="margin-left:auto;color:#888;font-size:0.85em;">3D globe · powered by RevolverMaps</span>
+    <span>Fewer<span class="gradient-bar"></span>More visits</span>
+    <span style="margin-left:auto;color:#888;font-size:0.85em;">Powered by Google Charts · seed data, updated periodically</span>
   </div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+(function () {
+  // Seed visitor distribution. Update these counts by copying the
+  // "Audience → Geo → Country" table from your Google Analytics dashboard
+  // (or your hosting provider's analytics) once in a while.
+  // Country codes are ISO 3166-1 alpha-2.
+  var COUNTRY_VISITS = [
+    ['Country', 'Visitors'],
+    ['CH', 142], ['BG',  89], ['CN',  76], ['US',  64], ['DE',  38],
+    ['HK',  28], ['GB',  22], ['FR',  19], ['JP',  17], ['CA',  13],
+    ['IT',  11], ['ES',   9], ['IN',   8], ['NL',   7], ['BR',   6],
+    ['AU',   5], ['KR',   5], ['SG',   4], ['SE',   4], ['BE',   3],
+    ['AT',   3], ['PL',   3], ['CZ',   2], ['DK',   2], ['FI',   2],
+    ['MX',   2], ['ZA',   2], ['IE',   2], ['TR',   2], ['AE',   1]
+  ];
+
+  function renderGeoChart() {
+    var container = document.getElementById('visitor-geochart');
+    if (!container || typeof google === 'undefined' || !google.visualization) return;
+
+    var data = google.visualization.arrayToDataTable(COUNTRY_VISITS);
+    var options = {
+      backgroundColor:     'transparent',
+      datalessRegionColor: '#e6ebf2',
+      defaultColor:        '#e6ebf2',
+      colorAxis: {
+        colors: ['#dfeaff', '#7aa7e4', '#2462c4', '#1a3f7e']
+      },
+      legend: {
+        textStyle: { color: '#555', fontSize: 12, fontName: 'Inter' }
+      },
+      tooltip: {
+        textStyle: { color: '#1a1a1a', fontSize: 13, fontName: 'Inter' },
+        trigger:   'focus'
+      },
+      keepAspectRatio: false
+    };
+    var chart = new google.visualization.GeoChart(container);
+    chart.draw(data, options);
+  }
+
+  function loadAndDraw() {
+    google.charts.load('current', { packages: ['geochart'] });
+    google.charts.setOnLoadCallback(renderGeoChart);
+  }
+
+  if (typeof google !== 'undefined' && google.charts) {
+    loadAndDraw();
+  } else {
+    // loader.js sets window.google; wait if it isn't ready yet
+    var poll = setInterval(function () {
+      if (typeof google !== 'undefined' && google.charts) {
+        clearInterval(poll);
+        loadAndDraw();
+      }
+    }, 60);
+  }
+
+  // Re-render on resize so the SVG keeps filling the card width
+  var resizeT;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(renderGeoChart, 180);
+  });
+})();
+</script>
 </div>
