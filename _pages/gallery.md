@@ -11,7 +11,7 @@ author_profile: true
 <link rel="stylesheet" type="text/css" href="{{ '/assets/gallery/css/zoom.css' | relative_url }}">
 
 <style>
-/* ========== Typography (page-scoped) ========== */
+/* ========== Typography ========== */
 body, .page, .page__content, .author__name, .author__bio,
 .author__urls, .gallery-page, .gallery-page h1, .gallery-page h2,
 .gallery-page h3, .gallery-page h4, .gallery-intro {
@@ -62,11 +62,35 @@ body, .page, .page__content, .author__name, .author__bio,
   transform: translateY(-1px);
 }
 
-/* ========== Gallery container (scoped) ========== */
-.gallery-page #gallery {
-  margin: 0;
-  padding: 0;
+/* ========== Loading state ========== */
+.gallery-loading {
+  text-align: center;
+  padding: 60px 0;
+  color: #888;
+  font-size: 0.95em;
 }
+.gallery-loading .spinner {
+  display: inline-block;
+  width: 22px; height: 22px;
+  border: 2px solid #ececec;
+  border-top-color: #2462c4;
+  border-radius: 50%;
+  animation: gallery-spin 0.8s linear infinite;
+  margin-right: 10px;
+  vertical-align: -5px;
+}
+@keyframes gallery-spin { to { transform: rotate(360deg); } }
+
+.gallery-error {
+  padding: 16px 20px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  color: #b91c1c;
+  font-size: 0.92em;
+}
+
+/* ========== Gallery sections ========== */
 .gallery-page #gallery section {
   margin: 0 0 64px;
   scroll-margin-top: 80px;
@@ -99,36 +123,40 @@ body, .page, .page__content, .author__name, .author__bio,
   background: #ececec;
 }
 
-.gallery-page #gallery section img {
-  vertical-align: middle;
-  opacity: 0;
-  /* The transform transition is owned by zoom.css when the image is zoomed.
-     Here we use a separate, slower transform for the subtle hover lift so
-     the two animations don't collide. */
-  transition: opacity 0.45s ease,
-              transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 220ms ease;
+/* ========== Masonry grid via CSS multi-column ========== */
+.gallery-page .photo-grid {
+  column-count: 3;
+  column-gap: 10px;
+}
+@media (max-width: 1100px) { .gallery-page .photo-grid { column-count: 2; } }
+@media (max-width: 600px)  { .gallery-page .photo-grid { column-count: 1; } }
+
+.gallery-page .photo-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 10px;
   border-radius: 6px;
   border: 1px solid rgba(0,0,0,.05);
   box-sizing: border-box;
-  filter: blur(2px);
+  break-inside: avoid;
   cursor: zoom-in;
+  background: #f4f4f6;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease,
+              transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.2s ease;
 }
-.gallery-page #gallery section img.img-loaded {
+.gallery-page .photo-grid img.is-loaded {
   opacity: 1;
-  filter: blur(0);
+  transform: translateY(0);
 }
-.gallery-page #gallery section img:hover {
-  transform: translateY(-2px);
+.gallery-page .photo-grid img:hover {
   box-shadow: 0 8px 18px rgba(0,0,0,0.10);
 }
 
-.gallery-page #gallery .sectionrow {
-  display: block;
-  white-space: nowrap;
-  overflow-x: hidden;
-}
-
+/* ========== Footer ========== */
 .gallery-footer {
   margin-top: 2em;
   padding: 14px 18px;
@@ -141,7 +169,6 @@ body, .page, .page__content, .author__name, .author__bio,
 }
 .gallery-footer a { color: #2462c4; }
 
-/* ========== Responsive ========== */
 @media (max-width: 600px) {
   .page__title { font-size: 1.55em !important; }
   .gallery-page #gallery section { margin-bottom: 40px; }
@@ -153,7 +180,7 @@ body, .page, .page__content, .author__name, .author__bio,
 <div class="gallery-page">
 
 <p class="gallery-intro">
-A growing collection from my travels — moments framed across cities, mountains, festivals, and golden-hour light. Click any image to zoom; pinch / scroll to dismiss.
+A growing collection from my travels — moments framed across cities, mountains, festivals, and golden-hour light. Click any image to zoom; Esc / scroll / click to dismiss.
 </p>
 
 <div class="gallery-chips">
@@ -166,7 +193,9 @@ A growing collection from my travels — moments framed across cities, mountains
   <a href="#Event">Event</a>
 </div>
 
-<div id="gallery"></div>
+<div id="gallery">
+  <div class="gallery-loading"><span class="spinner"></span>Loading photos…</div>
+</div>
 
 <div class="gallery-footer">
   <i class="fas fa-camera" style="margin-right:6px;color:#9aa4b1;"></i>
@@ -176,50 +205,102 @@ A growing collection from my travels — moments framed across cities, mountains
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
-<script src="{{ '/assets/gallery/js/gallery.js' | relative_url }}"></script>
 <script src="{{ '/assets/gallery/js/zoom.js' | relative_url }}"></script>
 <script>
-  var COLUMNS = 'columns';
-  var ROWS    = 'rows';
-  var SQUARES = 'squares';
-  var layoutStyle = ROWS;
-  var configuration = {
-    spacing: 10,
-    shuffle: false,
-    columns: 4,
-    maxHeight: 360
+(function () {
+  'use strict';
+
+  // Display order matches the category chip nav above
+  var ORDER = ['Landscape', 'Goldenhour', 'Nature', 'City', 'Culture', 'Portraits', 'Event'];
+  var LABEL = {
+    Goldenhour: 'Golden Hour'
   };
 
-  function startGallery() {
-    var id = 'gallery';
-    fetch("{{ '/assets/gallery/config.json' | relative_url }}")
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
-        var rootEl = document.getElementById(id);
-        if (!rootEl) return;
-        // Clear any prior render in case of re-invocation
-        rootEl.innerHTML = '';
-        var renderer;
-        switch (layoutStyle) {
-          case COLUMNS: renderer = new VerticalRenderer(id); break;
-          case ROWS:    renderer = new HorizontalRenderer(id); break;
-          case SQUARES: renderer = new SquareRenderer(id); break;
-        }
-        var config = new Config(data, configuration);
-        renderer.render(config);
-        if (typeof lazyload === 'function') lazyload();
-      })
-      .catch(function(err) {
-        console.error('Gallery load failed:', err);
+  function render(data) {
+    var root = document.getElementById('gallery');
+    if (!root) return;
+    root.innerHTML = '';  // clear loading spinner
+
+    ORDER.forEach(function (cat) {
+      var photos = data[cat];
+      if (!photos || !photos.length) return;
+
+      var section = document.createElement('section');
+      section.id = cat;
+
+      var heading = document.createElement('h3');
+      heading.textContent = LABEL[cat] || cat;
+      section.appendChild(heading);
+
+      var grid = document.createElement('div');
+      grid.className = 'photo-grid';
+
+      photos.forEach(function (p) {
+        var img = document.createElement('img');
+        img.src = p.path;
+        img.alt = cat + ' photo';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.setAttribute('data-action', 'zoom');
+        img.addEventListener('load', function () { img.classList.add('is-loaded'); });
+        img.addEventListener('error', function () {
+          // If the photo fails to load (e.g., rate-limited raw.githubusercontent)
+          // hide the broken image rather than show a placeholder.
+          img.style.display = 'none';
+        });
+        grid.appendChild(img);
       });
+
+      section.appendChild(grid);
+      root.appendChild(section);
+    });
+
+    // Any categories not in ORDER — append in JSON-order
+    Object.keys(data).forEach(function (cat) {
+      if (ORDER.indexOf(cat) !== -1) return;
+      var photos = data[cat];
+      if (!photos || !photos.length) return;
+
+      var section = document.createElement('section');
+      section.id = cat;
+      var heading = document.createElement('h3');
+      heading.textContent = LABEL[cat] || cat;
+      section.appendChild(heading);
+      var grid = document.createElement('div');
+      grid.className = 'photo-grid';
+      photos.forEach(function (p) {
+        var img = document.createElement('img');
+        img.src = p.path;
+        img.alt = cat + ' photo';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.setAttribute('data-action', 'zoom');
+        img.addEventListener('load', function () { img.classList.add('is-loaded'); });
+        img.addEventListener('error', function () { img.style.display = 'none'; });
+        grid.appendChild(img);
+      });
+      section.appendChild(grid);
+      root.appendChild(section);
+    });
   }
 
-  // Run after full window load so the sidebar/masthead layout settles and
-  // #gallery's bounding width is correct for the row renderer.
-  if (document.readyState === 'complete') {
-    startGallery();
-  } else {
-    window.addEventListener('load', startGallery);
+  function showError(msg) {
+    var root = document.getElementById('gallery');
+    if (!root) return;
+    root.innerHTML = '<div class="gallery-error">'
+      + '<strong>Could not load gallery.</strong> ' + msg
+      + '</div>';
   }
+
+  fetch("{{ '/assets/gallery/config.json' | relative_url }}", { cache: 'no-cache' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(render)
+    .catch(function (err) {
+      console.error('Gallery load failed:', err);
+      showError('Photo manifest could not be fetched (' + err.message + ').');
+    });
+})();
 </script>
