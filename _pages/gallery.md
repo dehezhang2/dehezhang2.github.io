@@ -210,7 +210,7 @@ A growing collection from my travels — moments framed across cities, mountains
 (function () {
   'use strict';
 
-  // Display order matches the category chip nav above
+  /* Display order matches the category chip nav above */
   var ORDER = ['Landscape', 'Goldenhour', 'Nature', 'City', 'Culture', 'Portraits', 'Event'];
   var LABEL = {
     Goldenhour: 'Golden Hour'
@@ -219,7 +219,7 @@ A growing collection from my travels — moments framed across cities, mountains
   function render(data) {
     var root = document.getElementById('gallery');
     if (!root) return;
-    root.innerHTML = '';  // clear loading spinner
+    root.innerHTML = '';  /* clear loading spinner */
 
     ORDER.forEach(function (cat) {
       var photos = data[cat];
@@ -244,8 +244,8 @@ A growing collection from my travels — moments framed across cities, mountains
         img.setAttribute('data-action', 'zoom');
         img.addEventListener('load', function () { img.classList.add('is-loaded'); });
         img.addEventListener('error', function () {
-          // If the photo fails to load (e.g., rate-limited raw.githubusercontent)
-          // hide the broken image rather than show a placeholder.
+          /* If the photo fails to load (e.g., rate-limited raw.githubusercontent)
+             hide the broken image rather than show a placeholder. */
           img.style.display = 'none';
         });
         grid.appendChild(img);
@@ -255,7 +255,7 @@ A growing collection from my travels — moments framed across cities, mountains
       root.appendChild(section);
     });
 
-    // Any categories not in ORDER — append in JSON-order
+    /* Any categories not in ORDER — append in JSON-order */
     Object.keys(data).forEach(function (cat) {
       if (ORDER.indexOf(cat) !== -1) return;
       var photos = data[cat];

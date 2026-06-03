@@ -1503,10 +1503,10 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 (function () {
-  // Seed visitor distribution. Update these counts by copying the
-  // "Audience → Geo → Country" table from your Google Analytics dashboard
-  // (or your hosting provider's analytics) once in a while.
-  // Country codes are ISO 3166-1 alpha-2.
+  /* Seed visitor distribution. Update these counts by copying the
+     "Audience → Geo → Country" table from your Google Analytics dashboard
+     (or your hosting provider's analytics) once in a while.
+     Country codes are ISO 3166-1 alpha-2. */
   var COUNTRY_VISITS = [
     ['Country', 'Visitors'],
     ['CH', 142], ['BG',  89], ['CN',  76], ['US',  64], ['DE',  38],
@@ -1550,7 +1550,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
   if (typeof google !== 'undefined' && google.charts) {
     loadAndDraw();
   } else {
-    // loader.js sets window.google; wait if it isn't ready yet
+    /* loader.js sets window.google; wait if it isn't ready yet */
     var poll = setInterval(function () {
       if (typeof google !== 'undefined' && google.charts) {
         clearInterval(poll);
@@ -1559,7 +1559,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
     }, 60);
   }
 
-  // Re-render on resize so the SVG keeps filling the card width
+  /* Re-render on resize so the SVG keeps filling the card width */
   var resizeT;
   window.addEventListener('resize', function () {
     clearTimeout(resizeT);
