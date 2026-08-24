@@ -252,6 +252,7 @@ span.highlight { background-color: #ffffd0; }
 .venue.neurips  { background: #6f42c1; }
 .venue.tdv      { background: #0d9488; }
 .venue.cvpr     { background: #1b7e3a; }
+.venue.submission { background: #64748b; }
 .venue.course   { background: #6c757d; }
 .venue.thesis   { background: #495057; }
 .venue.highlight { background: #f59f00; color: #1a1a1a; }
@@ -896,6 +897,47 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 
 <div class="paper-card">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="frameworkers_stop()" onmouseover="frameworkers_start()">
+    <td width="40%">
+      <div class="one">
+        <div class="two" id="frameworkers_shape">
+          <img src="/images/projects/frameworkers.gif" width="100%">
+        </div>
+        <img src="/images/projects/frameworkers.png" width="100%">
+      </div>
+      <script type="text/javascript">
+        function frameworkers_start() { document.getElementById('frameworkers_shape').style.opacity = "1"; }
+        function frameworkers_stop()  { document.getElementById('frameworkers_shape').style.opacity = "0"; }
+        frameworkers_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title">FrameWorkers: A Dynamic Multi-Agent Framework for Automated AIGC Video Production<span class="venue submission">In Submission</span></div>
+      <div class="paper-authors">
+        <a href="https://insait.ai/zhendong-li/">Zhendong Li</a>,
+        <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
+        <a href="https://insait.ai/letian-shi/">Letian Shi</a>,
+        <strong>Deheng Zhang</strong>,
+        <a href="https://insait.ai/ruibo-ming/">Ruibo Ming</a>,
+        <a href="https://insait.ai/dr-mengshun-hu/">Mengshun Hu</a>,
+        <a href="https://insait.ai/dannong-xu/">Dannong Xu</a>,
+        <a href="https://jianwang-cmu.github.io/">Jian Wang</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://insait.ai/dr-jinjin-gu/">Jinjin Gu</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://lizzd.github.io/frameworkers-site/">Project</a>
+        <a href="https://lizzd.github.io/frameworkers-site/films.html">Films</a>
+      </div>
+      <div class="paper-tldr">An AI film director — a trained Director agent plans a dynamic task stack and orchestrates specialist agents (script, keyframes, clips, voiceover, score, sound design) to turn a single prompt into a finished short film.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
   <tr onmouseout="egonight_stop()" onmouseover="egonight_start()">
     <td width="40%">
       <div class="one">
@@ -1122,22 +1164,6 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 
   <div class="project-tile">
     <div class="project-thumb">
-      <img class="static" src="/images/projects/frameworkers.png" alt="FrameWorkers">
-      <img class="anim" src="/images/projects/frameworkers.gif" alt="FrameWorkers animation">
-    </div>
-    <div class="project-info">
-      <div class="project-title"><a href="https://lizzd.github.io/frameworkers-site/">FrameWorkers: A Dynamic Multi-Agent Framework for Automated AIGC Video Production</a><span class="venue">INSAIT</span></div>
-      <div class="project-authors">Zhendong Li, Lei Sun, Letian Shi, <strong>Deheng Zhang</strong>, Ruibo Ming, Mengshun Hu, Dannong Xu, Jian Wang, Danda Pani Paudel, Luc Van Gool, Jinjin Gu</div>
-      <div class="project-tldr">An AI film director — a trained Director agent plans a dynamic task stack and orchestrates specialist agents (script, keyframes, clips, voiceover, score, sound design) to turn a single prompt into a finished short film.</div>
-      <div class="project-links">
-        <a href="https://lizzd.github.io/frameworkers-site/">Project</a>
-        <a href="https://lizzd.github.io/frameworkers-site/films.html">Films</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="project-tile">
-    <div class="project-thumb">
       <img class="static" src="/images/projects/point.png" alt="Point-Based NeRF">
       <img class="anim" src="/images/projects/point.gif" alt="Point-Based NeRF animation">
     </div>
@@ -1217,22 +1243,6 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
   </div>
 
   <!-- ↓↓↓ Duplicate set for seamless infinite scroll (aria-hidden so SRs only read once) ↓↓↓ -->
-
-  <div class="project-tile" aria-hidden="true">
-    <div class="project-thumb">
-      <img class="static" src="/images/projects/frameworkers.png" alt="">
-      <img class="anim" src="/images/projects/frameworkers.gif" alt="">
-    </div>
-    <div class="project-info">
-      <div class="project-title"><a href="https://lizzd.github.io/frameworkers-site/" tabindex="-1">FrameWorkers: A Dynamic Multi-Agent Framework for Automated AIGC Video Production</a><span class="venue">INSAIT</span></div>
-      <div class="project-authors">Zhendong Li, Lei Sun, Letian Shi, <strong>Deheng Zhang</strong>, Ruibo Ming, Mengshun Hu, Dannong Xu, Jian Wang, Danda Pani Paudel, Luc Van Gool, Jinjin Gu</div>
-      <div class="project-tldr">An AI film director — a trained Director agent plans a dynamic task stack and orchestrates specialist agents (script, keyframes, clips, voiceover, score, sound design) to turn a single prompt into a finished short film.</div>
-      <div class="project-links">
-        <a href="https://lizzd.github.io/frameworkers-site/" tabindex="-1">Project</a>
-        <a href="https://lizzd.github.io/frameworkers-site/films.html" tabindex="-1">Films</a>
-      </div>
-    </div>
-  </div>
 
   <div class="project-tile" aria-hidden="true">
     <div class="project-thumb">
