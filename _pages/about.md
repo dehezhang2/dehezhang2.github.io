@@ -1122,6 +1122,22 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 
   <div class="project-tile">
     <div class="project-thumb">
+      <img class="static" src="/images/projects/frameworkers.png" alt="FrameWorkers">
+      <img class="anim" src="/images/projects/frameworkers.gif" alt="FrameWorkers animation">
+    </div>
+    <div class="project-info">
+      <div class="project-title"><a href="https://lizzd.github.io/frameworkers-site/">FrameWorkers: A Dynamic Multi-Agent Framework for Automated AIGC Video Production</a><span class="venue">INSAIT</span></div>
+      <div class="project-authors">Zhendong Li, Lei Sun, Letian Shi, <strong>Deheng Zhang</strong>, Ruibo Ming, Mengshun Hu, Dannong Xu, Jian Wang, Danda Pani Paudel, Luc Van Gool, Jinjin Gu</div>
+      <div class="project-tldr">An AI film director — a trained Director agent plans a dynamic task stack and orchestrates specialist agents (script, keyframes, clips, voiceover, score, sound design) to turn a single prompt into a finished short film.</div>
+      <div class="project-links">
+        <a href="https://lizzd.github.io/frameworkers-site/">Project</a>
+        <a href="https://lizzd.github.io/frameworkers-site/films.html">Films</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-tile">
+    <div class="project-thumb">
       <img class="static" src="/images/projects/point.png" alt="Point-Based NeRF">
       <img class="anim" src="/images/projects/point.gif" alt="Point-Based NeRF animation">
     </div>
@@ -1201,6 +1217,22 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
   </div>
 
   <!-- ↓↓↓ Duplicate set for seamless infinite scroll (aria-hidden so SRs only read once) ↓↓↓ -->
+
+  <div class="project-tile" aria-hidden="true">
+    <div class="project-thumb">
+      <img class="static" src="/images/projects/frameworkers.png" alt="">
+      <img class="anim" src="/images/projects/frameworkers.gif" alt="">
+    </div>
+    <div class="project-info">
+      <div class="project-title"><a href="https://lizzd.github.io/frameworkers-site/" tabindex="-1">FrameWorkers: A Dynamic Multi-Agent Framework for Automated AIGC Video Production</a><span class="venue">INSAIT</span></div>
+      <div class="project-authors">Zhendong Li, Lei Sun, Letian Shi, <strong>Deheng Zhang</strong>, Ruibo Ming, Mengshun Hu, Dannong Xu, Jian Wang, Danda Pani Paudel, Luc Van Gool, Jinjin Gu</div>
+      <div class="project-tldr">An AI film director — a trained Director agent plans a dynamic task stack and orchestrates specialist agents (script, keyframes, clips, voiceover, score, sound design) to turn a single prompt into a finished short film.</div>
+      <div class="project-links">
+        <a href="https://lizzd.github.io/frameworkers-site/" tabindex="-1">Project</a>
+        <a href="https://lizzd.github.io/frameworkers-site/films.html" tabindex="-1">Films</a>
+      </div>
+    </div>
+  </div>
 
   <div class="project-tile" aria-hidden="true">
     <div class="project-thumb">
@@ -1482,7 +1514,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 <h2 id="services" class="section-heading">Academic Services</h2>
 <ul class="services-list">
   <li><strong>Conference Reviewer</strong> · ICML 2026 <span class="role-tag">Gold Reviewer</span> · NeurIPS 2026 · CVPR 2026</li>
-  <li><strong>Journal Reviewer</strong> · IEEE Transactions on Circuits and Systems for Video Technology (TCSVT)</li>
+  <li><strong>Journal Reviewer</strong> · Transactions on Machine Learning Research (TMLR) · IEEE Transactions on Circuits and Systems for Video Technology (TCSVT)</li>
 </ul>
 
 <h2 id="visitors" class="section-heading">Visitor Map</h2>
