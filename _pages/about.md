@@ -917,9 +917,9 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
         <strong>Deheng Zhang*</strong>,
         <a href="https://insait.ai/letian-shi/">Letian Shi*</a>,
         <a href="https://runyiyang.github.io/">Runyi Yang</a>,
-        <a href="https://insait.ai/zhendong-li/">Zhendong Li</a>,
+        <a href="https://lizzd.github.io/">Zhendong Li</a>,
         <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
-        Kanzhi Wu,
+        <a href="https://www.kanzhi.tech/about">Kanzhi Wu</a>,
         <a href="https://ajadchhatkuli.github.io/">Ajad Chhatkuli</a>,
         <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
         <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>
@@ -954,7 +954,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
     <td valign="top" width="60%">
       <div class="paper-title">FrameWorkers: A Dynamic Multi-Agent Framework for Automated AIGC Video Production<span class="venue submission">In Submission</span></div>
       <div class="paper-authors">
-        <a href="https://insait.ai/zhendong-li/">Zhendong Li</a>,
+        <a href="https://lizzd.github.io/">Zhendong Li</a>,
         <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
         <a href="https://insait.ai/letian-shi/">Letian Shi</a>,
         <strong>Deheng Zhang</strong>,
