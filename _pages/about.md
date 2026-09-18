@@ -294,6 +294,26 @@ span.highlight { background-color: #ffffd0; }
 .paper-authors strong { color: #c0392b; font-weight: 600; }
 .paper-authors a { color: #2462c4; }
 .paper-links { margin-top: 6px; }
+/* ---------- Publications: first-author papers shown, the rest behind a toggle */
+.pub-more-bar { margin: 2px 0 20px; display: none; }
+body.js-pubs .pub-more-bar { display: block; }
+body.js-pubs .pub-extra { display: none; }
+body.js-pubs.pub-extra-show .pub-extra { display: block; }
+.pub-toggle {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid #d0d0d0;
+  border-radius: 16px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 0.88em;
+  font-weight: 500;
+  color: #2462c4;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pub-toggle:hover { background: #2462c4; color: #fff; border-color: #2462c4; }
+
 .paper-links a {
   display: inline-block;
   margin: 2px 4px 2px 0;
@@ -937,47 +957,6 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 
 <div class="paper-card">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
-  <tr onmouseout="frameworkers_stop()" onmouseover="frameworkers_start()">
-    <td width="40%">
-      <div class="one">
-        <div class="two" id="frameworkers_shape">
-          <img src="/images/projects/frameworkers.gif" width="100%">
-        </div>
-        <img src="/images/projects/frameworkers.png" width="100%">
-      </div>
-      <script type="text/javascript">
-        function frameworkers_start() { document.getElementById('frameworkers_shape').style.opacity = "1"; }
-        function frameworkers_stop()  { document.getElementById('frameworkers_shape').style.opacity = "0"; }
-        frameworkers_stop();
-      </script>
-    </td>
-    <td valign="top" width="60%">
-      <div class="paper-title">FrameWorkers: A Dynamic Multi-Agent Framework for Automated AIGC Video Production<span class="venue submission">In Submission</span></div>
-      <div class="paper-authors">
-        <a href="https://lizzd.github.io/">Zhendong Li</a>,
-        <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
-        <a href="https://insait.ai/letian-shi/">Letian Shi</a>,
-        <strong>Deheng Zhang</strong>,
-        <a href="https://insait.ai/ruibo-ming/">Ruibo Ming</a>,
-        <a href="https://insait.ai/dr-mengshun-hu/">Mengshun Hu</a>,
-        <a href="https://insait.ai/dannong-xu/">Dannong Xu</a>,
-        <a href="https://jianwang-cmu.github.io/">Jian Wang</a>,
-        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
-        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
-        <a href="https://insait.ai/dr-jinjin-gu/">Jinjin Gu</a>
-      </div>
-      <div class="paper-links">
-        <a href="https://lizzd.github.io/frameworkers-site/">Project</a>
-        <a href="https://lizzd.github.io/frameworkers-site/films.html">Films</a>
-      </div>
-      <div class="paper-tldr">An AI film director — a trained Director agent plans a dynamic task stack and orchestrates specialist agents (script, keyframes, clips, voiceover, score, sound design) to turn a single prompt into a finished short film.</div>
-    </td>
-  </tr>
-</table>
-</div>
-
-<div class="paper-card">
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
   <tr onmouseout="egonight_stop()" onmouseover="egonight_start()">
     <td width="40%">
       <div class="one">
@@ -1015,43 +994,6 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
         <a href="https://huggingface.co/datasets/dehezhang2/EgoNight">Dataset</a>
       </div>
       <div class="paper-tldr">The first comprehensive benchmark for egocentric vision understanding in low-light and nighttime conditions, comprising synthetic scenes (EgoNight-Synthetic), aligned day–night pairs (EgoNight-Sofia), and unaligned nighttime footage (EgoNight-Oxford).</div>
-    </td>
-  </tr>
-</table>
-</div>
-
-<div class="paper-card">
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
-  <tr onmouseout="statespacediffuser_stop()" onmouseover="statespacediffuser_start()">
-    <td width="40%">
-      <div class="one">
-        <div class="two" id="statespacediffuser_shape">
-          <img src="/images/projects/statespacediffuser.gif" width="100%">
-        </div>
-        <img src="/images/projects/statespacediffuser.png" width="100%">
-      </div>
-      <script type="text/javascript">
-        function statespacediffuser_start() { document.getElementById('statespacediffuser_shape').style.opacity = "1"; }
-        function statespacediffuser_stop()  { document.getElementById('statespacediffuser_shape').style.opacity = "0"; }
-        statespacediffuser_stop();
-      </script>
-    </td>
-    <td valign="top" width="60%">
-      <div class="paper-title">StateSpaceDiffuser: Bringing Long Context to Diffusion World Models<span class="venue neurips">NeurIPS 2025</span></div>
-      <div class="paper-authors">
-        <a href="https://insait.ai/nedko-savov/">Nedko Savov</a>,
-        <a href="https://insait.ai/naser-kazemi/">Naser Kazemi</a>,
-        <strong>Deheng Zhang</strong>,
-        <a href="https://insait.ai/dr-danda-paudel/">Danda Paudel</a>,
-        <a href="https://xiwang1212.github.io/homepage/">Xi Wang</a>,
-        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>
-      </div>
-      <div class="paper-links">
-        <a href="https://arxiv.org/abs/2505.22246">Paper</a>
-        <a href="https://insait-institute.github.io/StateSpaceDiffuser/">Project</a>
-        <a href="https://github.com/insait-institute/StateSpaceDiffuser">Code</a>
-      </div>
-      <div class="paper-tldr">A diffusion world model that overcomes the memory bottleneck by integrating features from a state-space model representing the entire interaction history, enabling long-context world modeling.</div>
     </td>
   </tr>
 </table>
@@ -1129,7 +1071,104 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 </table>
 </div>
 
-<div class="paper-card">
+<div class="pub-more-bar">
+  <button type="button" id="pub-more-toggle" class="pub-toggle" aria-expanded="false">Show 4 more publications</button>
+</div>
+
+<script type="text/javascript">
+  /* Collapse the non-first-author cards only when scripting is available. */
+  (function () {
+    var btn = document.getElementById('pub-more-toggle');
+    if (!btn) return;
+    document.body.classList.add('js-pubs');
+    var label = ['Show 4 more publications', 'Hide other publications'];
+    btn.addEventListener('click', function () {
+      var open = document.body.classList.toggle('pub-extra-show');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = label[open ? 1 : 0];
+    });
+  })();
+</script>
+
+<div class="paper-card pub-extra">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="frameworkers_stop()" onmouseover="frameworkers_start()">
+    <td width="40%">
+      <div class="one">
+        <div class="two" id="frameworkers_shape">
+          <img src="/images/projects/frameworkers.gif" width="100%">
+        </div>
+        <img src="/images/projects/frameworkers.png" width="100%">
+      </div>
+      <script type="text/javascript">
+        function frameworkers_start() { document.getElementById('frameworkers_shape').style.opacity = "1"; }
+        function frameworkers_stop()  { document.getElementById('frameworkers_shape').style.opacity = "0"; }
+        frameworkers_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title">FrameWorkers: A Dynamic Multi-Agent Framework for Automated AIGC Video Production<span class="venue submission">In Submission</span></div>
+      <div class="paper-authors">
+        <a href="https://lizzd.github.io/">Zhendong Li</a>,
+        <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
+        <a href="https://insait.ai/letian-shi/">Letian Shi</a>,
+        <strong>Deheng Zhang</strong>,
+        <a href="https://insait.ai/ruibo-ming/">Ruibo Ming</a>,
+        <a href="https://insait.ai/dr-mengshun-hu/">Mengshun Hu</a>,
+        <a href="https://insait.ai/dannong-xu/">Dannong Xu</a>,
+        <a href="https://jianwang-cmu.github.io/">Jian Wang</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://insait.ai/dr-jinjin-gu/">Jinjin Gu</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://lizzd.github.io/frameworkers-site/">Project</a>
+        <a href="https://lizzd.github.io/frameworkers-site/films.html">Films</a>
+      </div>
+      <div class="paper-tldr">An AI film director — a trained Director agent plans a dynamic task stack and orchestrates specialist agents (script, keyframes, clips, voiceover, score, sound design) to turn a single prompt into a finished short film.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card pub-extra">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="statespacediffuser_stop()" onmouseover="statespacediffuser_start()">
+    <td width="40%">
+      <div class="one">
+        <div class="two" id="statespacediffuser_shape">
+          <img src="/images/projects/statespacediffuser.gif" width="100%">
+        </div>
+        <img src="/images/projects/statespacediffuser.png" width="100%">
+      </div>
+      <script type="text/javascript">
+        function statespacediffuser_start() { document.getElementById('statespacediffuser_shape').style.opacity = "1"; }
+        function statespacediffuser_stop()  { document.getElementById('statespacediffuser_shape').style.opacity = "0"; }
+        statespacediffuser_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title">StateSpaceDiffuser: Bringing Long Context to Diffusion World Models<span class="venue neurips">NeurIPS 2025</span></div>
+      <div class="paper-authors">
+        <a href="https://insait.ai/nedko-savov/">Nedko Savov</a>,
+        <a href="https://insait.ai/naser-kazemi/">Naser Kazemi</a>,
+        <strong>Deheng Zhang</strong>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Paudel</a>,
+        <a href="https://xiwang1212.github.io/homepage/">Xi Wang</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2505.22246">Paper</a>
+        <a href="https://insait-institute.github.io/StateSpaceDiffuser/">Project</a>
+        <a href="https://github.com/insait-institute/StateSpaceDiffuser">Code</a>
+      </div>
+      <div class="paper-tldr">A diffusion world model that overcomes the memory bottleneck by integrating features from a state-space model representing the entire interaction history, enabling long-context world modeling.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card pub-extra">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
   <tr onmouseout="egospot_stop()" onmouseover="egospot_start()">
     <td width="40%">
@@ -1172,7 +1211,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 </table>
 </div>
 
-<div class="paper-card">
+<div class="paper-card pub-extra">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
   <tr>
     <td width="40%">
