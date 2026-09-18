@@ -897,6 +897,46 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 
 <div class="paper-card">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="conegaussian_stop()" onmouseover="conegaussian_start()">
+    <td width="40%">
+      <div class="one">
+        <div class="two" id="conegaussian_shape">
+          <img src="/images/projects/conegaussian.gif" width="100%">
+        </div>
+        <img src="/images/projects/conegaussian.png" width="100%">
+      </div>
+      <script type="text/javascript">
+        function conegaussian_start() { document.getElementById('conegaussian_shape').style.opacity = "1"; }
+        function conegaussian_stop()  { document.getElementById('conegaussian_shape').style.opacity = "0"; }
+        conegaussian_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title">ConeGaussian: Anti-Aliased Gaussian Ray-Tracing for Generic Central Cameras<span class="venue submission">In Submission</span></div>
+      <div class="paper-authors">
+        <strong>Deheng Zhang*</strong>,
+        <a href="https://insait.ai/letian-shi/">Letian Shi*</a>,
+        <a href="https://runyiyang.github.io/">Runyi Yang</a>,
+        <a href="https://insait.ai/zhendong-li/">Zhendong Li</a>,
+        <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
+        Kanzhi Wu,
+        <a href="https://ajadchhatkuli.github.io/">Ajad Chhatkuli</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2609.13397">Paper</a>
+        <a href="https://insait-institute.github.io/ConeGaussian/">Project</a>
+        <a href="https://github.com/insait-institute/ConeGaussian">Code</a>
+      </div>
+      <div class="paper-tldr">Anti-aliasing for Gaussian ray tracing that builds an anisotropic pixel footprint from the camera's own neighbouring rays, so one filter serves pinhole and strongly distorted fisheye cameras and transfers across ray-based renderers.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
   <tr onmouseout="frameworkers_stop()" onmouseover="frameworkers_start()">
     <td width="40%">
       <div class="one">
