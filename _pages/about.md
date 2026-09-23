@@ -976,11 +976,11 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
       <div class="paper-authors">
         <a href="https://runyiyang.github.io/">Runyi Yang</a>,
         <strong>Deheng Zhang</strong>,
-        Xiaoye Wang,
+        <a href="https://scholar.google.com/citations?user=KRQ3cJwAAAAJ&amp;hl=zh-CN">Xiaoye Wang</a>,
         <a href="https://www.kanzhi.tech/about">Kanzhi Wu</a>,
         <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
         <a href="https://ajadchhatkuli.github.io/">Ajad Chhatkuli</a>,
-        Kunyu Peng,
+        <a href="https://insait.ai/dr-ing-kunyu-peng/">Kunyu Peng</a>,
         <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
         <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>
       </div>
