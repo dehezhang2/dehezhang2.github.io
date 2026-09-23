@@ -957,6 +957,87 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 
 <div class="paper-card">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="phirie_stop()" onmouseover="phirie_start()">
+    <td width="40%">
+      <div class="one">
+        <div class="two" id="phirie_shape">
+          <img src="/images/projects/phirie.gif" width="100%">
+        </div>
+        <img src="/images/projects/phirie.png" width="100%">
+      </div>
+      <script type="text/javascript">
+        function phirie_start() { document.getElementById('phirie_shape').style.opacity = "1"; }
+        function phirie_stop()  { document.getElementById('phirie_shape').style.opacity = "0"; }
+        phirie_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title">PhiRIE: From Photorealistic Reconstruction to Interactive Environments<span class="venue submission">In Submission</span></div>
+      <div class="paper-authors">
+        <a href="https://runyiyang.github.io/">Runyi Yang</a>,
+        <strong>Deheng Zhang</strong>,
+        Xiaoye Wang,
+        <a href="https://www.kanzhi.tech/about">Kanzhi Wu</a>,
+        <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
+        <a href="https://ajadchhatkuli.github.io/">Ajad Chhatkuli</a>,
+        Kunyu Peng,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://insait-institute.github.io/PhiRIE/">Project</a>
+        <a href="https://github.com/insait-institute/PhiRIE">Code</a>
+        <a href="https://youtu.be/3-YdcBh6Tbw">Video</a>
+      </div>
+      <div class="paper-tldr">Evidence-driven real-to-sim: turns captured rooms into simulator-ready interactive Gaussian environments, where each object carries metric geometry, collision, and appearance linked by a single identity — supporting scene editing, physics interaction, and robot replay.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="frameworkers_stop()" onmouseover="frameworkers_start()">
+    <td width="40%">
+      <div class="one">
+        <div class="two" id="frameworkers_shape">
+          <img src="/images/projects/frameworkers.gif" width="100%">
+        </div>
+        <img src="/images/projects/frameworkers.png" width="100%">
+      </div>
+      <script type="text/javascript">
+        function frameworkers_start() { document.getElementById('frameworkers_shape').style.opacity = "1"; }
+        function frameworkers_stop()  { document.getElementById('frameworkers_shape').style.opacity = "0"; }
+        frameworkers_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title">FrameWorkers: A Dynamic Multi-Agent Framework for Automated AIGC Video Production<span class="venue submission">In Submission</span></div>
+      <div class="paper-authors">
+        <a href="https://lizzd.github.io/">Zhendong Li</a>,
+        <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
+        <a href="https://insait.ai/letian-shi/">Letian Shi</a>,
+        <strong>Deheng Zhang</strong>,
+        <a href="https://insait.ai/ruibo-ming/">Ruibo Ming</a>,
+        <a href="https://insait.ai/dr-mengshun-hu/">Mengshun Hu</a>,
+        <a href="https://insait.ai/dannong-xu/">Dannong Xu</a>,
+        <a href="https://jianwang-cmu.github.io/">Jian Wang</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://insait.ai/dr-jinjin-gu/">Jinjin Gu</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://lizzd.github.io/frameworkers-site/">Project</a>
+        <a href="https://lizzd.github.io/frameworkers-site/films.html">Films</a>
+      </div>
+      <div class="paper-tldr">An AI film director — a trained Director agent plans a dynamic task stack and orchestrates specialist agents (script, keyframes, clips, voiceover, score, sound design) to turn a single prompt into a finished short film.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
   <tr onmouseout="egonight_stop()" onmouseover="egonight_start()">
     <td width="40%">
       <div class="one">
@@ -994,6 +1075,49 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
         <a href="https://huggingface.co/datasets/dehezhang2/EgoNight">Dataset</a>
       </div>
       <div class="paper-tldr">The first comprehensive benchmark for egocentric vision understanding in low-light and nighttime conditions, comprising synthetic scenes (EgoNight-Synthetic), aligned day–night pairs (EgoNight-Sofia), and unaligned nighttime footage (EgoNight-Oxford).</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="egospot_stop()" onmouseover="egospot_start()">
+    <td width="40%">
+      <div class="one egospot-media">
+        <div class="two" id="egospot_shape">
+          <video muted autoplay loop playsinline>
+            <source src="/images/projects/holospot.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <img src="/images/projects/holospot.png" alt="EgoSpot teaser">
+      </div>
+      <script type="text/javascript">
+        function egospot_start() { document.getElementById('egospot_shape').style.opacity = "1"; }
+        function egospot_stop()  { document.getElementById('egospot_shape').style.opacity = "0"; }
+        egospot_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title"><a href="https://ganlinzhang.xyz/Holo-Spot-Page/">EgoSpot: Accessible Robot Control via Egocentric Multimodal Signals</a><span class="venue course">ICRA Workshop 2026</span></div>
+      <div class="paper-authors">
+        <a href="https://ganlinzhang.xyz/">Ganlin Zhang*</a>,
+        <strong>Deheng Zhang*</strong>,
+        <a href="https://www.linkedin.com/in/longteng-duan-566640205/">Longteng Duan*</a>,
+        <a href="https://github.com/guo-han">Guo Han*</a>,
+        <a href="https://yuqianfu.com/">Yuqian Fu</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://www.linkedin.com/in/eric-vollenweider-1b4b1616a/">Eric Vollenweider</a>
+        <em>(* equal contribution)</em>
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2306.02393">Paper</a>
+        <a href="https://ganlinzhang.xyz/Holo-Spot-Page/">Project</a>
+        <a href="https://github.com/dehezhang2/holo-spot">Code</a>
+      </div>
+      <div class="paper-tldr">A mixed-reality system on HoloLens&nbsp;2 that enables users to control the Boston Dynamics Spot robot through egocentric multimodal signals — gaze, gesture, and voice — making robot teleoperation more accessible and intuitive.</div>
     </td>
   </tr>
 </table>
@@ -1072,7 +1196,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 </div>
 
 <div class="pub-more-bar">
-  <button type="button" id="pub-more-toggle" class="pub-toggle" aria-expanded="false">Show 4 more publications</button>
+  <button type="button" id="pub-more-toggle" class="pub-toggle" aria-expanded="false">Show 2 more publications</button>
 </div>
 
 <script type="text/javascript">
@@ -1081,7 +1205,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
     var btn = document.getElementById('pub-more-toggle');
     if (!btn) return;
     document.body.classList.add('js-pubs');
-    var label = ['Show 4 more publications', 'Hide other publications'];
+    var label = ['Show 2 more publications', 'Hide other publications'];
     btn.addEventListener('click', function () {
       var open = document.body.classList.toggle('pub-extra-show');
       btn.setAttribute('aria-expanded', String(open));
@@ -1089,47 +1213,6 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
     });
   })();
 </script>
-
-<div class="paper-card pub-extra">
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
-  <tr onmouseout="frameworkers_stop()" onmouseover="frameworkers_start()">
-    <td width="40%">
-      <div class="one">
-        <div class="two" id="frameworkers_shape">
-          <img src="/images/projects/frameworkers.gif" width="100%">
-        </div>
-        <img src="/images/projects/frameworkers.png" width="100%">
-      </div>
-      <script type="text/javascript">
-        function frameworkers_start() { document.getElementById('frameworkers_shape').style.opacity = "1"; }
-        function frameworkers_stop()  { document.getElementById('frameworkers_shape').style.opacity = "0"; }
-        frameworkers_stop();
-      </script>
-    </td>
-    <td valign="top" width="60%">
-      <div class="paper-title">FrameWorkers: A Dynamic Multi-Agent Framework for Automated AIGC Video Production<span class="venue submission">In Submission</span></div>
-      <div class="paper-authors">
-        <a href="https://lizzd.github.io/">Zhendong Li</a>,
-        <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
-        <a href="https://insait.ai/letian-shi/">Letian Shi</a>,
-        <strong>Deheng Zhang</strong>,
-        <a href="https://insait.ai/ruibo-ming/">Ruibo Ming</a>,
-        <a href="https://insait.ai/dr-mengshun-hu/">Mengshun Hu</a>,
-        <a href="https://insait.ai/dannong-xu/">Dannong Xu</a>,
-        <a href="https://jianwang-cmu.github.io/">Jian Wang</a>,
-        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
-        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
-        <a href="https://insait.ai/dr-jinjin-gu/">Jinjin Gu</a>
-      </div>
-      <div class="paper-links">
-        <a href="https://lizzd.github.io/frameworkers-site/">Project</a>
-        <a href="https://lizzd.github.io/frameworkers-site/films.html">Films</a>
-      </div>
-      <div class="paper-tldr">An AI film director — a trained Director agent plans a dynamic task stack and orchestrates specialist agents (script, keyframes, clips, voiceover, score, sound design) to turn a single prompt into a finished short film.</div>
-    </td>
-  </tr>
-</table>
-</div>
 
 <div class="paper-card pub-extra">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
@@ -1163,49 +1246,6 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
         <a href="https://github.com/insait-institute/StateSpaceDiffuser">Code</a>
       </div>
       <div class="paper-tldr">A diffusion world model that overcomes the memory bottleneck by integrating features from a state-space model representing the entire interaction history, enabling long-context world modeling.</div>
-    </td>
-  </tr>
-</table>
-</div>
-
-<div class="paper-card pub-extra">
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
-  <tr onmouseout="egospot_stop()" onmouseover="egospot_start()">
-    <td width="40%">
-      <div class="one egospot-media">
-        <div class="two" id="egospot_shape">
-          <video muted autoplay loop playsinline>
-            <source src="/images/projects/holospot.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <img src="/images/projects/holospot.png" alt="EgoSpot teaser">
-      </div>
-      <script type="text/javascript">
-        function egospot_start() { document.getElementById('egospot_shape').style.opacity = "1"; }
-        function egospot_stop()  { document.getElementById('egospot_shape').style.opacity = "0"; }
-        egospot_stop();
-      </script>
-    </td>
-    <td valign="top" width="60%">
-      <div class="paper-title"><a href="https://ganlinzhang.xyz/Holo-Spot-Page/">EgoSpot: Accessible Robot Control via Egocentric Multimodal Signals</a><span class="venue course">ICRA Workshop 2026</span></div>
-      <div class="paper-authors">
-        <a href="https://ganlinzhang.xyz/">Ganlin Zhang*</a>,
-        <strong>Deheng Zhang*</strong>,
-        <a href="https://www.linkedin.com/in/longteng-duan-566640205/">Longteng Duan*</a>,
-        <a href="https://github.com/guo-han">Guo Han*</a>,
-        <a href="https://yuqianfu.com/">Yuqian Fu</a>,
-        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
-        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
-        <a href="https://www.linkedin.com/in/eric-vollenweider-1b4b1616a/">Eric Vollenweider</a>
-        <em>(* equal contribution)</em>
-      </div>
-      <div class="paper-links">
-        <a href="https://arxiv.org/abs/2306.02393">Paper</a>
-        <a href="https://ganlinzhang.xyz/Holo-Spot-Page/">Project</a>
-        <a href="https://github.com/dehezhang2/holo-spot">Code</a>
-      </div>
-      <div class="paper-tldr">A mixed-reality system on HoloLens&nbsp;2 that enables users to control the Boston Dynamics Spot robot through egocentric multimodal signals — gaze, gesture, and voice — making robot teleoperation more accessible and intuitive.</div>
     </td>
   </tr>
 </table>
@@ -1405,7 +1445,6 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 
 </div>
 </div>
-
 
 <h2 id="experience" class="section-heading">Experience</h2>
 <p style="color:#888;font-size:0.85em;margin:-0.6em 0 0.6em;">Auto-scrolls vertically · hover any card to pause and expand details.</p>
