@@ -997,6 +997,34 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 
 <div class="paper-card">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr>
+    <td width="40%">
+      <img src="/images/projects/langstreet.png" width="100%" alt="LangStreet teaser" style="border-radius:8px;">
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title"><a href="https://arxiv.org/abs/2609.11616">LangStreet: Persistent Language Fields for Anchor-Decoded Street Gaussians</a><span class="venue submission">In Submission</span></div>
+      <div class="paper-authors">
+        <a href="https://runyiyang.github.io/">Runyi Yang</a>,
+        <strong>Deheng Zhang</strong>,
+        <a href="https://scholar.google.com/citations?user=KRQ3cJwAAAAJ&amp;hl=zh-CN">Xiaoye Wang</a>,
+        <a href="https://insait.ai/mengjiao-ma/">Mengjiao Ma</a>,
+        <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
+        <a href="https://www.kanzhi.tech/about">Kanzhi Wu</a>,
+        <a href="https://ajadchhatkuli.github.io/">Ajad Chhatkuli</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2609.11616">Paper</a>
+      </div>
+      <div class="paper-tldr">Open-vocabulary language fields for street-scale Gaussian scenes, where view-conditioned child Gaussians are not identifiable across views: semantics are owned instead by persistent anchors and decoder slots, matching full-slot accuracy on KITTI-360, vKITTI2 and Waymo at a fraction of the feature storage.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
   <tr onmouseout="frameworkers_stop()" onmouseover="frameworkers_start()">
     <td width="40%">
       <div class="one">
