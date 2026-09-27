@@ -1025,6 +1025,36 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 
 <div class="paper-card">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr>
+    <td width="40%">
+      <img src="/images/projects/kairos.png" width="100%" alt="Kairos teaser" style="border-radius:8px;">
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title"><a href="https://arxiv.org/abs/2609.08755">Kairos: A Dataset for Fine-Grained Video-Language Modeling over Space, Time, and Dynamics</a><span class="venue submission">In Submission</span></div>
+      <div class="paper-authors">
+        <a href="https://insait.ai/ruibo-ming/">Ruibo Ming</a>,
+        <a href="https://insait.ai/lei-sun/">Lei Sun</a>,
+        <strong>Deheng Zhang</strong>,
+        He Zhang,
+        Jialu Li,
+        <a href="https://jianwang-cmu.github.io/">Jian Wang</a>,
+        <a href="https://lizzd.github.io/">Zhendong Li</a>,
+        <a href="https://insait.ai/dr-mengshun-hu/">Mengshun Hu</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://insait.ai/dr-jinjin-gu/">Jinjin Gu</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2609.08755">Paper</a>
+      </div>
+      <div class="paper-tldr">A long-form video dataset (19,004 videos, 5,420 hours, 10&ndash;30&nbsp;min each) annotated at 1&nbsp;FPS with time-resolved structure &mdash; per-shot reference descriptions, in-shot differential chains, and a video-level entity bank &mdash; together with Kairos-Bench, whose questions are tied to explicit evidence spans.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
   <tr onmouseout="frameworkers_stop()" onmouseover="frameworkers_start()">
     <td width="40%">
       <div class="one">
