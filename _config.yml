@@ -75,7 +75,7 @@ social:
 analytics:
   provider               : "google-g4" # false (default), "google", "google-universal", "custom", "goatcounter", "google-g4"
   google:
-    tracking_id          :
+    tracking_id          : "G-BMNQXCP61E"
 
 
 # Site Author
