@@ -886,6 +886,28 @@ body.js-pubs.pub-extra-show .pub-extra { display: block; }
   .masthead__menu-item--lg a { font-size: 0.95em; padding-right: 0.6em; }
   .greedy-nav button { width: 40px; }
 }
+
+/* ========== Embedded introduction slides (intro.html) ========== */
+.talk-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  margin: 0.4em 0 0.6em;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #090c11;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+}
+.talk-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.talk-caption { font-size: 0.85em; color: #777; margin: 0 0 1.2em; }
 </style>
 
 I am a Researcher at [INSAIT](https://insait.ai/), working with [Prof. Luc Van Gool](https://insait.ai/prof-luc-van-gool/) and [Dr. Danda Paudel](https://insait.ai/dr-danda-paudel/). I received my MSc from [ETH Zürich](https://ethz.ch/de.html), where I conducted 3D Vision and Graphics research at [Disney Research \| Studios Zürich](https://studios.disneyresearch.com/) (with [Prof. Markus Gross](https://inf.ethz.ch/de/personen/person-detail.mgross.html)) and at [VLG](https://vlg.inf.ethz.ch/index.html) (with [Prof. Siyu Tang](https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html)). I obtained my Bachelor's degree from [City University of Hong Kong](https://www.cityu.edu.hk/).
@@ -901,6 +923,12 @@ My research lies at the intersection of **vision-language modeling**, **spatial 
 </ul>
 
 Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Photography](https://dehezhang2.github.io/photos/), video games, fingerstyle guitar, table tennis, skiing, and hiking.
+
+<h2 id="intro-slides" class="section-heading">Introduction Slides</h2>
+<div class="talk-embed">
+  <iframe src="/intro.html?embed" title="Deheng Zhang: introduction slides" allow="fullscreen" loading="lazy"></iframe>
+</div>
+<p class="talk-caption">Background, two first-author projects, StateSpaceDiffuser, and where I want to take world models next. Click the right side of a slide or press → to advance, ← to go back; <b>L</b> switches between English and Chinese, <b>F</b> goes full screen, <b>O</b> lists the slides. <a href="/intro.html" target="_blank" rel="noopener">Open the slides in a new tab ↗</a></p>
 
 <h2 id="news" class="section-heading">News</h2>
 <div class="news-list">

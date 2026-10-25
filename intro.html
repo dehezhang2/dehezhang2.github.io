@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deheng Zhang Research Talk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/png" href="images/profile.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500&display=swap">
+<style>
+/* Layout: one 1600x900 stage scaled to the window. The deck follows one pipeline,
+   video -> dense 3D -> spatial agents, and each stage owns a hue:
+   warm = video / generative, cool = 3D geometry, green = agents, coral = failure. */
+:root{
+  color-scheme: dark;
+  --page:#090c11;
+  --bg:#0d1218;
+  --panel:#131a23;
+  --panel-2:#1a2330;
+  --line:#232d3a;
+  --line-2:#344152;
+  --grid:rgba(140,170,210,.045);
+  --fg:#e8ecf1;
+  --muted:#a6b0be;
+  --dim:#717d8e;
+  --video:#f0a35e;
+  --video-2:#ffd2a1;
+  --geo:#7db8ff;
+  --geo-2:#c2deff;
+  --agent:#93d38a;
+  --warn:#ef7f6c;
+  --f-display:"Newsreader","Noto Serif SC",Georgia,serif;
+  --f-body:"Inter","Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+html,body{margin:0;height:100%}
+img{max-width:100%}
+[hidden]{display:none !important}
+/* intro.html?embed: the homepage iframe is already 16:9, so drop the side gutter */
+:root.embed body{padding:0}
+body{background:var(--page);color:var(--fg);font-family:var(--f-body);overflow:hidden;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0}
+:root[data-lang="zh"] .en, :root[data-lang="en"] .zh{display:none !important}
+#viewport{position:relative;height:100%;overflow:hidden;background:var(--page)}
+#viewport:fullscreen{padding:0}
+#stage{position:absolute;left:50%;top:50%;width:1600px;height:900px;transform-origin:50% 50%;
+  background:var(--bg);overflow:hidden;border-radius:6px;
+  background-image:radial-gradient(1100px 680px at 82% 30%, rgba(125,184,255,.05), transparent 60%),
+    linear-gradient(var(--grid) 1px, transparent 1px),linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:auto,40px 40px,40px 40px}
+
+/* ---------- slides ---------- */
+.slide{position:absolute;inset:0;padding:54px 80px 92px;display:flex;flex-direction:column;gap:26px;
+  opacity:0;visibility:hidden;transform:translateX(44px);
+  transition:opacity .5s ease, transform .7s cubic-bezier(.2,.7,.2,1), visibility 0s linear .7s}
+.slide.past{transform:translateX(-44px)}
+.slide.active{opacity:1;visibility:visible;transform:none;transition:opacity .5s ease, transform .7s cubic-bezier(.2,.7,.2,1), visibility 0s}
+.hd{display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex:none}
+.hd .tt{display:flex;flex-direction:column;gap:12px;min-width:0}
+h1,h2,h3,p{margin:0}
+h2{font:600 40px/1.18 var(--f-body);letter-spacing:-.01em;text-wrap:balance;max-width:1180px}
+h3{font:600 24px/1.3 var(--f-body);text-wrap:balance}
+.lede{font-size:22px;line-height:1.55;color:var(--muted);max-width:1180px}
+p.t{font-size:21px;line-height:1.58}
+.cap{font:400 16px/1.5 var(--f-mono);color:var(--dim)}
+b,strong{font-weight:600;color:var(--fg)}
+.hv{color:var(--video-2)} .hg{color:var(--geo-2)} .ha{color:var(--agent)} .hw{color:var(--warn)}
+a{color:var(--geo-2)}
+.mono{font-family:var(--f-mono)}
+.num{font-variant-numeric:tabular-nums}
+ul.pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+ul.pts li{position:relative;padding-left:28px;font-size:20px;line-height:1.55;color:var(--muted)}
+ul.pts li::before{content:"";position:absolute;left:2px;top:.62em;width:9px;height:9px;border-radius:2px;background:currentColor;opacity:.75;transform:rotate(45deg)}
+ul.pts.v li::before{background:var(--video)} ul.pts.g li::before{background:var(--geo)} ul.pts.a li::before{background:var(--agent)} ul.pts.w li::before{background:var(--warn)}
+ul.pts li b{color:var(--fg)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+.venue{display:inline-block;font:500 15px/1 var(--f-mono);padding:7px 10px;border-radius:7px;border:1px solid var(--line-2);color:var(--muted);vertical-align:middle;white-space:nowrap}
+.venue.acc{border-color:rgba(147,211,138,.55);color:var(--agent)}
+.venue.sub{border-color:var(--line-2);color:var(--muted)}
+
+/* builds */
+.slide [data-s]{opacity:0;transform:translateY(12px);transition:opacity .5s ease, transform .6s cubic-bezier(.2,.7,.2,1)}
+.slide [data-s].on{opacity:1;transform:none}
+.slide.active .rise{animation:rise .75s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--d,0) * 90ms)}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+
+/* controls */
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:10px;overflow:hidden;background:var(--panel)}
+.seg button{font:500 17px/1 var(--f-body);color:var(--muted);background:transparent;border:0;padding:12px 16px;cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--panel-2);color:var(--fg);box-shadow:inset 0 -2px 0 var(--geo)}
+.seg button:hover{color:var(--fg)}
+button:focus-visible,input:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--geo);outline-offset:2px}
+.btn{font:500 15px/1 var(--f-mono);color:var(--muted);background:transparent;border:1px solid var(--line-2);border-radius:9px;padding:9px 13px;cursor:pointer}
+.btn:hover{color:var(--fg);border-color:var(--dim)}
+.range{display:flex;align-items:center;gap:14px;font:500 16px var(--f-mono);color:var(--muted)}
+.range input{width:320px;accent-color:var(--video)}
+
+/* chrome */
+#chrome{position:absolute;left:0;right:0;bottom:0;height:60px;display:flex;align-items:center;gap:14px;padding:0 28px 0 80px;z-index:20;
+  font:500 15px var(--f-mono);color:var(--dim)}
+#prog{position:absolute;left:0;top:0;height:2px;background:linear-gradient(90deg,var(--video),var(--geo) 60%,var(--agent));width:0;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+#chrome .sp{flex:1}
+#count{color:var(--muted);min-width:70px;text-align:right}
+#toc{position:absolute;inset:0;z-index:40;background:rgba(9,12,17,.95);padding:64px 80px;display:flex;flex-direction:column;gap:28px}
+#toc h3{font:500 16px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+#toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px 24px}
+#toc button{width:100%;text-align:left;font:500 19px/1.4 var(--f-body);color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px;cursor:pointer;display:flex;gap:14px}
+#toc button span.n{font-family:var(--f-mono);color:var(--geo);min-width:28px}
+#toc button:hover{border-color:var(--geo)}
+
+/* pipeline map (top right of the research-direction slides) */
+.pmap{display:flex;align-items:center;gap:8px;flex:none;margin-top:6px;font:500 14px/1 var(--f-mono);color:var(--dim)}
+.pmap span{padding:8px 10px;border-radius:8px;border:1px solid var(--line);white-space:nowrap}
+.pmap i{width:18px;height:1px;background:var(--line-2);position:relative}
+.pmap i::after{content:"";position:absolute;right:-1px;top:-3px;border:3.5px solid transparent;border-left:5px solid var(--line-2);border-right:0}
+.pmap span.on{color:var(--fg);border-color:var(--c,var(--geo));background:var(--panel)}
+.pmap span[data-k="1"],.pmap span[data-k="2"]{--c:var(--video)}
+.pmap span[data-k="3"]{--c:var(--geo)}
+.pmap span[data-k="4"]{--c:var(--agent)}
+
+/* ---------- 1 about ---------- */
+#about{padding:0}
+#cv-mesh{position:absolute;left:0;top:0;width:1600px;height:900px;pointer-events:none}
+.who{position:absolute;left:96px;top:96px;width:640px;display:flex;flex-direction:column;gap:20px}
+.who .avatar{width:148px;height:148px;border-radius:50%;object-fit:cover;border:3px solid var(--panel-2);box-shadow:0 0 0 1px var(--line-2),0 12px 40px rgba(0,0,0,.45)}
+.who h1{font:400 104px/0.95 var(--f-display);letter-spacing:-.015em;margin-top:4px}
+.who h1 em{font-style:italic;color:var(--video-2)}
+.who .role{font-size:24px;line-height:1.45;color:var(--fg)}
+.who .role span.m{color:var(--muted)}
+.who .thesis{font:400 31px/1.32 var(--f-display);color:var(--fg);max-width:620px;text-wrap:pretty}
+:root[data-lang="zh"] .who .thesis{font:500 27px/1.5 var(--f-body)}
+.who .thesis em{font-style:italic;color:var(--geo-2)}
+.tl{position:absolute;left:820px;top:84px;width:700px;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.tl li{position:relative;padding:0 0 26px 40px}
+.tl li::before{content:"";position:absolute;left:9px;top:14px;bottom:-12px;width:2px;background:var(--line-2)}
+.tl li:last-child::before{display:none}
+.tl li::after{content:"";position:absolute;left:3px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--c,var(--geo))}
+.tl li.now::after{background:var(--c)}
+.tl .org{font:600 23px/1.3 var(--f-body)}
+.tl .when{font:500 15px/1.4 var(--f-mono);color:var(--dim);margin-top:4px}
+.tl .what{font-size:18px;line-height:1.5;color:var(--muted);margin-top:6px}
+.tl .what b{color:var(--fg)}
+.hint{position:absolute;left:96px;bottom:84px;font:400 15px var(--f-mono);color:var(--dim);white-space:pre}
+
+/* ---------- 2 projects ---------- */
+.proj{display:grid;grid-template-rows:1fr 1fr;gap:22px;flex:1;min-height:0}
+.pc{display:grid;grid-template-columns:528px minmax(0,1fr);gap:32px;align-items:center;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 26px 16px 16px}
+.pc .txt{display:flex;flex-direction:column;gap:12px;min-width:0}
+.pc .media{position:relative;width:528px;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000;border:1px solid var(--line-2)}
+.pc .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;max-width:none}
+.pc .ttl{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.pc .ttl h3{font:400 40px/1 var(--f-display)}
+.pc .q{font:400 italic 24px/1.35 var(--f-display);color:var(--fg)}
+:root[data-lang="zh"] .pc .q{font:500 21px/1.45 var(--f-body)}
+.pc p.d{font-size:19px;line-height:1.5;color:var(--muted)}
+.pc .facts{display:flex;flex-wrap:wrap;gap:8px}
+.pc .facts span{font:500 15px/1 var(--f-mono);padding:8px 10px;border-radius:999px;background:var(--panel-2);color:var(--fg)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.links a{font:500 16px/1 var(--f-mono);color:var(--fg);text-decoration:none;border:1px solid var(--line-2);border-radius:9px;padding:10px 14px;background:var(--bg)}
+.links a:hover{border-color:var(--geo);color:var(--geo-2)}
+.links a.pri{border-color:var(--geo);color:var(--geo-2)}
+
+/* ---------- 3 StateSpaceDiffuser ---------- */
+.authors{font-size:17px;line-height:1.5;color:var(--muted)}
+.authors b{color:var(--fg)}
+.ssd{display:grid;grid-template-columns:820px 1fr;gap:40px;flex:1;min-height:0}
+.ssd .col{display:flex;flex-direction:column;gap:16px;min-width:0}
+#ssd-svg{width:100%;height:auto;display:block;overflow:visible}
+#ssd-svg text{font-family:var(--f-body)}
+.ssd-ctrl{display:flex;align-items:center;gap:16px}
+.ssd-status{font-size:19px;line-height:1.5;color:var(--muted);min-height:58px}
+.ssd-status b{color:var(--fg)}
+.teaser{border-radius:10px;border:1px solid var(--line-2);background:#fff;display:block;width:100%}
+.res{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:baseline}
+.res .big{font:400 60px/1 var(--f-display);color:var(--video-2);font-variant-numeric:tabular-nums}
+.res .big small{font-size:28px;color:var(--muted)}
+.res p{font-size:17px;line-height:1.5;color:var(--muted)}
+.lesson{border-left:3px solid var(--geo);padding:4px 0 4px 18px;font-size:19px;line-height:1.5;color:var(--muted)}
+.lesson b{color:var(--geo-2)}
+
+/* ---------- 4 view ---------- */
+#view-svg{width:100%;height:auto;display:block;overflow:visible}
+#view-svg text{font-family:var(--f-body)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.two .card h3{font-size:21px;margin-bottom:14px}
+.two ul.pts li{font-size:19px}
+
+/* ---------- 5 dense ---------- */
+.dense{display:grid;grid-template-columns:900px 1fr;gap:40px;flex:1;min-height:0}
+#cv-dense{width:900px;height:520px;display:block;border-radius:14px;border:1px solid var(--line);background:var(--panel)}
+.dense .col{display:flex;flex-direction:column;gap:20px;min-width:0}
+table.cap-m{border-collapse:separate;border-spacing:0;width:100%;font-size:17px}
+table.cap-m th{padding:0 3px 6px;text-align:center;vertical-align:bottom}
+table.cap-m th button{width:100%;font:500 15px/1.25 var(--f-body);color:var(--muted);background:transparent;border:1px solid var(--line-2);border-radius:9px;padding:9px 4px;cursor:pointer}
+table.cap-m th button:hover{color:var(--fg);border-color:var(--dim)}
+table.cap-m th button[aria-pressed="true"]{color:var(--fg);border-color:var(--geo);background:var(--panel-2)}
+table.cap-m th.rh{text-align:left}
+table.cap-m td{padding:9px 4px;text-align:center;border-top:1px solid var(--line);font-size:20px;line-height:1}
+table.cap-m td.rh{text-align:left;font-size:17px;line-height:1.35;color:var(--muted)}
+table.cap-m .sel{background:var(--panel-2)}
+.sym-y{color:var(--geo)} .sym-p{color:var(--video)} .sym-n{color:var(--dim)}
+.dense .note{font-size:20px;line-height:1.5;color:var(--fg);min-height:90px}
+.legend-s{font-size:15px;color:var(--dim);font-family:var(--f-mono)}
+
+/* ---------- 6 routes ---------- */
+.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.rt{display:flex;flex-direction:column;gap:14px;min-width:0}
+.rt .tag{font:500 15px/1 var(--f-mono);color:var(--dim)}
+.rt h3{font-size:24px}
+.flowl{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font:500 15px/1 var(--f-mono)}
+.flowl span{padding:7px 9px;border-radius:7px;background:var(--panel-2);color:var(--fg)}
+.flowl i{font-style:normal;color:var(--dim)}
+.rt .eg{font-size:16px;color:var(--dim)}
+.rt ul.pts li{font-size:18px;line-height:1.45}
+.bet{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;border:1px solid var(--video);border-radius:16px;padding:22px 26px;
+  background:linear-gradient(120deg,rgba(240,163,94,.12),rgba(125,184,255,.06))}
+.bet .k{font:400 italic 34px/1 var(--f-display);color:var(--video-2);white-space:nowrap}
+:root[data-lang="zh"] .bet .k{font:600 26px/1.2 var(--f-body)}
+.bet p{font-size:20px;line-height:1.55;color:var(--fg)}
+.bet p + p{margin-top:8px;color:var(--muted)}
+
+/* ---------- 7 boundary ---------- */
+.hyp{position:relative;height:74px;flex:none}
+.hyp .br{position:absolute;top:0;height:74px;display:flex;flex-direction:column;justify-content:flex-start;gap:8px}
+.hyp .br p{font-size:18px;line-height:1.35;color:var(--fg)}
+.hyp .br p .hl{font:600 15px var(--f-mono);margin-right:10px}
+.hyp .br::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:12px;border:2px solid var(--c);border-bottom:0;border-radius:8px 8px 0 0;opacity:.8}
+.chain{display:grid;grid-template-columns:repeat(6,1fr);gap:26px;flex:none}
+.stg{position:relative;text-align:left;font:inherit;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;display:flex;flex-direction:column;gap:8px;min-height:96px}
+.stg:not(:last-child)::after{content:"→";position:absolute;right:-21px;top:50%;transform:translateY(-50%);color:var(--dim);font:500 18px var(--f-mono)}
+.stg .n{font:500 14px var(--f-mono);color:var(--c)}
+.stg .nm{font:600 19px/1.3 var(--f-body)}
+.stg:hover{border-color:var(--dim)}
+.stg[aria-pressed="true"]{border-color:var(--c);background:var(--panel-2);box-shadow:inset 0 -3px 0 var(--c)}
+.bdet{display:grid;grid-template-columns:1fr 1fr;gap:28px;flex:none;min-height:150px}
+.bdet .card h3{font:500 15px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:12px}
+.bdet .card p{font-size:21px;line-height:1.55}
+.oracle{display:flex;flex-direction:column;gap:16px;margin-top:auto;flex:none}
+.oracle p{font-size:20px;line-height:1.5;color:var(--muted)}
+.oracle p b{color:var(--geo-2)}
+.ladder{display:flex;align-items:stretch;gap:10px}
+.ladder div{flex:1;border:1px dashed var(--line-2);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;font-size:16px;line-height:1.3;color:var(--fg)}
+.ladder div .dq{font:500 14px var(--f-mono);color:var(--dim)}
+.ladder i{align-self:center;font-style:normal;color:var(--dim);font:500 16px var(--f-mono)}
+
+/* ---------- 8 use ---------- */
+.uses{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;flex:1;min-height:0}
+.use{display:flex;flex-direction:column;gap:14px;min-width:0}
+.use svg{width:100%;height:120px;display:block}
+.use .who2{font:500 15px/1 var(--f-mono);color:var(--agent)}
+.use h3{font-size:25px}
+.use p{font-size:19px;line-height:1.55;color:var(--muted)}
+.use p b{color:var(--fg)}
+.openq{border:1px solid var(--agent);border-radius:16px;padding:20px 26px;font-size:20px;line-height:1.55;flex:none;background:linear-gradient(120deg,rgba(147,211,138,.10),rgba(125,184,255,.05))}
+.openq b{color:var(--agent)}
+
+/* ---------- 9 agenda ---------- */
+.ag{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ag .colh{display:flex;flex-direction:column;gap:6px;padding-bottom:12px;border-bottom:2px solid var(--c)}
+.ag .colh h3{font-size:21px}
+.ag .colh p{font-size:16px;line-height:1.4;color:var(--muted)}
+.ag .items{display:flex;flex-direction:column;gap:8px;padding-top:12px}
+.pap{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:19px;padding:11px 14px;border-radius:9px;background:var(--panel);border:1px solid var(--line)}
+.pap span{font:500 13px var(--f-mono);color:var(--dim);white-space:nowrap}
+.pap.star{border-color:var(--c)}
+.next{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.nx{border:1px dashed var(--c);border-radius:10px;padding:14px 16px;font-size:18px;line-height:1.45;color:var(--fg)}
+.nx .lab{display:block;font:500 13px var(--f-mono);letter-spacing:.06em;color:var(--c);margin-bottom:6px}
+.contact{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:auto}
+.contact .mail{font:500 16px var(--f-mono);color:var(--muted);user-select:all;padding:10px 4px}
+.contact .thx{font:400 italic 46px/1 var(--f-display);color:var(--fg);margin-right:12px}
+:root[data-lang="zh"] .contact .thx{font:600 34px/1 var(--f-body)}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+}
+</style>
+</head>
+<body>
+<div id="viewport">
+<div id="stage">
+
+<!-- ============ 1 ABOUT ============ -->
+<section class="slide" id="about" data-tz="关于我" data-te="About me" data-sec="bg">
+  <canvas id="cv-mesh" width="1600" height="900" aria-hidden="true"></canvas>
+  <div class="who">
+    <img class="avatar rise" style="--d:0" src="images/profile.png" alt="Deheng Zhang">
+    <h1 class="rise" style="--d:1">Deheng <em>Zhang</em></h1>
+    <p class="role rise" style="--d:2"><span class="en">Doctoral researcher at <b>INSAIT</b>, Sofia<br><span class="m">with Prof. Luc Van Gool and Dr. Danda Paudel</span></span><span class="zh"><b>INSAIT</b>（索菲亚）博士研究员<br><span class="m">导师：Luc Van Gool 教授、Danda Paudel 博士</span></span></p>
+    <p class="thesis rise" style="--d:3"><span class="en">I want machines to learn a <em>persistent, explicit 3D world</em> from video, and to use it to reason and act in space.</span><span class="zh">我希望让机器从视频中学到一个持久、显式的三维世界，并用它进行空间推理与行动。</span></p>
+  </div>
+  <ol class="tl">
+    <li class="rise" style="--d:2;--c:var(--dim)">
+      <div class="org"><span class="en">City University of Hong Kong</span><span class="zh">香港城市大学</span></div>
+      <div class="when">BSc</div>
+    </li>
+    <li class="rise" style="--d:3;--c:var(--video)">
+      <div class="org"><span class="en">ETH Zürich</span><span class="zh">苏黎世联邦理工学院（ETH Zürich）</span></div>
+      <div class="when">MSc</div>
+      <div class="what"><span class="en">Disney Research | Studios, Dec 2022 – May 2023: controllable 3D style transfer, <b>CoARF</b> (3DV 2024).<br>VLG with Prof. Siyu Tang, Sep 2023 – Apr 2024: glossy-object inverse rendering, <b>RISE-SDF</b> (3DV 2025).</span><span class="zh">Disney Research | Studios，2022.12 – 2023.05：可控 3D 风格迁移 <b>CoARF</b>（3DV 2024）。<br>VLG（Siyu Tang 教授），2023.09 – 2024.04：高光物体逆渲染 <b>RISE-SDF</b>（3DV 2025）。</span></div>
+    </li>
+    <li class="rise" style="--d:4;--c:var(--geo)">
+      <div class="org"><span class="en">Max Planck Institute for Intelligent Systems, Tübingen</span><span class="zh">马普智能系统研究所（图宾根）</span></div>
+      <div class="when">IMPRS-IS · Sep 2024 – Mar 2025</div>
+      <div class="what"><span class="en">3D scene understanding and Gaussian splatting.</span><span class="zh">三维场景理解与 Gaussian Splatting。</span></div>
+    </li>
+    <li class="rise now" style="--d:5;--c:var(--agent)">
+      <div class="org"><span class="en">INSAIT, Sofia</span><span class="zh">INSAIT（索菲亚）</span></div>
+      <div class="when"><span class="en">Doctoral researcher · Apr 2025 – now</span><span class="zh">博士研究员 · 2025.04 至今</span></div>
+      <div class="what"><span class="en">Egocentric and spatial understanding, video world models, Gaussian ray tracing: <b>EgoNight</b> (ICLR 2026), <b>StateSpaceDiffuser</b> (NeurIPS 2025), <b>ConeGaussian</b>, <b>PhiRIE</b>.</span><span class="zh">第一人称与空间理解、视频世界模型、Gaussian 光线追踪：<b>EgoNight</b>（ICLR 2026）、<b>StateSpaceDiffuser</b>（NeurIPS 2025）、<b>ConeGaussian</b>、<b>PhiRIE</b>。</span></div>
+    </li>
+  </ol>
+  <p class="hint"><span class="en">→ / Space: next   ← back   L: EN / 中   F: full screen   O: contents</span><span class="zh">→ / 空格：下一页　← 上一页　L：中 / EN　F：全屏　O：目录</span></p>
+</section>
+
+<!-- ============ 2 PROJECTS ============ -->
+<section class="slide" id="projects" data-tz="两个一作项目" data-te="Two first-author projects" data-sec="proj">
+  <header class="hd"><div class="tt">
+    <h2><span class="en">Two first-author projects</span><span class="zh">两个一作项目</span></h2>
+  </div></header>
+  <div class="proj">
+    <article class="pc rise" style="--d:1">
+      <div class="media"><img data-src="images/projects/egonight.gif" alt="EgoNight: the same egocentric scene by day and by night"></div>
+      <div class="txt">
+      <div class="ttl"><h3>EgoNight</h3><span class="venue acc">ICLR 2026</span></div>
+      <p class="q"><span class="en">Can multimodal LLMs see in the dark?</span><span class="zh">多模态大模型能在黑暗中看清吗？</span></p>
+      <p class="d"><span class="en">The first benchmark for nighttime egocentric vision. Day–night aligned videos let the same question be asked under both lighting conditions, which improves annotation quality and isolates the effect of darkness. State-of-the-art MLLMs drop significantly from day to night.</span><span class="zh">第一个夜间第一人称视觉 benchmark。昼夜对齐的视频让同一个问题可以在两种光照下提问，既提高了标注质量，也把“黑暗”这一因素单独隔离出来。最强的 MLLM 从白天到夜晚性能显著下降。</span></p>
+      <div class="facts"><span class="en">3,658 QA pairs</span><span class="zh">3,658 个问答</span><span class="en">90 videos</span><span class="zh">90 段视频</span><span class="en">12 question types</span><span class="zh">12 类问题</span><span class="en">day–night aligned</span><span class="zh">昼夜对齐</span></div>
+      <div class="links">
+        <a class="pri" href="https://insait-institute.github.io/EgoNight/" target="_blank" rel="noopener"><span class="en">Project page ↗</span><span class="zh">项目主页 ↗</span></a>
+        <a href="https://insait-institute.github.io/EgoNight/talk.html" target="_blank" rel="noopener"><span class="en">Slides ↗</span><span class="zh">幻灯片 ↗</span></a>
+        <a href="https://openreview.net/pdf?id=DKD4QbOKBN" target="_blank" rel="noopener"><span class="en">Paper ↗</span><span class="zh">论文 ↗</span></a>
+        <a href="https://huggingface.co/datasets/dehezhang2/EgoNight" target="_blank" rel="noopener"><span class="en">Dataset ↗</span><span class="zh">数据集 ↗</span></a>
+      </div>
+      </div>
+    </article>
+    <article class="pc rise" style="--d:2">
+      <div class="media"><img data-src="images/projects/conegaussian.gif" alt="ConeGaussian: zoom-out without aliasing compared with 3DGEER"></div>
+      <div class="txt">
+      <div class="ttl"><h3>ConeGaussian</h3><span class="venue sub"><span class="en">in submission</span><span class="zh">投稿中</span></span></div>
+      <p class="q"><span class="en">A pixel sees a bundle of rays, not a single ray.</span><span class="zh">一个像素看到的是一束光线，而不是一条。</span></p>
+      <p class="d"><span class="en">Anti-aliasing for Gaussian ray tracing on any calibrated central camera. The pixel footprint is built from the camera's own neighbouring rays and the ray–Gaussian response is filtered in closed form, so one filter serves pinhole and strongly distorted fisheye cameras.</span><span class="zh">面向任意标定中心相机的 Gaussian 光线追踪抗锯齿。用相机自身的相邻光线构造像素 footprint，并以闭式形式滤波光线–Gaussian 响应，同一个滤波器同时适用于针孔和强畸变鱼眼相机。</span></p>
+      <div class="facts"><span class="en">anti-aliased zoom-out</span><span class="zh">缩小抗锯齿</span><span class="en">artifact-free zoom-in</span><span class="zh">放大无伪影</span><span class="en">pinhole + fisheye</span><span class="zh">针孔 + 鱼眼</span><span class="en">3DGEER and 3DGUT backbones</span><span class="zh">3DGEER 与 3DGUT 两种主干</span></div>
+      <div class="links">
+        <a class="pri" href="https://insait-institute.github.io/ConeGaussian/" target="_blank" rel="noopener"><span class="en">Project page ↗</span><span class="zh">项目主页 ↗</span></a>
+        <a href="https://insait-institute.github.io/ConeGaussian/talk.html" target="_blank" rel="noopener"><span class="en">Slides ↗</span><span class="zh">幻灯片 ↗</span></a>
+        <a href="https://arxiv.org/abs/2609.13397" target="_blank" rel="noopener">arXiv ↗</a>
+      </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 3 STATESPACEDIFFUSER ============ -->
+<section class="slide" id="ssd" data-tz="StateSpaceDiffuser：世界模型的长期记忆" data-te="StateSpaceDiffuser: long memory for world models" data-sec="wm">
+  <header class="hd"><div class="tt">
+    <h2><span class="en">StateSpaceDiffuser: long-term memory for diffusion world models</span><span class="zh">StateSpaceDiffuser：给扩散世界模型加上长期记忆</span></h2>
+    <p class="authors"><span class="venue acc">NeurIPS 2025</span>&nbsp;&nbsp;Nedko Savov, Naser Kazemi, <b>Deheng Zhang</b>, Danda Pani Paudel, Xi Wang, Luc Van Gool</p>
+  </div></header>
+  <div class="ssd">
+    <div class="col">
+      <p class="t"><span class="en">Diffusion world models predict the next frame from only the last few frames. Once a place leaves that window, it is forgotten, and returning to it produces a different scene. StateSpaceDiffuser adds a <b class="hg">Mamba state-space branch</b> that summarises the whole interaction history and conditions the diffusion model on it.</span><span class="zh">扩散世界模型只根据最近几帧预测下一帧。一个地方一旦离开这个窗口就被遗忘，回到原处时会生成一个不同的场景。StateSpaceDiffuser 加入一个 <b class="hg">Mamba 状态空间分支</b>，概括全部交互历史，并用它来条件化扩散模型。</span></p>
+      <svg id="ssd-svg" viewBox="0 0 820 300" role="img" aria-label="Context available to each model while an agent walks forward and back"></svg>
+      <div class="ssd-ctrl">
+        <button class="btn" id="ssd-play" type="button"><span class="en">▶ Replay walk</span><span class="zh">▶ 重新播放</span></button>
+        <label class="range" for="ssd-t"><span class="en">frame</span><span class="zh">帧</span><input id="ssd-t" type="range" min="2" max="20" step="1" value="20"><span id="ssd-tv" class="num">20</span></label>
+      </div>
+      <p class="ssd-status" id="ssd-status" aria-live="polite"></p>
+    </div>
+    <div class="col">
+      <img class="teaser" data-src="images/projects/statespacediffuser.png" alt="Recall example: diffusion-only rollout loses the scene, StateSpaceDiffuser recovers it">
+      <div class="res">
+        <div class="big num">39.68 <small>vs 26.13</small></div>
+        <p><span class="en">average PSNR on MiniGrid recall with a 50-frame context, against the diffusion-only DIAMOND baseline (+51.9%). Human raters also prefer our CS:GO rollouts for long-context consistency.</span><span class="zh">MiniGrid 回忆任务（50 帧上下文）的平均 PSNR，对比纯扩散基线 DIAMOND（+51.9%）。在 CS:GO 上，用户研究也更偏好我们的长程一致性。</span></p>
+      </div>
+      <p class="lesson"><span class="en"><b>What I took from it:</b> the state is compressed into 256 dimensions and loses detail over long rollouts. A world model needs a persistent state, and I think the most useful one is explicit 3D.</span><span class="zh"><b>我的收获：</b>这个状态被压缩到 256 维，长时间 rollout 会丢细节。世界模型需要一个持久的状态，而我认为最有用的状态是显式的 3D。</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 VIEW ============ -->
+<section class="slide" id="view" data-steps="3" data-tz="我对世界模型的理解" data-te="How I see world models" data-sec="vision">
+  <header class="hd"><div class="tt">
+    <h2><span class="en">World models: learn the world from video, make it explicit in 3D</span><span class="zh">世界模型：从视频中学习世界，再用 3D 把它显式化</span></h2>
+  </div></header>
+  <svg id="view-svg" viewBox="0 0 1440 330" role="img" aria-label="Pipeline from video data to video models, dense 3D and spatial agents">
+    <defs>
+      <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#717d8e"/></marker>
+      <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f0a35e"/></marker>
+    </defs>
+    <!-- nodes -->
+    <g>
+      <rect x="4" y="70" width="301" height="140" rx="14" fill="#131a23" stroke="#f0a35e" stroke-width="1.5"/>
+      <text x="24" y="112" fill="#ffd2a1" font-size="22" font-weight="600"><tspan class="en">Video data</tspan><tspan class="zh">视频数据</tspan></text>
+      <text x="24" y="148" fill="#a6b0be" font-size="18"><tspan class="en">the largest record of how</tspan><tspan class="zh">规模最大的世界记录：</tspan></text>
+      <text x="24" y="174" fill="#a6b0be" font-size="18"><tspan class="en">the world looks and moves</tspan><tspan class="zh">外观、运动、交互</tspan></text>
+    </g>
+    <g>
+      <rect x="381" y="70" width="301" height="140" rx="14" fill="#131a23" stroke="#f0a35e" stroke-width="1.5"/>
+      <text x="401" y="112" fill="#ffd2a1" font-size="22" font-weight="600"><tspan class="en">Video diffusion model</tspan><tspan class="zh">视频扩散模型</tspan></text>
+      <text x="401" y="148" fill="#a6b0be" font-size="18"><tspan class="en">learns geometry, occlusion</tspan><tspan class="zh">隐式学到几何、遮挡</tspan></text>
+      <text x="401" y="174" fill="#a6b0be" font-size="18"><tspan class="en">and dynamics, implicitly</tspan><tspan class="zh">和动态规律</tspan></text>
+    </g>
+    <g>
+      <rect x="758" y="70" width="301" height="140" rx="14" fill="#131a23" stroke="#7db8ff" stroke-width="1.5"/>
+      <text x="778" y="112" fill="#c2deff" font-size="22" font-weight="600"><tspan class="en">Dense, structured 3D</tspan><tspan class="zh">稠密、结构化的 3D</tspan></text>
+      <text x="778" y="148" fill="#a6b0be" font-size="18"><tspan class="en">explicit, persistent, metric:</tspan><tspan class="zh">显式、持久、有尺度：</tspan></text>
+      <text x="778" y="174" fill="#a6b0be" font-size="18"><tspan class="en">objects, parts, joints</tspan><tspan class="zh">物体、部件、关节</tspan></text>
+    </g>
+    <g>
+      <rect x="1135" y="70" width="301" height="140" rx="14" fill="#131a23" stroke="#93d38a" stroke-width="1.5"/>
+      <text x="1155" y="112" fill="#93d38a" font-size="22" font-weight="600"><tspan class="en">Spatial agents</tspan><tspan class="zh">空间智能体</tspan></text>
+      <text x="1155" y="148" fill="#a6b0be" font-size="18"><tspan class="en">VLMs that reason in space,</tspan><tspan class="zh">做空间推理的 VLM，</tspan></text>
+      <text x="1155" y="174" fill="#a6b0be" font-size="18"><tspan class="en">VLAs and robots that act</tspan><tspan class="zh">执行动作的 VLA 与机器人</tspan></text>
+    </g>
+    <!-- arrows -->
+    <line x1="309" y1="140" x2="377" y2="140" stroke="#717d8e" stroke-width="2" marker-end="url(#ar)"/>
+    <line x1="686" y1="140" x2="754" y2="140" stroke="#717d8e" stroke-width="2" marker-end="url(#ar)"/>
+    <line x1="1063" y1="140" x2="1131" y2="140" stroke="#717d8e" stroke-width="2" marker-end="url(#ar)"/>
+    <text x="343" y="128" fill="#717d8e" font-size="14" text-anchor="middle" font-family="JetBrains Mono, monospace"><tspan class="en">scale</tspan><tspan class="zh">规模</tspan></text>
+    <!-- step 1: extract -->
+    <g data-s="1">
+      <circle cx="720" cy="252" r="15" fill="#f0a35e"/><text x="720" y="258" fill="#0d1218" font-size="17" font-weight="700" text-anchor="middle">1</text>
+      <text x="744" y="258" fill="#e8ecf1" font-size="19" font-weight="600"><tspan class="en">Extract: video → mesh</tspan><tspan class="zh">提取：video → mesh</tspan></text>
+    </g>
+    <!-- step 2: boundary -->
+    <g data-s="2">
+      <path d="M381 286 v12 h678 v-12" fill="none" stroke="#ef7f6c" stroke-width="2"/>
+      <circle cx="560" cy="316" r="15" fill="#ef7f6c"/><text x="560" y="322" fill="#0d1218" font-size="17" font-weight="700" text-anchor="middle">2</text>
+      <text x="584" y="322" fill="#e8ecf1" font-size="19" font-weight="600"><tspan class="en">Diagnose: where does it break?</tspan><tspan class="zh">诊断：到底卡在哪一步？</tspan></text>
+    </g>
+    <!-- step 3: use + loop -->
+    <g data-s="3">
+      <circle cx="1097" cy="252" r="15" fill="#93d38a"/><text x="1097" y="258" fill="#0d1218" font-size="17" font-weight="700" text-anchor="middle">3</text>
+      <text x="1121" y="258" fill="#e8ecf1" font-size="19" font-weight="600"><tspan class="en">Use: 3D for spatial skills</tspan><tspan class="zh">使用：用 3D 提升空间能力</tspan></text>
+      <path d="M910 66 C 910 18, 532 18, 532 62" fill="none" stroke="#f0a35e" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arw)"/>
+      <text x="721" y="14" fill="#ffd2a1" font-size="16" text-anchor="middle"><tspan class="en">3D consistency trains and tests video models</tspan><tspan class="zh">3D 一致性反过来训练、评测视频模型</tspan></text>
+    </g>
+  </svg>
+  <div class="two">
+    <div class="card rise" style="--d:2">
+      <h3 class="hv"><span class="en">Why start from video</span><span class="zh">为什么从视频出发</span></h3>
+      <ul class="pts v">
+        <li><span class="en">Video is by far the most abundant data about the physical world, and it needs no 3D labels.</span><span class="zh">视频是关于物理世界最丰富的数据，而且不需要 3D 标注。</span></li>
+        <li><span class="en">To generate consistent video, a model has to capture parallax, occlusion, object permanence and plausible motion, at least partly.</span><span class="zh">要生成一致的视频，模型必须（至少部分地）掌握视差、遮挡、物体恒存和合理的运动。</span></li>
+      </ul>
+    </div>
+    <div class="card rise" style="--d:3">
+      <h3 class="hg"><span class="en">Why make it explicit in 3D</span><span class="zh">为什么要显式成 3D</span></h3>
+      <ul class="pts g">
+        <li><span class="en">Pixels carry no metric scale, no object identity and no guarantee that the world persists (the StateSpaceDiffuser lesson).</span><span class="zh">像素里没有尺度、没有物体身份，也不能保证世界是持久的（StateSpaceDiffuser 的教训）。</span></li>
+        <li><span class="en">An agent needs something it can query and act on: distances, free space, contacts, what opens and how.</span><span class="zh">智能体需要可查询、可操作的东西：距离、可通行空间、接触，以及什么能打开、怎么打开。</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 DENSE ============ -->
+<section class="slide" id="dense" data-tz="为什么要稠密的 mesh" data-te="Why dense meshes" data-sec="vision">
+  <header class="hd"><div class="tt">
+    <h2><span class="en">Points and Gaussians are samples of a scene, not its surfaces</span><span class="zh">点云和高斯只是场景的采样，而不是它的表面</span></h2>
+  </div>
+  <div class="pmap" aria-hidden="true"><span data-k="1">video</span><i></i><span data-k="2" class="on">video model</span><i></i><span data-k="3" class="on">dense 3D</span><i></i><span data-k="4">agents</span></div></header>
+  <div class="dense">
+    <canvas id="cv-dense" width="1800" height="1040" aria-label="Side view of a cabinet with a drawer and a flap door, a mug and a box, drawn in the selected representation"></canvas>
+    <div class="col">
+      <p class="t" style="color:var(--muted)"><span class="en">Pick a representation to redraw the scene.</span><span class="zh">点击表头切换表征，左边的场景随之重画。</span></p>
+      <table class="cap-m ix" id="dense-tab"></table>
+      <p class="legend-s"><span class="sym-y">●</span> <span class="en">native</span><span class="zh">原生支持</span>&nbsp;&nbsp; <span class="sym-p">◐</span> <span class="en">with extra fitting or labels</span><span class="zh">需额外拟合或标注</span>&nbsp;&nbsp; <span class="sym-n">○</span> <span class="en">not available</span><span class="zh">不支持</span></p>
+      <p class="note" id="dense-note" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 ROUTES ============ -->
+<section class="slide" id="routes" data-tz="从视频到 mesh 的三条路线" data-te="Three routes from video to mesh" data-sec="vision">
+  <header class="hd"><div class="tt">
+    <h2><span class="en">From video to mesh: three routes, one open question</span><span class="zh">从视频到 mesh：三条路线，一个开放问题</span></h2>
+  </div>
+  <div class="pmap" aria-hidden="true"><span data-k="1">video</span><i></i><span data-k="2" class="on">video model</span><i></i><span data-k="3" class="on">dense 3D</span><i></i><span data-k="4">agents</span></div></header>
+  <div class="routes">
+    <article class="card rt rise" style="--d:1">
+      <span class="tag">A</span>
+      <h3><span class="en">Reconstruct, then extract a surface</span><span class="zh">先重建，再提取表面</span></h3>
+      <div class="flowl"><span>video</span><i>→</i><span>pointmaps / depth</span><i>→</i><span>fusion</span><i>→</i><span>mesh</span></div>
+      <p class="eg"><span class="en">e.g. DUSt3R, VGGT, then TSDF, Poisson or 2DGS</span><span class="zh">例：DUSt3R、VGGT，再接 TSDF、Poisson 或 2DGS</span></p>
+      <ul class="pts g"><li><span class="en">Anchored to the pixels, metric up to scale</span><span class="zh">锚定在像素上，尺度可恢复</span></li></ul>
+      <ul class="pts w"><li><span class="en">Only what was seen; noisy thin structures; one fused piece with no objects</span><span class="zh">只覆盖看到的部分；细结构噪声大；融成一整块，没有物体</span></li></ul>
+    </article>
+    <article class="card rt rise" style="--d:2">
+      <span class="tag">B</span>
+      <h3><span class="en">Generate natively in 3D</span><span class="zh">直接在 3D 中生成</span></h3>
+      <div class="flowl"><span>image(s)</span><i>→</i><span>3D latent</span><i>→</i><span>mesh</span></div>
+      <p class="eg"><span class="en">e.g. TRELLIS, Hunyuan3D</span><span class="zh">例：TRELLIS、Hunyuan3D</span></p>
+      <ul class="pts g"><li><span class="en">Complete, clean, watertight shapes, hidden sides included</span><span class="zh">形状完整、干净、封闭，包括看不到的一面</span></li></ul>
+      <ul class="pts w"><li><span class="en">Mostly single objects from a few images; scenes, metric alignment and video input remain open</span><span class="zh">多为少量图像下的单个物体；场景级、尺度对齐和视频输入仍未解决</span></li></ul>
+    </article>
+    <article class="card rt rise" style="--d:3">
+      <span class="tag">C</span>
+      <h3><span class="en">Use the video model as a geometry prior</span><span class="zh">把视频模型当作几何先验</span></h3>
+      <div class="flowl"><span>video diffusion</span><i>→</i><span>depth / point videos</span><i>→</i><span>surface</span></div>
+      <p class="eg"><span class="en">e.g. DepthCrafter, GeometryCrafter, Aether</span><span class="zh">例：DepthCrafter、GeometryCrafter、Aether</span></p>
+      <ul class="pts g"><li><span class="en">Temporally consistent geometry, with a prior learned from very large video data</span><span class="zh">时间一致的几何，先验来自海量视频</span></li></ul>
+      <ul class="pts w"><li><span class="en">Still 2.5D per frame; a surface and its structure must be recovered afterwards</span><span class="zh">仍然是逐帧 2.5D；表面和结构需要事后恢复</span></li></ul>
+    </article>
+  </div>
+  <div class="bet rise" style="--d:4">
+    <div class="k"><span class="en">My bet</span><span class="zh">我的设想</span></div>
+    <div>
+      <p><span class="en">Let observed pixels anchor what was seen, let the video prior generate what was not, and output an <b>object-structured surface directly</b> instead of fusing per-frame depth.</span><span class="zh">让观测到的像素锚定看到的部分，让视频先验生成没看到的部分，并<b>直接输出按物体组织的表面</b>，而不是融合逐帧深度。</span></p>
+      <p><span class="en">Test: does a video diffusion backbone trained to emit surface latents beat reconstruct-then-mesh on unseen regions and thin structures?</span><span class="zh">检验：一个训练来输出表面 latent 的视频扩散主干，能否在未观测区域和细结构上胜过“先重建再提 mesh”？</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 BOUNDARY ============ -->
+<section class="slide" id="boundary" data-tz="现在的边界在哪里" data-te="Where is the boundary today" data-sec="vision">
+  <header class="hd"><div class="tt">
+    <h2><span class="en">Where is the boundary today?</span><span class="zh">现在模型的边界到底在哪里？</span></h2>
+    <p class="lede"><span class="en">Two hypotheses that call for different research. Click a stage to see what breaks there and how to test it.</span><span class="zh">两个假设对应完全不同的研究方向。点击每个环节，看它会出什么问题、怎么检验。</span></p>
+  </div>
+  <div class="pmap" aria-hidden="true"><span data-k="1">video</span><i></i><span data-k="2" class="on">video model</span><i></i><span data-k="3" class="on">dense 3D</span><i></i><span data-k="4">agents</span></div></header>
+  <div class="hyp" aria-hidden="false">
+    <div class="br" style="left:0;width:calc(50% - 13px);--c:var(--video)"><p><span class="hl hv">H1</span><span class="en">Lifting is the bottleneck: video → 3D is not yet consistent</span><span class="zh">瓶颈在“抬升”：video → 3D 这一步还不一致</span></p></div>
+    <div class="br" style="left:calc(50% + 13px);width:calc(33.333% - 17.33px);--c:var(--geo)"><p><span class="hl hg">H2</span><span class="en">Granularity: geometry is fine, structure is missing</span><span class="zh">粒度不够：几何没问题，但缺结构</span></p></div>
+  </div>
+  <div class="chain ix" id="bd-chain" role="group" aria-label="Pipeline stages"></div>
+  <div class="bdet">
+    <div class="card"><h3><span class="en">What breaks here</span><span class="zh">这里会坏在哪</span></h3><p id="bd-break"></p></div>
+    <div class="card"><h3><span class="en">How to test it</span><span class="zh">怎么检验</span></h3><p id="bd-test"></p></div>
+  </div>
+  <div class="oracle">
+    <p><span class="en"><b>Oracle ladder.</b> Replace one stage at a time with ground truth and measure the downstream gain. The stage whose oracle helps most is the current boundary.</span><span class="zh"><b>Oracle 阶梯：</b>每次只把一个环节替换成真值，测下游任务的提升。哪个环节的 oracle 带来的提升最大，哪里就是当前的边界。</span></p>
+    <div class="ladder">
+      <div><span class="en">Pipeline as is</span><span class="zh">现有流程</span><span class="dq">baseline</span></div><i>→</i>
+      <div><span class="en">+ true poses and depth</span><span class="zh">+ 真值位姿与深度</span><span class="dq">Δ task = ?</span></div><i>→</i>
+      <div><span class="en">+ true mesh</span><span class="zh">+ 真值 mesh</span><span class="dq">Δ task = ?</span></div><i>→</i>
+      <div><span class="en">+ true instances</span><span class="zh">+ 真值实例</span><span class="dq">Δ task = ?</span></div><i>→</i>
+      <div><span class="en">+ true parts and joints</span><span class="zh">+ 真值部件与关节</span><span class="dq">Δ task = ?</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 USE ============ -->
+<section class="slide" id="use" data-tz="用 3D 帮助空间理解" data-te="3D for spatial understanding" data-sec="vision">
+  <header class="hd"><div class="tt">
+    <h2><span class="en">If the 3D is good enough: using it to teach spatial understanding</span><span class="zh">如果 3D 足够好：用它来教会模型空间理解</span></h2>
+  </div>
+  <div class="pmap" aria-hidden="true"><span data-k="1">video</span><i></i><span data-k="2">video model</span><i></i><span data-k="3" class="on">dense 3D</span><i></i><span data-k="4" class="on">agents</span></div></header>
+  <div class="uses">
+    <article class="card use rise" style="--d:1">
+      <svg viewBox="0 0 300 120" aria-hidden="true">
+        <rect x="118" y="56" width="64" height="44" fill="none" stroke="#7db8ff" stroke-width="2"/>
+        <path d="M118 56 l14 -12 h64 l-14 12 M196 44 v44 l-14 12" fill="none" stroke="#7db8ff" stroke-width="2"/>
+        <g fill="none" stroke="#93d38a" stroke-width="2"><path d="M40 30 l34 12 v-24 z"/><path d="M262 34 l-34 12 v-24 z"/><path d="M60 104 l30 -10 v24 z"/><path d="M246 100 l-30 -6 l4 22 z"/></g>
+        <path d="M74 30 L118 64 M228 34 L196 52 M90 104 L118 92 M216 100 L182 96" stroke="#717d8e" stroke-dasharray="4 4"/>
+      </svg>
+      <span class="who2">VLMs</span>
+      <h3><span class="en">3D as a data engine</span><span class="zh">3D 作为数据引擎</span></h3>
+      <p><span class="en">Render any viewpoint or trajectory of a reconstructed scene and compute answers from geometry: distance, size, direction, counting, routes. Labels are <b>exact</b>, difficulty is <b>controllable</b>, and an answer can be checked to stay the same across trajectories of the same scene.</span><span class="zh">从重建的场景中渲染任意视角和轨迹，用几何直接计算答案：距离、尺寸、方向、计数、路径。标签<b>精确</b>，难度<b>可控</b>，还能检验同一场景不同轨迹下答案是否一致。</span></p>
+    </article>
+    <article class="card use rise" style="--d:2">
+      <svg viewBox="0 0 300 120" aria-hidden="true">
+        <rect x="150" y="40" width="110" height="70" fill="none" stroke="#7db8ff" stroke-width="2"/>
+        <rect x="160" y="50" width="90" height="22" fill="none" stroke="#7db8ff" stroke-width="2"/>
+        <rect x="186" y="50" width="90" height="22" fill="rgba(125,184,255,.12)" stroke="#c2deff" stroke-width="2" stroke-dasharray="5 4"/>
+        <path d="M20 110 h40 M40 110 v-40 l40 -30 l40 20" fill="none" stroke="#93d38a" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M120 60 l14 -8 M120 60 l14 8" stroke="#93d38a" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="40" cy="70" r="5" fill="#93d38a"/><circle cx="80" cy="40" r="5" fill="#93d38a"/>
+      </svg>
+      <span class="who2">VLAs · robots</span>
+      <h3><span class="en">3D as a simulator</span><span class="zh">3D 作为仿真器</span></h3>
+      <p><span class="en">Object-level scenes with <b>collision and articulation</b> turn captured places into environments where policies can be trained and evaluated, the real-to-sim direction we explore in <b>PhiRIE</b>. Drawers and doors only matter if they can open.</span><span class="zh">带<b>碰撞和铰接</b>的物体级场景，可以把真实采集的地方变成训练和评测策略的环境，这正是我们在 <b>PhiRIE</b> 中探索的 real-to-sim 方向。抽屉和门只有能打开才有意义。</span></p>
+    </article>
+    <article class="card use rise" style="--d:3">
+      <svg viewBox="0 0 300 120" aria-hidden="true">
+        <g fill="none" stroke="#7db8ff" stroke-width="1.6" opacity=".9">
+          <path d="M110 30 l40 -16 l40 16 l-40 16 z M110 30 v50 l40 16 v-50 M190 30 v50 l-40 16"/>
+          <path d="M130 22 l40 16 M170 22 l-40 16 M110 55 l40 16 l40 -16 M150 46 v50" opacity=".5"/>
+        </g>
+        <g fill="#f0a35e"><rect x="20" y="40" width="26" height="18" rx="3" opacity=".4"/><rect x="50" y="40" width="26" height="18" rx="3" opacity=".6"/><rect x="80" y="40" width="26" height="18" rx="3" opacity=".9"/></g>
+        <path d="M200 60 h60" stroke="#93d38a" stroke-width="2" marker-end="url(#ar)"/>
+        <text x="232" y="50" fill="#93d38a" font-size="14" text-anchor="middle" font-family="JetBrains Mono, monospace">query</text>
+      </svg>
+      <span class="who2"><span class="en">world models · agents</span><span class="zh">世界模型 · 智能体</span></span>
+      <h3><span class="en">3D as persistent memory</span><span class="zh">3D 作为持久记忆</span></h3>
+      <p><span class="en">Give a model an explicit scene state that it can <b>query</b> instead of re-perceiving every frame. This is the persistent state that StateSpaceDiffuser approximated with a compressed vector, made metric and inspectable.</span><span class="zh">给模型一个可以<b>查询</b>的显式场景状态，而不是每一帧重新感知。这正是 StateSpaceDiffuser 用一个压缩向量近似的持久状态，只是变成了有尺度、可检查的形式。</span></p>
+    </article>
+  </div>
+  <p class="openq rise" style="--d:4"><span class="en"><b>The question I want to measure, not assume:</b> which 3D fidelity does each consumer need? Metric geometry for measurement questions, object structure for counting and relations, articulation for manipulation.</span><span class="zh"><b>我想测量而不是假设的问题：</b>不同的下游需要什么程度的 3D 保真？测量类问题需要尺度几何，计数与关系需要物体结构，操作需要铰接信息。</span></p>
+</section>
+
+<!-- ============ 9 AGENDA ============ -->
+<section class="slide" id="agenda" data-tz="我的工作与这条路线" data-te="How my work connects" data-sec="vision">
+  <header class="hd"><div class="tt">
+    <h2><span class="en">How my work connects to this agenda</span><span class="zh">我的工作如何连到这条路线上</span></h2>
+  </div></header>
+  <div class="ag">
+    <div style="--c:var(--video)">
+      <div class="colh"><h3><span class="en">Video &amp; world models</span><span class="zh">视频与世界模型</span></h3><p><span class="en">how the world evolves over time</span><span class="zh">世界如何随时间演化</span></p></div>
+      <div class="items">
+        <div class="pap star" style="--c:var(--video)">StateSpaceDiffuser<span>NeurIPS 2025</span></div>
+        <div class="pap">FrameWorkers<span class="en">in submission</span><span class="zh">投稿中</span></div>
+      </div>
+    </div>
+    <div style="--c:var(--geo)">
+      <div class="colh"><h3><span class="en">3D representation &amp; rendering</span><span class="zh">3D 表征与渲染</span></h3><p><span class="en">where surfaces are and how they look</span><span class="zh">表面在哪里、长什么样</span></p></div>
+      <div class="items">
+        <div class="pap star" style="--c:var(--geo)">ConeGaussian<span class="en">in submission</span><span class="zh">投稿中</span></div>
+        <div class="pap">RISE-SDF<span>3DV 2025</span></div>
+        <div class="pap">CoARF<span>3DV 2024</span></div>
+        <div class="pap">SeasonScapes<span>CVPR-W 2026</span></div>
+        <div class="pap">LangStreet<span class="en">in submission</span><span class="zh">投稿中</span></div>
+      </div>
+    </div>
+    <div style="--c:var(--geo)">
+      <div class="colh"><h3><span class="en">Structured, interactive 3D</span><span class="zh">结构化、可交互的 3D</span></h3><p><span class="en">what can be separated and moved</span><span class="zh">什么能被分开、被移动</span></p></div>
+      <div class="items">
+        <div class="pap star" style="--c:var(--geo)">PhiRIE<span class="en">in submission</span><span class="zh">投稿中</span></div>
+      </div>
+    </div>
+    <div style="--c:var(--agent)">
+      <div class="colh"><h3><span class="en">Spatial understanding</span><span class="zh">空间理解与具身</span></h3><p><span class="en">what agents ask about and do</span><span class="zh">智能体问什么、做什么</span></p></div>
+      <div class="items">
+        <div class="pap star" style="--c:var(--agent)">EgoNight<span>ICLR 2026</span></div>
+        <div class="pap">Kairos<span class="en">in submission</span><span class="zh">投稿中</span></div>
+        <div class="pap">EgoSpot<span>ICRA-W 2026</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="next">
+    <div class="nx" style="--c:var(--video)"><span class="lab"><span class="en">NEXT</span><span class="zh">下一步</span></span><span class="en">Video priors that output surfaces, not frames</span><span class="zh">输出表面而不只是帧的视频先验</span></div>
+    <div class="nx" style="--c:var(--geo)"><span class="lab"><span class="en">NEXT</span><span class="zh">下一步</span></span><span class="en">Video → structured mesh, and an oracle ladder that locates the boundary</span><span class="zh">video → 结构化 mesh，以及定位边界的 oracle 阶梯</span></div>
+    <div class="nx" style="--c:var(--geo)"><span class="lab"><span class="en">NEXT</span><span class="zh">下一步</span></span><span class="en">Objects, parts and joints recovered from video</span><span class="zh">从视频中恢复物体、部件和关节</span></div>
+    <div class="nx" style="--c:var(--agent)"><span class="lab"><span class="en">NEXT</span><span class="zh">下一步</span></span><span class="en">3D-grounded training and evaluation for VLMs and VLAs</span><span class="zh">基于 3D 的 VLM / VLA 训练与评测</span></div>
+  </div>
+  <div class="contact">
+    <span class="thx"><span class="en">Thank you</span><span class="zh">谢谢</span></span>
+    <div class="links" style="margin-top:0">
+      <a href="https://dehezhang2.github.io/" target="_blank" rel="noopener">dehezhang2.github.io ↗</a>
+      <a href="https://scholar.google.com/citations?user=7pEFc9wAAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a>
+      <a href="https://github.com/dehezhang2" target="_blank" rel="noopener">GitHub ↗</a>
+      <span class="mail">deheng.zhang@insait.ai</span>
+    </div>
+  </div>
+</section>
+
+<div id="chrome">
+  <div id="prog"></div>
+  <span id="secname"></span><span class="sp"></span>
+  <button class="btn" id="b-toc" type="button" title="O"><span class="en">Contents</span><span class="zh">目录</span></button>
+  <button class="btn" id="b-lang" type="button" title="L">EN / 中</button>
+  <button class="btn" id="b-fs" type="button" title="F"><span class="en">Full screen</span><span class="zh">全屏</span></button>
+  <button class="btn" id="b-prev" type="button" aria-label="Previous">←</button>
+  <span id="count" class="num" aria-live="polite">1 / 9</span>
+  <button class="btn" id="b-next" type="button" aria-label="Next">→</button>
+</div>
+<div id="toc" hidden><h3><span class="en">Contents</span><span class="zh">目录</span></h3><ol id="toc-list"></ol></div>
+</div>
+</div>
+
+<script>
+(()=>{
+'use strict';
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const root=document.documentElement;
+let LANG='en';
+try{ LANG=localStorage.getItem('dz-intro-lang')||'en'; }catch(e){}
+root.dataset.lang=LANG;
+if(/[?&]embed\b/.test(location.search))root.classList.add('embed');
+const L=(zh,en)=>LANG==='zh'?zh:en;
+const css=n=>getComputedStyle(root).getPropertyValue(n).trim();
+const C={};
+['--bg','--panel','--panel-2','--line','--line-2','--fg','--muted','--dim','--video','--video-2','--geo','--geo-2','--agent','--warn'].forEach(k=>C[k.slice(2)]=css(k));
+const NS='http://www.w3.org/2000/svg';
+function E(tag,at,parent,txt){const e=document.createElementNS(NS,tag);if(at)for(const k in at)e.setAttribute(k,at[k]);if(txt!=null)e.textContent=txt;if(parent)parent.appendChild(e);return e;}
+function rng(seed){let s=seed>>>0;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296;};}
+const gauss=r=>{let u=0,v=0;while(!u)u=r();while(!v)v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);};
+
+/* ---------------- deck engine ---------------- */
+const stage=$('#stage'),vp=$('#viewport');
+const slides=$$('.slide',stage);
+let cur=0,step=0;const hooks={};
+function fit(){const s=Math.min(vp.clientWidth/1600,vp.clientHeight/900);stage.style.transform=`translate(-50%,-50%) scale(${s})`;}
+addEventListener('resize',fit);fit();
+function applySteps(el){$$('[data-s]',el).forEach(n=>n.classList.toggle('on',+n.dataset.s<=step));}
+const SEC={bg:['背景','Background'],proj:['项目','Projects'],wm:['世界模型','World models'],vision:['研究方向','Research direction']};
+function chrome(){
+  $('#count').textContent=`${cur+1} / ${slides.length}`;
+  const max=+slides[cur].dataset.steps||0;
+  $('#prog').style.width=((cur+(max?step/(max+1):0))/(slides.length-1)*100)+'%';
+  const s=slides[cur].dataset.sec;$('#secname').textContent=SEC[s]?('Deheng Zhang · '+L(...SEC[s])):'';
+}
+function lazy(el){$$('img[data-src]',el).forEach(i=>{if(!i.getAttribute('src'))i.src=i.dataset.src;});}
+function show(i,st){
+  i=Math.max(0,Math.min(slides.length-1,i));
+  const old=slides[cur];
+  if(i!==cur){old.classList.remove('active');hooks[old.id]?.leave?.(old);}
+  slides.forEach((s,k)=>s.classList.toggle('past',k<i));
+  const entering=!slides[i].classList.contains('active');
+  cur=i;const el=slides[cur];el.classList.add('active');
+  step=st||0;applySteps(el);lazy(el);
+  if(slides[cur+1])lazy(slides[cur+1]);
+  if(entering)hooks[el.id]?.enter?.(el);
+  chrome();
+}
+function next(){const el=slides[cur],max=+el.dataset.steps||0;if(step<max){step++;applySteps(el);chrome();}else if(cur<slides.length-1)show(cur+1,0);}
+function prev(){const el=slides[cur];if(step>0){step--;applySteps(el);chrome();}else if(cur>0){const p=slides[cur-1];show(cur-1,+p.dataset.steps||0);}}
+document.addEventListener('keydown',e=>{
+  const t=e.target,tag=t.tagName;
+  if(e.metaKey||e.ctrlKey||e.altKey)return;
+  const inForm=tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA';
+  const k=e.key;
+  if(!$('#toc').hidden&&(k==='Escape'||k==='o'||k==='O')){toggleToc(false);e.preventDefault();return;}
+  if(inForm&&(k.startsWith('Arrow')||k==='Home'||k==='End'||k==='PageUp'||k==='PageDown'))return;
+  if((k===' '||k==='Enter')&&(tag==='BUTTON'||tag==='A'||inForm))return;
+  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(k)){next();e.preventDefault();}
+  else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(k)){prev();e.preventDefault();}
+  else if(k==='Home'){show(0);e.preventDefault();}
+  else if(k==='End'){show(slides.length-1);e.preventDefault();}
+  else if(k==='l'||k==='L'){toggleLang();}
+  else if(k==='f'||k==='F'){toggleFs();}
+  else if(k==='o'||k==='O'){toggleToc();}
+});
+stage.addEventListener('click',e=>{
+  if(e.target.closest('.ix,button,input,a,label,#chrome,#toc'))return;
+  if(window.getSelection&&String(getSelection()).length)return;
+  const r=stage.getBoundingClientRect();
+  if(e.clientX<r.left+r.width*0.18)prev();else next();
+});
+let sx=null,sy=null;
+stage.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'||e.target.closest('.ix,input'))return;sx=e.clientX;sy=e.clientY;});
+stage.addEventListener('pointerup',e=>{if(sx==null)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){dx<0?next():prev();}});
+$('#b-next').addEventListener('click',next);$('#b-prev').addEventListener('click',prev);
+function toggleLang(){LANG=LANG==='zh'?'en':'zh';root.dataset.lang=LANG;try{localStorage.setItem('dz-intro-lang',LANG);}catch(e){}buildToc();chrome();Object.values(hooks).forEach(h=>h.lang?.());}
+$('#b-lang').addEventListener('click',toggleLang);
+function toggleFs(){try{if(document.fullscreenElement)document.exitFullscreen();else{const p=vp.requestFullscreen&&vp.requestFullscreen();if(p&&p.catch)p.catch(()=>{});}}catch(e){}}
+$('#b-fs').addEventListener('click',toggleFs);
+document.addEventListener('fullscreenchange',()=>setTimeout(fit,50));
+function buildToc(){const ol=$('#toc-list');ol.innerHTML='';slides.forEach((s,i)=>{const li=document.createElement('li');const b=document.createElement('button');b.type='button';b.innerHTML=`<span class="n">${String(i+1).padStart(2,'0')}</span><span>${LANG==='zh'?s.dataset.tz:s.dataset.te}</span>`;b.addEventListener('click',()=>{toggleToc(false);show(i);});li.appendChild(b);ol.appendChild(li);});}
+function toggleToc(force){const t=$('#toc');const open=force===undefined?t.hidden:force;t.hidden=!open;if(open){const b=$$('#toc-list button')[cur];b&&b.focus();}}
+$('#b-toc').addEventListener('click',()=>toggleToc());
+buildToc();
+$$('input[type=range]').forEach(r=>r.addEventListener('pointerup',()=>setTimeout(()=>r.blur(),0)));
+
+/* ---------------- 1: samples becoming a surface ---------------- */
+hooks.about=(()=>{
+  const cv=$('#cv-mesh'),ctx=cv.getContext('2d');
+  const NU=24,NV=11,r=rng(7),P=[];
+  for(let j=0;j<NV;j++)for(let i=0;i<NU;i++){
+    const u=(i/(NU-1)-.5)*2+(i&&i<NU-1?(r()-.5)*.05:0), v=(j/(NV-1)-.5)*2+(j&&j<NV-1?(r()-.5)*.08:0);
+    const h=.22*Math.sin(2.1*u+1.2*v+.4)+.14*Math.cos(3.3*v-1.6*u)+.08*Math.sin(5*u*v);
+    P.push({u,v,h,d:r()});
+  }
+  let raf=0,t0=0,on=false;
+  function proj(p,a){const x=p.u*300,z=p.v*110,y=p.h*110;const ca=Math.cos(a),sa=Math.sin(a);const xr=x*ca-z*sa,zr=x*sa+z*ca;const f=900/(900+zr);return[1180+xr*f,742-y*f+zr*.28*f,f];}
+  function draw(t){
+    ctx.clearRect(0,0,1600,900);
+    const a=-.32+(RM?0:Math.sin(t*.00012)*.18);
+    const Q=P.map(p=>proj(p,a));
+    const meshT=RM?1:Math.min(1,Math.max(0,(t-900)/2200));
+    // edges sweep in from left to right once the points are in place
+    ctx.lineWidth=1;
+    for(let j=0;j<NV;j++)for(let i=0;i<NU;i++){
+      const k=j*NU+i;const p=P[k];
+      const reach=meshT*1.25-(p.u+1)/2*.25-.0;
+      if(reach<(p.u+1)/2)continue;
+      const al=.28;
+      ctx.strokeStyle=`rgba(125,184,255,${al})`;
+      ctx.beginPath();
+      if(i<NU-1){ctx.moveTo(Q[k][0],Q[k][1]);ctx.lineTo(Q[k+1][0],Q[k+1][1]);}
+      if(j<NV-1){ctx.moveTo(Q[k][0],Q[k][1]);ctx.lineTo(Q[k+NU][0],Q[k+NU][1]);}
+      if(i<NU-1&&j<NV-1){ctx.moveTo(Q[k][0],Q[k][1]);ctx.lineTo(Q[k+NU+1][0],Q[k+NU+1][1]);}
+      ctx.stroke();
+    }
+    for(let k=0;k<P.length;k++){
+      const app=RM?1:Math.min(1,Math.max(0,(t-P[k].d*700)/300));
+      if(!app)continue;
+      ctx.fillStyle=`rgba(255,210,161,${.75*app})`;
+      ctx.beginPath();ctx.arc(Q[k][0],Q[k][1],2.2*Q[k][2],0,Math.PI*2);ctx.fill();
+    }
+  }
+  function loop(now){draw(now-t0);if(on&&!RM)raf=requestAnimationFrame(loop);}
+  return{enter(){on=true;t0=performance.now();cancelAnimationFrame(raf);raf=requestAnimationFrame(loop);},leave(){on=false;cancelAnimationFrame(raf);}};
+})();
+
+/* ---------------- 3: what each model can still see ---------------- */
+hooks.ssd=(()=>{
+  const svg=$('#ssd-svg'),rg=$('#ssd-t'),tv=$('#ssd-tv'),st=$('#ssd-status');
+  const N=20,WIN=4,X0=184,DX=30,BW=25;
+  const posOf=k=>k<=10?k:21-k;
+  const hueOf=p=>`hsl(${200+(p-1)*16},${p===1?0:28}%,${p===1?30:34}%)`;
+  const x=k=>X0+(k-1)*DX;
+  let raf=0;
+  function frame(g,k,y,op,mark){
+    const p=posOf(k);
+    E('rect',{x:x(k),y,width:BW,height:BW,rx:4,fill:hueOf(p),opacity:op},g);
+    if(p===1)E('circle',{cx:x(k)+BW/2,cy:y+BW/2,r:6,fill:C.video,opacity:op},g);
+  }
+  function draw(t){
+    svg.innerHTML='';
+    rg.value=t;tv.textContent=t;
+    // forward / back labels
+    E('text',{x:x(1),y:16,fill:C.dim,'font-size':14,'font-family':'JetBrains Mono, monospace'},svg,L('前进 →','forward →'));
+    E('text',{x:x(20)+BW,y:16,fill:C.dim,'font-size':14,'font-family':'JetBrains Mono, monospace','text-anchor':'end'},svg,L('← 原路返回','← walk back'));
+    [1,5,10,15,20].forEach(k=>E('text',{x:x(k)+BW/2,y:38,fill:C.dim,'font-size':13,'text-anchor':'middle','font-family':'JetBrains Mono, monospace'},svg,k));
+    const need=t>10?21-t:null;
+    const rows=[{y:86,ttl:L('纯扩散','Diffusion only'),sub:L('最近 4 帧','last 4 frames'),ssd:false},{y:196,ttl:'StateSpaceDiffuser',sub:L('最近 4 帧 + 状态','last 4 frames + state'),ssd:true}];
+    rows.forEach(R=>{
+      const g=E('g',{},svg);
+      E('text',{x:0,y:R.y+18,fill:C.fg,'font-size':16,'font-weight':600},g,R.ttl);
+      E('text',{x:0,y:R.y+40,fill:C.muted,'font-size':14},g,R.sub);
+      for(let k=1;k<t;k++){
+        const inWin=k>=t-WIN;
+        frame(g,k,R.y,inWin?1:(R.ssd?.5:.13));
+      }
+      // context window bracket
+      const a=Math.max(1,t-WIN);
+      E('rect',{x:x(a)-4,y:R.y-4,width:x(t-1)-x(a)+BW+8,height:BW+8,rx:6,fill:'none',stroke:C.geo,'stroke-width':1.6},g);
+      if(R.ssd){
+        // every past frame feeds one compressed state
+        const sy=R.y+BW+26;
+        E('rect',{x:x(1),y:sy,width:Math.max(BW,x(t-1)-x(1)+BW),height:14,rx:7,fill:C.geo,opacity:.28},g);
+        for(let k=1;k<t;k+=1)E('line',{x1:x(k)+BW/2,y1:R.y+BW+2,x2:x(k)+BW/2,y2:sy,stroke:C.geo,'stroke-width':1,opacity:.35},g);
+        E('text',{x:x(1),y:sy+34,fill:C['geo-2'],'font-size':14,'font-family':'JetBrains Mono, monospace'},g,L('Mamba 状态（256 维）','Mamba state (256-d)'));
+        E('path',{d:`M${x(t-1)+BW} ${sy+7} C ${x(t)+BW/2} ${sy+7}, ${x(t)+BW/2} ${sy}, ${x(t)+BW/2} ${R.y+BW+3}`,fill:'none',stroke:C.geo,'stroke-width':1.6},g);
+      }
+      // the frame to generate
+      const ok=need==null||R.ssd||need>=t-WIN;
+      const px=x(t),py=R.y;
+      if(ok){
+        const p=posOf(t);
+        E('rect',{x:px,y:py,width:BW,height:BW,rx:4,fill:hueOf(p)},g);
+        if(p===1)E('circle',{cx:px+BW/2,cy:py+BW/2,r:6,fill:C.video},g);
+      }else{
+        E('rect',{x:px,y:py,width:BW,height:BW,rx:4,fill:C.panel},g);
+        E('text',{x:px+BW/2,y:py+19,fill:C.warn,'font-size':17,'font-weight':700,'text-anchor':'middle'},g,'?');
+      }
+      E('rect',{x:px-3,y:py-3,width:BW+6,height:BW+6,rx:6,fill:'none',stroke:ok?C['video-2']:C.warn,'stroke-width':2,'stroke-dasharray':'4 3'},g);
+      if(need!=null){
+        const ax=x(need)+BW/2,bx=px+BW/2,top=py-6,h=Math.min(34,10+(bx-ax)*.12);
+        E('path',{d:`M${bx} ${top} C ${bx} ${top-h}, ${ax} ${top-h}, ${ax} ${top}`,fill:'none',stroke:ok?C.video:C.warn,'stroke-width':1.6,'stroke-dasharray':ok?'':'5 4',opacity:.9},g);
+      }
+    });
+    if(need==null)st.innerHTML=L(`第 ${t} 帧：还在<b>前进</b>，看到的是新内容，两种模型都不需要记忆。`,`Frame ${t}: still <b>walking forward</b> into new views, so neither model needs memory yet.`);
+    else{
+      const inA=need>=t-WIN;
+      st.innerHTML=inA?L(`第 ${t} 帧回到第 ${need} 帧的位置，它还在 4 帧窗口内，两种模型都能还原。`,`Frame ${t} revisits the view of frame ${need}, which is still inside the 4-frame window, so both models can restore it.`)
+        :L(`第 ${t} 帧回到第 ${need} 帧的位置。<b>纯扩散</b>模型的窗口里已经没有这一帧，只能猜；<b>StateSpaceDiffuser</b> 从状态中把它找回来。`,`Frame ${t} revisits the view of frame ${need}. That frame has left the <b>diffusion-only</b> window, so it has to guess; <b>StateSpaceDiffuser</b> recalls it from the state.`);
+    }
+  }
+  function play(){
+    cancelAnimationFrame(raf);
+    if(RM){draw(N);return;}
+    const t0=performance.now();let last=-1;
+    const f=now=>{const t=Math.min(N,2+Math.floor((now-t0)/330));if(t!==last){draw(t);last=t;}if(t<N)raf=requestAnimationFrame(f);};
+    raf=requestAnimationFrame(f);
+  }
+  rg.addEventListener('input',()=>{cancelAnimationFrame(raf);draw(+rg.value);});
+  $('#ssd-play').addEventListener('click',play);
+  draw(N);
+  return{enter:play,leave(){cancelAnimationFrame(raf);},lang(){draw(+rg.value);}};
+})();
+
+/* ---------------- 5: the same scene in four representations ---------------- */
+hooks.dense=(()=>{
+  const cv=$('#cv-dense'),ctx=cv.getContext('2d');const S=2; // canvas drawn at 2x
+  const MODES=[
+    {k:'pts',en:'Point cloud',zh:'点云'},
+    {k:'gs',en:'3D Gaussians',zh:'3D 高斯'},
+    {k:'mesh',en:'Mesh',zh:'Mesh'},
+    {k:'str',en:'Structured mesh',zh:'结构化 mesh'}];
+  const ROWS=[
+    {en:'Novel-view appearance',zh:'新视角外观',v:['p','y','p','p']},
+    {en:'Surface and normals',zh:'表面与法线',v:['n','p','y','y']},
+    {en:'Inside / outside, collision',zh:'内外判断、碰撞',v:['n','n','y','y']},
+    {en:'Separate objects',zh:'物体分离',v:['p','p','p','y']},
+    {en:'Parts and joints',zh:'部件与关节',v:['n','n','n','y']}];
+  const NOTE={
+    pts:['离散的采样点：点与点之间没有表面，也无法判断一个位置在物体内部还是外部。','Discrete samples: there is no surface between the points and no way to tell inside from outside.'],
+    gs:['外观很好，但表面、碰撞和物体边界都是模糊的：高斯是一团团半透明的“云”。','Great for appearance, but surfaces, collisions and object boundaries stay ambiguous: Gaussians are translucent blobs.'],
+    mesh:['连续、封闭的表面：有法线、能判断内外、能算接触。但杯子、柜子、抽屉和箱子被融成了一整块。','A continuous, closed surface: normals, inside/outside and contact are defined. But mug, cabinet, drawer and box are fused into one piece.'],
+    str:['物体和部件各自独立，并带有关节（抽屉是平移关节，翻门是旋转关节）：这才是智能体可以交互的世界。','Objects and parts are separate and carry joints (the drawer is prismatic, the flap door revolute). This is a world an agent can interact with.']};
+  let mode='str',raf=0,t0=0,on=false;
+  // scene in 900x520 units, side view, the cabinet front faces right
+  const G=470;
+  const body={x:300,y:228,w:320,h:242};
+  const drawerY=[244,312],doorY=[328,460];
+  const mug={x:420,y:172,w:58,h:56};
+  const box={x:186,y:372,w:114,h:98};
+  function shapes(open,ang){
+    // returns polygons per part, in the current articulation state
+    const d=open;
+    const drawer=[[310+d,drawerY[0]],[628+d,drawerY[0]],[628+d,drawerY[1]],[310+d,drawerY[1]]];
+    const hx=628,hy=doorY[1],len=doorY[1]-doorY[0];
+    const c=Math.cos(ang),s=Math.sin(ang);
+    const P=(px,py)=>[hx+px*c-py*s,hy+px*s+py*c];
+    // door panel: thickness 10, height len, hinged at the bottom front corner, swinging outward
+    const door=[P(-10,0),P(0,0),P(0,-len),P(-10,-len)];
+    const cab=[[body.x,body.y],[body.x+body.w,body.y],[body.x+body.w,body.y+body.h],[body.x,body.y+body.h]];
+    const mugP=[[mug.x,mug.y],[mug.x+mug.w,mug.y],[mug.x+mug.w,mug.y+mug.h],[mug.x,mug.y+mug.h]];
+    const boxP=[[box.x,box.y],[box.x+box.w,box.y],[box.x+box.w,box.y+box.h],[box.x,box.y+box.h]];
+    return{cab,drawer,door,mug:mugP,box:boxP};
+  }
+  // surface samples along the closed (fused) scene, used by points and Gaussians
+  const R=rng(11);
+  function outline(){
+    const segs=[];
+    const add=(a,b)=>segs.push([a,b]);
+    const poly=p=>{for(let i=0;i<p.length;i++)add(p[i],p[(i+1)%p.length]);};
+    add([60,G],[860,G]);
+    poly([[box.x,box.y],[box.x+box.w,box.y],[box.x+box.w,G],[box.x,G]]);
+    add([body.x,body.y],[body.x+body.w+8,body.y]);add([body.x+body.w+8,body.y],[body.x+body.w+8,G]);add([body.x,body.y],[body.x,G]);
+    add([body.x+body.w+8,drawerY[0]],[body.x+body.w+8,drawerY[1]]);
+    poly([[mug.x,mug.y],[mug.x+mug.w,mug.y],[mug.x+mug.w,mug.y+mug.h],[mug.x,mug.y+mug.h]]);
+    return segs;
+  }
+  const SAMP=[];
+  outline().forEach(([a,b])=>{const len=Math.hypot(b[0]-a[0],b[1]-a[1]);const n=Math.max(2,Math.round(len/9));for(let i=0;i<n;i++){const t=(i+R())/n;const tx=(b[0]-a[0])/len,ty=(b[1]-a[1])/len;SAMP.push({x:a[0]+(b[0]-a[0])*t+gauss(R)*1.8,y:a[1]+(b[1]-a[1])*t+gauss(R)*1.8,ang:Math.atan2(ty,tx),s:6+R()*8,w:2+R()*2.5});}});
+  // handle arc
+  for(let i=0;i<12;i++){const a=-Math.PI/2+Math.PI*(i+R())/12;SAMP.push({x:mug.x+mug.w+15*Math.cos(a)+gauss(R),y:mug.y+28+15*Math.sin(a)+gauss(R),ang:a+Math.PI/2,s:5+R()*5,w:2+R()*2});}
+  const FLOAT=[];for(let i=0;i<16;i++)FLOAT.push({x:120+R()*720,y:120+R()*320,s:8+R()*18,w:5+R()*10,ang:R()*Math.PI,a:.08+R()*.12});
+  function path(p){ctx.beginPath();p.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]));ctx.closePath();}
+  function handle(){ctx.beginPath();ctx.arc(mug.x+mug.w,mug.y+28,15,-Math.PI/2,Math.PI/2);}
+  function label(txt,x,y,col,al){ctx.font=`500 15px "JetBrains Mono", "Noto Sans SC", monospace`;ctx.fillStyle=col;ctx.textAlign=al||'left';ctx.fillText(txt,x,y);}
+  function draw(t){
+    ctx.setTransform(S,0,0,S,0,0);
+    ctx.fillStyle=C.panel;ctx.fillRect(0,0,900,520);
+    // faint ground reference
+    ctx.strokeStyle=C.line;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(40,G+.5);ctx.lineTo(880,G+.5);ctx.stroke();
+    if(mode==='pts'){
+      ctx.fillStyle=C['geo-2'];
+      SAMP.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,2.1,0,Math.PI*2);ctx.fill();});
+      ctx.globalAlpha=.6;FLOAT.slice(0,8).forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,1.8,0,Math.PI*2);ctx.fill();});ctx.globalAlpha=1;
+      label(L('点与点之间：空','between samples: nothing'),640,150,C.dim);
+    }else if(mode==='gs'){
+      const blob=(p,col,a)=>{ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.ang);ctx.scale(p.s,p.w);const g=ctx.createRadialGradient(0,0,0,0,0,1);g.addColorStop(0,col.replace('A',a));g.addColorStop(1,col.replace('A',0));ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,1,0,Math.PI*2);ctx.fill();ctx.restore();};
+      SAMP.forEach(p=>blob({x:p.x,y:p.y,ang:p.ang,s:p.s*1.4,w:p.w*2.2},'rgba(125,184,255,A)',.55));
+      FLOAT.forEach(p=>blob(p,'rgba(240,163,94,A)',p.a));
+      label(L('漂浮物','floaters'),FLOAT[0].x+18,FLOAT[0].y-10,C.dim);
+    }else if(mode==='mesh'){
+      const sh=shapes(0,0);
+      const parts=[sh.box,sh.cab,sh.drawer,sh.door,sh.mug];
+      // outline of the union: stroke everything, then fill on top so internal seams vanish
+      ctx.lineJoin='round';ctx.strokeStyle=C['geo-2'];ctx.lineWidth=4;
+      parts.forEach(p=>{path(p);ctx.stroke();});handle();ctx.lineWidth=8;ctx.stroke();
+      ctx.fillStyle='#1d3350';parts.forEach(p=>{path(p);ctx.fill();});
+      ctx.strokeStyle='#1d3350';ctx.lineWidth=4;handle();ctx.stroke();
+      // triangle lattice clipped to the union
+      ctx.save();ctx.beginPath();parts.forEach(p=>{p.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]));ctx.closePath();});ctx.clip();
+      ctx.strokeStyle='rgba(125,184,255,.22)';ctx.lineWidth=1;ctx.beginPath();
+      for(let y=150;y<=G;y+=26){for(let x=160;x<=700;x+=30){ctx.moveTo(x,y);ctx.lineTo(x+30,y);ctx.moveTo(x,y);ctx.lineTo(x+15,y+26);ctx.moveTo(x+30,y);ctx.lineTo(x+15,y+26);}}
+      ctx.stroke();ctx.restore();
+      label(L('一整块连通表面','one connected surface'),640,150,C.dim);
+    }else{
+      const ph=RM?1:(Math.sin((t/1000)*1.1-Math.PI/2)+1)/2;
+      const ph2=RM?1:(Math.sin((t/1000)*1.1-Math.PI/2-1.1)+1)/2;
+      const sh=shapes(118*ph,ph2*1.25);
+      const col={cab:['#1d3350',C.geo],drawer:['#4a3420',C.video],door:['#2b3f22',C.agent],mug:['#4b2a2a',C.warn],box:['#33304a','#b7a8f0']};
+      ['box','cab','drawer','door','mug'].forEach(k=>{path(sh[k]);ctx.fillStyle=col[k][0];ctx.fill();ctx.strokeStyle=col[k][1];ctx.lineWidth=2;ctx.stroke();});
+      handle();ctx.strokeStyle=col.mug[1];ctx.lineWidth=3;ctx.stroke();
+      // joints
+      const dy=(drawerY[0]+drawerY[1])/2;
+      ctx.strokeStyle=C['video-2'];ctx.fillStyle=C['video-2'];ctx.lineWidth=2;ctx.setLineDash([5,4]);
+      ctx.beginPath();ctx.moveTo(640,dy-50);ctx.lineTo(800,dy-50);ctx.stroke();ctx.setLineDash([]);
+      ctx.beginPath();ctx.moveTo(806,dy-50);ctx.lineTo(796,dy-56);ctx.lineTo(796,dy-44);ctx.closePath();ctx.fill();
+      label(L('平移关节','prismatic joint'),660,dy-60,C['video-2']);
+      ctx.strokeStyle=C.agent;ctx.beginPath();ctx.arc(628,doorY[1],46,-Math.PI/2,-Math.PI/2+1.25);ctx.stroke();
+      ctx.fillStyle=C.agent;ctx.beginPath();ctx.arc(628,doorY[1],5,0,Math.PI*2);ctx.fill();
+      label(L('旋转关节','revolute joint'),690,doorY[1]-70,C.agent);
+      label(L('杯子','mug'),mug.x+mug.w/2,mug.y-12,C.warn,'center');
+      label(L('箱子','box'),box.x+box.w/2,box.y-12,'#b7a8f0','center');
+    }
+    // mode name
+    ctx.font=`600 19px Inter, "Noto Sans SC", sans-serif`;ctx.fillStyle=C.fg;ctx.textAlign='left';
+    ctx.fillText(MODES.find(m=>m.k===mode)[LANG],28,44);
+  }
+  function loop(now){draw(now-t0);if(on&&mode==='str'&&!RM)raf=requestAnimationFrame(loop);}
+  function start(){cancelAnimationFrame(raf);t0=performance.now();if(on&&mode==='str'&&!RM)raf=requestAnimationFrame(loop);else draw(RM?1e9:0);}
+  function table(){
+    const sym={y:['●','sym-y'],p:['◐','sym-p'],n:['○','sym-n']};
+    const mi=MODES.findIndex(m=>m.k===mode);
+    let h='<thead><tr><th class="rh"></th>'+MODES.map((m,i)=>`<th><button type="button" data-k="${m.k}" aria-pressed="${i===mi}">${m[LANG]}</button></th>`).join('')+'</tr></thead><tbody>';
+    ROWS.forEach(r=>{h+=`<tr><td class="rh">${r[LANG]}</td>`+r.v.map((v,i)=>`<td class="${sym[v][1]} ${i===mi?'sel':''}" aria-label="${v}">${sym[v][0]}</td>`).join('')+'</tr>';});
+    $('#dense-tab').innerHTML=h+'</tbody>';
+    $('#dense-note').textContent=L(...NOTE[mode]);
+    $$('#dense-tab th button').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.k;table();start();}));
+  }
+  table();draw(0);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{if(!on)draw(0);});
+  return{enter(){on=true;start();},leave(){on=false;cancelAnimationFrame(raf);},lang(){table();if(!(on&&mode==='str'))draw(0);}};
+})();
+
+/* ---------------- 7: stages and their failure modes ---------------- */
+hooks.boundary=(()=>{
+  const ST=[
+    {c:'var(--video)',en:'Video consistency',zh:'视频一致性',
+     b:['生成视频会漂移：几何、尺度和物体身份在帧间变化，可能根本不存在一个能同时解释所有帧的 3D 场景。','Generated videos drift: geometry, scale and object identity change between frames, so there may be no single 3D scene that explains every frame.'],
+     t:['用同一套重建流程处理生成视频和真实视频，比较重投影误差和跨视角一致性。差距就是生成带来的代价。','Run the same reconstruction on generated and real videos and compare reprojection error and cross-view consistency. The gap is the cost of generation.']},
+    {c:'var(--video)',en:'Camera and depth',zh:'相机与深度',
+     b:['位姿漂移、尺度不确定、深度闪烁。这些误差在建表面之前就已经累积起来。','Pose drift, scale ambiguity and flickering depth. These errors compound before any surface is built.'],
+     t:['Oracle：换成真值位姿和深度，后续流程保持不变，看下游指标涨多少。','Oracle: substitute ground-truth poses and depth, keep everything downstream fixed, and measure the gain.']},
+    {c:'var(--video)',en:'Dense surface',zh:'稠密表面',
+     b:['未观测区域出现空洞，细结构丢失，表面不封闭。','Holes in unseen regions, lost thin structures, surfaces that are not watertight.'],
+     t:['Oracle：真值 mesh。指标：Chamfer 距离、法线一致性、未观测表面的完整度。','Oracle: ground-truth mesh. Metrics: Chamfer distance, normal consistency, completeness on unseen surfaces.']},
+    {c:'var(--geo)',en:'Object separation',zh:'物体分离',
+     b:['相互接触的物体被融成一块：桌上的杯子、书架上的书。','Touching objects fuse into one piece: a mug on a table, books on a shelf.'],
+     t:['Oracle：真值实例 mesh。指标：被合并物体的比例、逐实例 IoU。','Oracle: ground-truth instance meshes. Metrics: merged-object rate and per-instance IoU.']},
+    {c:'var(--geo)',en:'Parts and joints',zh:'部件与关节',
+     b:['门和抽屉只是刚性几何：没有部件划分，也没有关节类型和转轴。','Doors and drawers are rigid geometry, with no part split, joint type or axis.'],
+     t:['Oracle：真值部件与关节。指标：关节类型准确率、转轴与运动范围误差。','Oracle: ground-truth parts and joints. Metrics: joint-type accuracy, axis and range error.']},
+    {c:'var(--agent)',en:'Downstream task',zh:'下游任务',
+     b:['真正要问的是：哪一个上游误差会改变一个空间问答的答案，或者一次抓取的成败？','The question that matters: which upstream error actually changes a spatial answer or a grasp?'],
+     t:['逐个换入 oracle，测 VLM 空间问答准确率和仿真中的策略成功率。','Swap in each oracle one at a time and measure VLM spatial-QA accuracy and policy success in simulation.']}];
+  let sel=3;
+  function render(){
+    const el=$('#bd-chain');el.innerHTML='';
+    ST.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.className='stg';b.style.setProperty('--c',s.c);b.setAttribute('aria-pressed',i===sel?'true':'false');
+      b.innerHTML=`<span class="n">${i+1}</span><span class="nm">${s[LANG]}</span>`;
+      b.addEventListener('click',()=>{sel=i;render();});el.appendChild(b);});
+    $('#bd-break').textContent=L(...ST[sel].b);$('#bd-test').textContent=L(...ST[sel].t);
+  }
+  render();
+  return{lang:render};
+})();
+
+/* ---------------- start ---------------- */
+let start=0;const m=/^#s(\d+)$/.exec(location.hash||'');if(m)start=Math.max(0,Math.min(slides.length-1,+m[1]-1));
+show(start,0);
+})();
+</script>
+</body>
+</html>
