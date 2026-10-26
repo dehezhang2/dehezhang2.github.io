@@ -252,6 +252,7 @@ span.highlight { background-color: #ffffd0; }
 .venue.neurips  { background: #6f42c1; }
 .venue.tdv      { background: #0d9488; }
 .venue.cvpr     { background: #1b7e3a; }
+.venue.aacl     { background: #2563a8; }
 .venue.submission { background: #64748b; }
 .venue.course   { background: #6c757d; }
 .venue.thesis   { background: #495057; }
@@ -1282,7 +1283,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 </div>
 
 <div class="pub-more-bar">
-  <button type="button" id="pub-more-toggle" class="pub-toggle" aria-expanded="false">Show 2 more publications</button>
+  <button type="button" id="pub-more-toggle" class="pub-toggle" aria-expanded="false">Show 3 more publications</button>
 </div>
 
 <script type="text/javascript">
@@ -1291,7 +1292,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
     var btn = document.getElementById('pub-more-toggle');
     if (!btn) return;
     document.body.classList.add('js-pubs');
-    var label = ['Show 2 more publications', 'Hide other publications'];
+    var label = ['Show 3 more publications', 'Hide other publications'];
     btn.addEventListener('click', function () {
       var open = document.body.classList.toggle('pub-extra-show');
       btn.setAttribute('aria-expanded', String(open));
@@ -1299,6 +1300,29 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
     });
   })();
 </script>
+
+<div class="paper-card pub-extra">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr>
+    <td width="40%">
+      <img src="/images/projects/empathy.png" width="100%" alt="Empathy teaser: prompt-condition performance across 11 benchmarks for GPT-4o-mini and Llama-3.1-8B" style="border-radius:8px;">
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title"><a href="https://arxiv.org/abs/2610.18541">Empathy Is Not the Scapegoat for Declines in Factuality and Reliability</a><span class="venue aacl">AACL 2026</span></div>
+      <div class="paper-authors">
+        <a href="https://insait.ai/letian-shi/">Letian Shi</a>,
+        Kanwal Mehreen,
+        <strong>Deheng Zhang</strong>,
+        Yuxia Wang
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2610.18541">Paper</a>
+      </div>
+      <div class="paper-tldr">Revisits the claim that warmer, more empathetic language models are less reliable. Separating tone from SFT-induced distribution shift across prompting, SFT and RL, on an 11-dataset suite and EMOFACT, shows that warmth effects are task- and model-dependent and that task-aligned adaptive tone can improve empathy and targeted reliability; the paper also introduces human-validated empathy evaluators.</div>
+    </td>
+  </tr>
+</table>
+</div>
 
 <div class="paper-card pub-extra">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
