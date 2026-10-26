@@ -253,6 +253,7 @@ span.highlight { background-color: #ffffd0; }
 .venue.tdv      { background: #0d9488; }
 .venue.cvpr     { background: #1b7e3a; }
 .venue.aacl     { background: #2563a8; }
+.venue.icra     { background: #c2410c; }
 .venue.submission { background: #64748b; }
 .venue.course   { background: #6c757d; }
 .venue.thesis   { background: #495057; }
@@ -990,7 +991,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
       </script>
     </td>
     <td valign="top" width="60%">
-      <div class="paper-title"><a href="https://ganlinzhang.xyz/Holo-Spot-Page/">EgoSpot: Accessible Robot Control via Egocentric Multimodal Signals</a><span class="venue course">ICRA Workshop 2026</span></div>
+      <div class="paper-title"><a href="https://ganlinzhang.xyz/Holo-Spot-Page/">EgoSpot: Accessible Robot Control via Egocentric Multimodal Signals</a><span class="venue icra">ICRA Workshop 2026</span></div>
       <div class="paper-authors">
         <a href="https://ganlinzhang.xyz/">Ganlin Zhang*</a>,
         <strong>Deheng Zhang*</strong>,
