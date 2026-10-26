@@ -915,7 +915,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 <h2 id="news" class="section-heading">News</h2>
 <div class="news-list">
 <ul>
-  <li><span class="news-date">2026.10</span>🎉 Our paper <em>Empathy Is Not the Scapegoat for Declines in Factuality and Reliability</em> has been accepted to <strong>AACL 2026</strong> as an <strong>oral</strong> presentation!</li>
+  <li><span class="news-date">2026.10</span>🎉 Our paper <a href="https://insait-institute.github.io/Empathy-not-Scapegoat/"><em>Empathy Is Not the Scapegoat for Declines in Factuality and Reliability</em></a> has been accepted to <strong>AACL 2026</strong> as an <strong>oral</strong> presentation!</li>
   <li><span class="news-date">2026.01</span>🎉 My first-author paper <em>EgoNight: Towards Egocentric Vision Understanding at Night with a Challenging Benchmark</em> has been accepted to <strong>ICLR 2026</strong>!</li>
   <li><span class="news-date">2025.09</span>🎉 Our paper <em>StateSpaceDiffuser: Bringing Long Context to Diffusion World Models</em> has been accepted to <strong>NeurIPS 2025</strong>!</li>
   <li><span class="news-date">2025.04</span>I joined <strong>INSAIT</strong> as a Researcher, supervised by <a href="https://insait.ai/prof-luc-van-gool/">Prof. Luc Van Gool</a> and <a href="https://insait.ai/dr-danda-paudel/">Dr. Danda Paudel</a>!</li>
@@ -1092,7 +1092,7 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
       <img src="/images/projects/empathy.png" width="100%" alt="Empathy teaser: prompt-condition performance across 11 benchmarks for GPT-4o-mini and Llama-3.1-8B" style="border-radius:8px;">
     </td>
     <td valign="top" width="60%">
-      <div class="paper-title"><a href="https://arxiv.org/abs/2610.18541">Empathy Is Not the Scapegoat for Declines in Factuality and Reliability</a><span class="venue aacl">AACL 2026 Oral</span></div>
+      <div class="paper-title"><a href="https://insait-institute.github.io/Empathy-not-Scapegoat/">Empathy Is Not the Scapegoat for Declines in Factuality and Reliability</a><span class="venue aacl">AACL 2026 Oral</span></div>
       <div class="paper-authors">
         <a href="https://insait.ai/letian-shi/">Letian Shi*</a>,
         Kanwal Mehreen*,
