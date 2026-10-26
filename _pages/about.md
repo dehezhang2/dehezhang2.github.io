@@ -1096,9 +1096,9 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
       <div class="paper-title"><a href="https://insait-institute.github.io/Empathy-not-Scapegoat/">Empathy Is Not the Scapegoat for Declines in Factuality and Reliability</a><span class="venue aacl">AACL 2026 Oral</span></div>
       <div class="paper-authors">
         <a href="https://insait.ai/letian-shi/">Letian Shi*</a>,
-        Kanwal Mehreen*,
+        <a href="https://kanwal-mehreen.netlify.app/">Kanwal Mehreen*</a>,
         <strong>Deheng Zhang</strong>,
-        Yuxia Wang
+        <a href="https://yuxiaw.github.io/">Yuxia Wang</a>
         <em>(* equal contribution)</em>
       </div>
       <div class="paper-links">
