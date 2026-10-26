@@ -295,25 +295,6 @@ span.highlight { background-color: #ffffd0; }
 .paper-authors strong { color: #c0392b; font-weight: 600; }
 .paper-authors a { color: #2462c4; }
 .paper-links { margin-top: 6px; }
-/* ---------- Publications: first-author papers shown, the rest behind a toggle */
-.pub-more-bar { margin: 2px 0 20px; display: none; }
-body.js-pubs .pub-more-bar { display: block; }
-body.js-pubs .pub-extra { display: none; }
-body.js-pubs.pub-extra-show .pub-extra { display: block; }
-.pub-toggle {
-  display: inline-block;
-  padding: 6px 16px;
-  border: 1px solid #d0d0d0;
-  border-radius: 16px;
-  background: #fff;
-  font-family: inherit;
-  font-size: 0.88em;
-  font-weight: 500;
-  color: #2462c4;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.pub-toggle:hover { background: #2462c4; color: #fff; border-color: #2462c4; }
 
 .paper-links a {
   display: inline-block;
@@ -947,6 +928,252 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
 
 <div class="paper-card">
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="egonight_stop()" onmouseover="egonight_start()">
+    <td width="40%">
+      <div class="one">
+        <div class="two" id="egonight_shape">
+          <img src="/images/projects/egonight.gif" width="100%">
+        </div>
+        <img src="/images/projects/egonight.png" width="100%">
+      </div>
+      <script type="text/javascript">
+        function egonight_start() { document.getElementById('egonight_shape').style.opacity = "1"; }
+        function egonight_stop()  { document.getElementById('egonight_shape').style.opacity = "0"; }
+        egonight_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title">EgoNight: Towards Egocentric Vision Understanding at Night with a Challenging Benchmark<span class="venue iclr">ICLR 2026</span></div>
+      <div class="paper-authors">
+        <strong>Deheng Zhang*</strong>,
+        <a href="https://yuqianfu.com/">Yuqian Fu*</a>,
+        <a href="https://runyiyang.github.io/">Runyi Yang</a>,
+        <a href="https://y9miao.github.io/">Yang Miao</a>,
+        <a href="https://qiantianwen.github.io/">Tianwen Qian</a>,
+        <a href="https://zhengxujosh.github.io/">Xu Zheng</a>,
+        <a href="https://guoleisun.github.io/">Guolei Sun</a>,
+        <a href="https://ajadchhatkuli.github.io/">Ajad Chhatkuli</a>,
+        <a href="https://xuanjing-huang.github.io/">Xuanjing Huang</a>,
+        <a href="https://fvl.fudan.edu.cn/people/yugangjiang/">Yu-Gang Jiang</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://openreview.net/pdf?id=DKD4QbOKBN">Paper</a>
+        <a href="https://dehezhang2.github.io/EgoNight/">Project</a>
+        <a href="https://github.com/dehezhang2/EgoNight">Code</a>
+        <a href="https://huggingface.co/datasets/dehezhang2/EgoNight">Dataset</a>
+      </div>
+      <div class="paper-tldr">The first comprehensive benchmark for egocentric vision understanding in low-light and nighttime conditions, comprising synthetic scenes (EgoNight-Synthetic), aligned day–night pairs (EgoNight-Sofia), and unaligned nighttime footage (EgoNight-Oxford).</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="egospot_stop()" onmouseover="egospot_start()">
+    <td width="40%">
+      <div class="one egospot-media">
+        <div class="two" id="egospot_shape">
+          <video muted autoplay loop playsinline>
+            <source src="/images/projects/holospot.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <img src="/images/projects/holospot.png" alt="EgoSpot teaser">
+      </div>
+      <script type="text/javascript">
+        function egospot_start() { document.getElementById('egospot_shape').style.opacity = "1"; }
+        function egospot_stop()  { document.getElementById('egospot_shape').style.opacity = "0"; }
+        egospot_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title"><a href="https://ganlinzhang.xyz/Holo-Spot-Page/">EgoSpot: Accessible Robot Control via Egocentric Multimodal Signals</a><span class="venue course">ICRA Workshop 2026</span></div>
+      <div class="paper-authors">
+        <a href="https://ganlinzhang.xyz/">Ganlin Zhang*</a>,
+        <strong>Deheng Zhang*</strong>,
+        <a href="https://www.linkedin.com/in/longteng-duan-566640205/">Longteng Duan*</a>,
+        <a href="https://github.com/guo-han">Guo Han*</a>,
+        <a href="https://yuqianfu.com/">Yuqian Fu</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://www.linkedin.com/in/eric-vollenweider-1b4b1616a/">Eric Vollenweider</a>
+        <em>(* equal contribution)</em>
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2306.02393">Paper</a>
+        <a href="https://ganlinzhang.xyz/Holo-Spot-Page/">Project</a>
+        <a href="https://github.com/dehezhang2/holo-spot">Code</a>
+      </div>
+      <div class="paper-tldr">A mixed-reality system on HoloLens&nbsp;2 that enables users to control the Boston Dynamics Spot robot through egocentric multimodal signals — gaze, gesture, and voice — making robot teleoperation more accessible and intuitive.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="risesdf_stop()" onmouseover="risesdf_start()">
+    <td width="40%">
+      <div class="one">
+        <div class="two" id="risesdf_shape">
+          <img src="/images/projects/risesdf.gif" width="100%">
+        </div>
+        <img src="/images/projects/risesdf.png" width="100%">
+      </div>
+      <script type="text/javascript">
+        function risesdf_start() { document.getElementById('risesdf_shape').style.opacity = "1"; }
+        function risesdf_stop()  { document.getElementById('risesdf_shape').style.opacity = "0"; }
+        risesdf_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title">RISE-SDF: a Relightable Information-Shared Signed Distance Field for Glossy Object Inverse Rendering<span class="venue tdv">3DV 2025</span></div>
+      <div class="paper-authors">
+        <strong>Deheng Zhang*</strong>,
+        <a href="https://github.com/ccetaw">Jingyu Wang*</a>,
+        <a href="https://taconite.github.io/">Shaofei Wang</a>,
+        <a href="https://markomih.github.io/">Marko Mihajlovic</a>,
+        <a href="https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html">Sergey Prokudin</a>,
+        <a href="https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/computergrafik/lehrstuhl/mitarbeiter/prof-dr-ing-hendrik-lensch/">Hendrik P.A. Lensch</a>,
+        <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://www.arxiv.org/pdf/2409.20140">Paper</a>
+        <a href="https://dehezhang2.github.io/RISE-SDF/">Project</a>
+        <a href="https://github.com/dehezhang2/RISE-SDF">Code</a>
+        <a href="https://drive.google.com/drive/folders/1991eNN5-bMWK7aEHf99VU_iGZsH6FnAc">Dataset</a>
+      </div>
+      <div class="paper-tldr">An end-to-end relightable neural inverse-rendering system enabling high-quality reconstruction of geometry and material properties. The core idea is a two-stage approach for better factorization of scene parameters, supporting high-quality relighting of glossy objects.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="coarf_stop()" onmouseover="coarf_start()">
+    <td width="40%">
+      <div class="one">
+        <div class="two" id="coarf_shape">
+          <img src="/images/projects/coarf.gif" width="100%">
+        </div>
+        <img src="/images/projects/coarf.png" width="100%">
+      </div>
+      <script type="text/javascript">
+        function coarf_start() { document.getElementById('coarf_shape').style.opacity = "1"; }
+        function coarf_stop()  { document.getElementById('coarf_shape').style.opacity = "0"; }
+        coarf_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title">CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields<span class="venue tdv">3DV 2024</span></div>
+      <div class="paper-authors">
+        <strong>Deheng Zhang</strong>,
+        <a href="https://cfernandezlab.github.io/">Clara Fernández Labrador</a>,
+        <a href="https://studios.disneyresearch.com/people/christopher-schroers/">Christopher Schroers</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://studios.disneyresearch.com/app/uploads/2024/03/CoARF_paper.pdf">Paper</a>
+        <a href="https://studios.disneyresearch.com/2024/03/18/coarf-controllable-3d-artistic-style-transfer-for-radiance-fields/">Project</a>
+      </div>
+      <div class="paper-tldr">A novel algorithm for controllable 3D scene stylization that enables style transfer for specified objects, compositional 3D style transfer, and semantic-aware style transfer via segmentation masks and label-dependent losses.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr>
+    <td width="40%">
+      <img src="/images/projects/empathy.png" width="100%" alt="Empathy teaser: prompt-condition performance across 11 benchmarks for GPT-4o-mini and Llama-3.1-8B" style="border-radius:8px;">
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title"><a href="https://arxiv.org/abs/2610.18541">Empathy Is Not the Scapegoat for Declines in Factuality and Reliability</a><span class="venue aacl">AACL 2026 Oral</span></div>
+      <div class="paper-authors">
+        <a href="https://insait.ai/letian-shi/">Letian Shi*</a>,
+        Kanwal Mehreen*,
+        <strong>Deheng Zhang</strong>,
+        Yuxia Wang
+        <em>(* equal contribution)</em>
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2610.18541">Paper</a>
+        <a href="https://insait-institute.github.io/Empathy-not-Scapegoat/">Project</a>
+        <a href="https://insait-institute.github.io/Empathy-not-Scapegoat/talk.html">Slides</a>
+      </div>
+      <div class="paper-tldr">Revisits the claim that warmer, more empathetic language models are less reliable. Separating tone from SFT-induced distribution shift across prompting, SFT and RL, on an 11-dataset suite and EMOFACT, shows that warmth effects are task- and model-dependent and that task-aligned adaptive tone can improve empathy and targeted reliability; the paper also introduces human-validated empathy evaluators.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr>
+    <td width="40%">
+      <img src="/images/projects/seasonscapes.png" width="100%" alt="SeasonScapes teaser" style="border-radius:8px;">
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title"><a href="https://arxiv.org/abs/2605.09039">SeasonScapes: Learning Large-scale Re-lightable 3D Landscapes with Seasonal Variation from Sparse Webcams</a><span class="venue cvpr">CVPR Workshop 2026</span></div>
+      <div class="paper-authors">
+        Timo Kleger,
+        Qi Ma,
+        <strong>Deheng Zhang</strong>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2605.09039">Paper</a>
+      </div>
+      <div class="paper-tldr">A framework and dataset for large-scale relightable 3D landscapes — over 85,000 webcam images from 32 Swiss mountain locations across a full year, projected onto a 3D mesh with conditional diffusion inpainting to model seasonal appearance changes and enable physically-based relighting.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
+  <tr onmouseout="statespacediffuser_stop()" onmouseover="statespacediffuser_start()">
+    <td width="40%">
+      <div class="one">
+        <div class="two" id="statespacediffuser_shape">
+          <img src="/images/projects/statespacediffuser.gif" width="100%">
+        </div>
+        <img src="/images/projects/statespacediffuser.png" width="100%">
+      </div>
+      <script type="text/javascript">
+        function statespacediffuser_start() { document.getElementById('statespacediffuser_shape').style.opacity = "1"; }
+        function statespacediffuser_stop()  { document.getElementById('statespacediffuser_shape').style.opacity = "0"; }
+        statespacediffuser_stop();
+      </script>
+    </td>
+    <td valign="top" width="60%">
+      <div class="paper-title">StateSpaceDiffuser: Bringing Long Context to Diffusion World Models<span class="venue neurips">NeurIPS 2025</span></div>
+      <div class="paper-authors">
+        <a href="https://insait.ai/nedko-savov/">Nedko Savov</a>,
+        <a href="https://insait.ai/naser-kazemi/">Naser Kazemi</a>,
+        <strong>Deheng Zhang</strong>,
+        <a href="https://insait.ai/dr-danda-paudel/">Danda Paudel</a>,
+        <a href="https://xiwang1212.github.io/homepage/">Xi Wang</a>,
+        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2505.22246">Paper</a>
+        <a href="https://insait-institute.github.io/StateSpaceDiffuser/">Project</a>
+        <a href="https://github.com/insait-institute/StateSpaceDiffuser">Code</a>
+      </div>
+      <div class="paper-tldr">A diffusion world model that overcomes the memory bottleneck by integrating features from a state-space model representing the entire interaction history, enabling long-context world modeling.</div>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="paper-card">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
   <tr onmouseout="conegaussian_stop()" onmouseover="conegaussian_start()">
     <td width="40%">
       <div class="one">
@@ -1119,271 +1346,6 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
         <a href="https://lizzd.github.io/frameworkers-site/films.html">Films</a>
       </div>
       <div class="paper-tldr">An AI film director — a trained Director agent plans a dynamic task stack and orchestrates specialist agents (script, keyframes, clips, voiceover, score, sound design) to turn a single prompt into a finished short film.</div>
-    </td>
-  </tr>
-</table>
-</div>
-
-<div class="paper-card">
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
-  <tr onmouseout="egonight_stop()" onmouseover="egonight_start()">
-    <td width="40%">
-      <div class="one">
-        <div class="two" id="egonight_shape">
-          <img src="/images/projects/egonight.gif" width="100%">
-        </div>
-        <img src="/images/projects/egonight.png" width="100%">
-      </div>
-      <script type="text/javascript">
-        function egonight_start() { document.getElementById('egonight_shape').style.opacity = "1"; }
-        function egonight_stop()  { document.getElementById('egonight_shape').style.opacity = "0"; }
-        egonight_stop();
-      </script>
-    </td>
-    <td valign="top" width="60%">
-      <div class="paper-title">EgoNight: Towards Egocentric Vision Understanding at Night with a Challenging Benchmark<span class="venue iclr">ICLR 2026</span></div>
-      <div class="paper-authors">
-        <strong>Deheng Zhang*</strong>,
-        <a href="https://yuqianfu.com/">Yuqian Fu*</a>,
-        <a href="https://runyiyang.github.io/">Runyi Yang</a>,
-        <a href="https://y9miao.github.io/">Yang Miao</a>,
-        <a href="https://qiantianwen.github.io/">Tianwen Qian</a>,
-        <a href="https://zhengxujosh.github.io/">Xu Zheng</a>,
-        <a href="https://guoleisun.github.io/">Guolei Sun</a>,
-        <a href="https://ajadchhatkuli.github.io/">Ajad Chhatkuli</a>,
-        <a href="https://xuanjing-huang.github.io/">Xuanjing Huang</a>,
-        <a href="https://fvl.fudan.edu.cn/people/yugangjiang/">Yu-Gang Jiang</a>,
-        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
-        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>
-      </div>
-      <div class="paper-links">
-        <a href="https://openreview.net/pdf?id=DKD4QbOKBN">Paper</a>
-        <a href="https://dehezhang2.github.io/EgoNight/">Project</a>
-        <a href="https://github.com/dehezhang2/EgoNight">Code</a>
-        <a href="https://huggingface.co/datasets/dehezhang2/EgoNight">Dataset</a>
-      </div>
-      <div class="paper-tldr">The first comprehensive benchmark for egocentric vision understanding in low-light and nighttime conditions, comprising synthetic scenes (EgoNight-Synthetic), aligned day–night pairs (EgoNight-Sofia), and unaligned nighttime footage (EgoNight-Oxford).</div>
-    </td>
-  </tr>
-</table>
-</div>
-
-<div class="paper-card">
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
-  <tr onmouseout="egospot_stop()" onmouseover="egospot_start()">
-    <td width="40%">
-      <div class="one egospot-media">
-        <div class="two" id="egospot_shape">
-          <video muted autoplay loop playsinline>
-            <source src="/images/projects/holospot.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <img src="/images/projects/holospot.png" alt="EgoSpot teaser">
-      </div>
-      <script type="text/javascript">
-        function egospot_start() { document.getElementById('egospot_shape').style.opacity = "1"; }
-        function egospot_stop()  { document.getElementById('egospot_shape').style.opacity = "0"; }
-        egospot_stop();
-      </script>
-    </td>
-    <td valign="top" width="60%">
-      <div class="paper-title"><a href="https://ganlinzhang.xyz/Holo-Spot-Page/">EgoSpot: Accessible Robot Control via Egocentric Multimodal Signals</a><span class="venue course">ICRA Workshop 2026</span></div>
-      <div class="paper-authors">
-        <a href="https://ganlinzhang.xyz/">Ganlin Zhang*</a>,
-        <strong>Deheng Zhang*</strong>,
-        <a href="https://www.linkedin.com/in/longteng-duan-566640205/">Longteng Duan*</a>,
-        <a href="https://github.com/guo-han">Guo Han*</a>,
-        <a href="https://yuqianfu.com/">Yuqian Fu</a>,
-        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>,
-        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
-        <a href="https://www.linkedin.com/in/eric-vollenweider-1b4b1616a/">Eric Vollenweider</a>
-        <em>(* equal contribution)</em>
-      </div>
-      <div class="paper-links">
-        <a href="https://arxiv.org/abs/2306.02393">Paper</a>
-        <a href="https://ganlinzhang.xyz/Holo-Spot-Page/">Project</a>
-        <a href="https://github.com/dehezhang2/holo-spot">Code</a>
-      </div>
-      <div class="paper-tldr">A mixed-reality system on HoloLens&nbsp;2 that enables users to control the Boston Dynamics Spot robot through egocentric multimodal signals — gaze, gesture, and voice — making robot teleoperation more accessible and intuitive.</div>
-    </td>
-  </tr>
-</table>
-</div>
-
-<div class="paper-card">
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
-  <tr onmouseout="risesdf_stop()" onmouseover="risesdf_start()">
-    <td width="40%">
-      <div class="one">
-        <div class="two" id="risesdf_shape">
-          <img src="/images/projects/risesdf.gif" width="100%">
-        </div>
-        <img src="/images/projects/risesdf.png" width="100%">
-      </div>
-      <script type="text/javascript">
-        function risesdf_start() { document.getElementById('risesdf_shape').style.opacity = "1"; }
-        function risesdf_stop()  { document.getElementById('risesdf_shape').style.opacity = "0"; }
-        risesdf_stop();
-      </script>
-    </td>
-    <td valign="top" width="60%">
-      <div class="paper-title">RISE-SDF: a Relightable Information-Shared Signed Distance Field for Glossy Object Inverse Rendering<span class="venue tdv">3DV 2025</span></div>
-      <div class="paper-authors">
-        <strong>Deheng Zhang*</strong>,
-        <a href="https://github.com/ccetaw">Jingyu Wang*</a>,
-        <a href="https://taconite.github.io/">Shaofei Wang</a>,
-        <a href="https://markomih.github.io/">Marko Mihajlovic</a>,
-        <a href="https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html">Sergey Prokudin</a>,
-        <a href="https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/computergrafik/lehrstuhl/mitarbeiter/prof-dr-ing-hendrik-lensch/">Hendrik P.A. Lensch</a>,
-        <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
-      </div>
-      <div class="paper-links">
-        <a href="https://www.arxiv.org/pdf/2409.20140">Paper</a>
-        <a href="https://dehezhang2.github.io/RISE-SDF/">Project</a>
-        <a href="https://github.com/dehezhang2/RISE-SDF">Code</a>
-        <a href="https://drive.google.com/drive/folders/1991eNN5-bMWK7aEHf99VU_iGZsH6FnAc">Dataset</a>
-      </div>
-      <div class="paper-tldr">An end-to-end relightable neural inverse-rendering system enabling high-quality reconstruction of geometry and material properties. The core idea is a two-stage approach for better factorization of scene parameters, supporting high-quality relighting of glossy objects.</div>
-    </td>
-  </tr>
-</table>
-</div>
-
-<div class="paper-card">
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
-  <tr onmouseout="coarf_stop()" onmouseover="coarf_start()">
-    <td width="40%">
-      <div class="one">
-        <div class="two" id="coarf_shape">
-          <img src="/images/projects/coarf.gif" width="100%">
-        </div>
-        <img src="/images/projects/coarf.png" width="100%">
-      </div>
-      <script type="text/javascript">
-        function coarf_start() { document.getElementById('coarf_shape').style.opacity = "1"; }
-        function coarf_stop()  { document.getElementById('coarf_shape').style.opacity = "0"; }
-        coarf_stop();
-      </script>
-    </td>
-    <td valign="top" width="60%">
-      <div class="paper-title">CoARF: Controllable 3D Artistic Style Transfer for Radiance Fields<span class="venue tdv">3DV 2024</span></div>
-      <div class="paper-authors">
-        <strong>Deheng Zhang</strong>,
-        <a href="https://cfernandezlab.github.io/">Clara Fernández Labrador</a>,
-        <a href="https://studios.disneyresearch.com/people/christopher-schroers/">Christopher Schroers</a>
-      </div>
-      <div class="paper-links">
-        <a href="https://studios.disneyresearch.com/app/uploads/2024/03/CoARF_paper.pdf">Paper</a>
-        <a href="https://studios.disneyresearch.com/2024/03/18/coarf-controllable-3d-artistic-style-transfer-for-radiance-fields/">Project</a>
-      </div>
-      <div class="paper-tldr">A novel algorithm for controllable 3D scene stylization that enables style transfer for specified objects, compositional 3D style transfer, and semantic-aware style transfer via segmentation masks and label-dependent losses.</div>
-    </td>
-  </tr>
-</table>
-</div>
-
-<div class="pub-more-bar">
-  <button type="button" id="pub-more-toggle" class="pub-toggle" aria-expanded="false">Show 3 more publications</button>
-</div>
-
-<script type="text/javascript">
-  /* Collapse the non-first-author cards only when scripting is available. */
-  (function () {
-    var btn = document.getElementById('pub-more-toggle');
-    if (!btn) return;
-    document.body.classList.add('js-pubs');
-    var label = ['Show 3 more publications', 'Hide other publications'];
-    btn.addEventListener('click', function () {
-      var open = document.body.classList.toggle('pub-extra-show');
-      btn.setAttribute('aria-expanded', String(open));
-      btn.textContent = label[open ? 1 : 0];
-    });
-  })();
-</script>
-
-<div class="paper-card pub-extra">
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
-  <tr>
-    <td width="40%">
-      <img src="/images/projects/empathy.png" width="100%" alt="Empathy teaser: prompt-condition performance across 11 benchmarks for GPT-4o-mini and Llama-3.1-8B" style="border-radius:8px;">
-    </td>
-    <td valign="top" width="60%">
-      <div class="paper-title"><a href="https://arxiv.org/abs/2610.18541">Empathy Is Not the Scapegoat for Declines in Factuality and Reliability</a><span class="venue aacl">AACL 2026 Oral</span></div>
-      <div class="paper-authors">
-        <a href="https://insait.ai/letian-shi/">Letian Shi*</a>,
-        Kanwal Mehreen*,
-        <strong>Deheng Zhang</strong>,
-        Yuxia Wang
-        <em>(* equal contribution)</em>
-      </div>
-      <div class="paper-links">
-        <a href="https://arxiv.org/abs/2610.18541">Paper</a>
-        <a href="https://insait-institute.github.io/Empathy-not-Scapegoat/">Project</a>
-        <a href="https://insait-institute.github.io/Empathy-not-Scapegoat/talk.html">Slides</a>
-      </div>
-      <div class="paper-tldr">Revisits the claim that warmer, more empathetic language models are less reliable. Separating tone from SFT-induced distribution shift across prompting, SFT and RL, on an 11-dataset suite and EMOFACT, shows that warmth effects are task- and model-dependent and that task-aligned adaptive tone can improve empathy and targeted reliability; the paper also introduces human-validated empathy evaluators.</div>
-    </td>
-  </tr>
-</table>
-</div>
-
-<div class="paper-card pub-extra">
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
-  <tr onmouseout="statespacediffuser_stop()" onmouseover="statespacediffuser_start()">
-    <td width="40%">
-      <div class="one">
-        <div class="two" id="statespacediffuser_shape">
-          <img src="/images/projects/statespacediffuser.gif" width="100%">
-        </div>
-        <img src="/images/projects/statespacediffuser.png" width="100%">
-      </div>
-      <script type="text/javascript">
-        function statespacediffuser_start() { document.getElementById('statespacediffuser_shape').style.opacity = "1"; }
-        function statespacediffuser_stop()  { document.getElementById('statespacediffuser_shape').style.opacity = "0"; }
-        statespacediffuser_stop();
-      </script>
-    </td>
-    <td valign="top" width="60%">
-      <div class="paper-title">StateSpaceDiffuser: Bringing Long Context to Diffusion World Models<span class="venue neurips">NeurIPS 2025</span></div>
-      <div class="paper-authors">
-        <a href="https://insait.ai/nedko-savov/">Nedko Savov</a>,
-        <a href="https://insait.ai/naser-kazemi/">Naser Kazemi</a>,
-        <strong>Deheng Zhang</strong>,
-        <a href="https://insait.ai/dr-danda-paudel/">Danda Paudel</a>,
-        <a href="https://xiwang1212.github.io/homepage/">Xi Wang</a>,
-        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>
-      </div>
-      <div class="paper-links">
-        <a href="https://arxiv.org/abs/2505.22246">Paper</a>
-        <a href="https://insait-institute.github.io/StateSpaceDiffuser/">Project</a>
-        <a href="https://github.com/insait-institute/StateSpaceDiffuser">Code</a>
-      </div>
-      <div class="paper-tldr">A diffusion world model that overcomes the memory bottleneck by integrating features from a state-space model representing the entire interaction history, enabling long-context world modeling.</div>
-    </td>
-  </tr>
-</table>
-</div>
-
-<div class="paper-card pub-extra">
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="14">
-  <tr>
-    <td width="40%">
-      <img src="/images/projects/seasonscapes.png" width="100%" alt="SeasonScapes teaser" style="border-radius:8px;">
-    </td>
-    <td valign="top" width="60%">
-      <div class="paper-title"><a href="https://arxiv.org/abs/2605.09039">SeasonScapes: Learning Large-scale Re-lightable 3D Landscapes with Seasonal Variation from Sparse Webcams</a><span class="venue cvpr">CVPR Workshop 2026</span></div>
-      <div class="paper-authors">
-        Timo Kleger,
-        Qi Ma,
-        <strong>Deheng Zhang</strong>,
-        <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a>,
-        <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a>
-      </div>
-      <div class="paper-links">
-        <a href="https://arxiv.org/abs/2605.09039">Paper</a>
-      </div>
-      <div class="paper-tldr">A framework and dataset for large-scale relightable 3D landscapes — over 85,000 webcam images from 32 Swiss mountain locations across a full year, projected onto a 3D mesh with conditional diffusion inpainting to model seasonal appearance changes and enable physically-based relighting.</div>
     </td>
   </tr>
 </table>
