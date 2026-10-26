@@ -1319,6 +1319,8 @@ Outside research, I enjoy [Rendering](https://dehezhang2.github.io/Kombu/), [Pho
       </div>
       <div class="paper-links">
         <a href="https://arxiv.org/abs/2610.18541">Paper</a>
+        <a href="https://insait-institute.github.io/Empathy-not-Scapegoat/">Project</a>
+        <a href="https://insait-institute.github.io/Empathy-not-Scapegoat/talk.html">Slides</a>
       </div>
       <div class="paper-tldr">Revisits the claim that warmer, more empathetic language models are less reliable. Separating tone from SFT-induced distribution shift across prompting, SFT and RL, on an 11-dataset suite and EMOFACT, shows that warmth effects are task- and model-dependent and that task-aligned adaptive tone can improve empathy and targeted reliability; the paper also introduces human-validated empathy evaluators.</div>
     </td>
